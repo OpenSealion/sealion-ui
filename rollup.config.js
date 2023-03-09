@@ -56,8 +56,6 @@ export default defineConfig({
         JsonPlugin(),
         excludeDependenciesFromBundle(),
         postcss({
-            minimize: true,
-            modules: true,
             use: {
                 sass: null,
                 stylus: null,

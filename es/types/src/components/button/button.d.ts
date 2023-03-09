@@ -1,4 +1,7 @@
-/// <reference types="react" />
+import React from 'react';
 import './button.less';
-declare const Button: () => JSX.Element;
+export interface ButtonProps {
+    type?: 'primary' | 'secondary';
+}
+declare const Button: React.FC<ButtonProps>;
 export default Button;
