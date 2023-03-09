@@ -4,10 +4,10 @@ import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript';
 import JsonPlugin from '@rollup/plugin-json';
 import postcss from 'rollup-plugin-postcss'
-import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import autoprefixer from 'autoprefixer';
 // import dts from 'rollup-plugin-dts';
 import eslint from '@rollup/plugin-eslint';
+import excludeDependenciesFromBundle from "rollup-plugin-exclude-dependencies-from-bundle"
 
 const packageJson = require('./package.json');
 const { getFiles } = require('./scripts/utils');
@@ -36,24 +36,39 @@ export default defineConfig({
             dir: 'es',
             format: 'es',
             preserveModules: true,
-            preserveModulesRoot: 'src'
+            preserveModulesRoot: 'src',
+            sourcemap: true
         }
+        // {
+        //     file: 'es/index.js',
+        //     format: 'es'
+        // },
     ],
     plugins: [
         resolve({
             extensions: ['.js', 'jsx', '.ts', '.tsx', '.less']
         }),
         commonjs(),
-        postcss({
-            extensions: ['.less', '.css'],
-            use: ['less'],
-            plugins: [autoprefixer()]
-        }),
         typescript({
             exclude: ['**/*.stories.tsx', '**/*.test.tsx'],
         }),
         eslint(),
         JsonPlugin(),
-        peerDepsExternal()
+        excludeDependenciesFromBundle(),
+        postcss({
+            minimize: true,
+            modules: true,
+            use: {
+                sass: null,
+                stylus: null,
+                less: { javascriptEnabled: true }
+            },
+            extract: true
+        }),
+        // postcss({
+        //     extensions: ['.less', '.css'],
+        //     use: ['less'],
+        //     plugins: [autoprefixer()]
+        // }),
     ]
 });
