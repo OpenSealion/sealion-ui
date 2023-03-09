@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Button = () => {
-    return (React.createElement("button", { type: "button", className: "btn" }, "123"));
+    return (React.createElement("button", { type: "button", className: "btn" }, "read"));
 };
 
 export { Button as default };
