@@ -3,7 +3,7 @@ import './button.less';
 
 const Button = () => {
     return (
-        <button type="button" className="btn">123</button>
+        <button type="button" className="btn">read</button>
     )
 }
 

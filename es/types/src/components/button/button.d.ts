@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import './button.less';
-declare const Button: () => any;
+declare const Button: () => JSX.Element;
 export default Button;
