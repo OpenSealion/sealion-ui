@@ -1,0 +1,84 @@
+@import '../style/index.less';
+@button-background-base: #F4F5F9;
+@button-border-base: none;
+@button-height-base: 28px;
+@button-height-padding-top: 1px;
+@button-height-padding-bottom: 1px;
+@button-color-base: #212121;
+@button-primary-background: #0D53DE;
+@button-primary-color: rgba(255, 255, 255, 0.95);
+@button-bg-padding-top: 7.5px;
+@button-bg-padding-right: 24px;
+@button-bg-padding-bottom: 7.5px;
+@button-bg-padding-left: 24px;
+@button-bg-font-size: 14px;
+@button-primary-border-radius: 2px;
+@button-primary-background-hover: #3477EB;
+@button-primary-background-focus: #0238B8;
+@button-bg-height: 36px;
+@button-default-background: #F4F5F9;
+@button-default-color: rgba(18, 19, 22, 0.8);
+@button-default-border-radius: 2px;
+@button-default-background-hover: #F9F9F9;
+@button-default-background-focus: #EBECF0;
+@button-icon-margin-right: 5px;
+@button-vertical-align: middle;
+
+.seal-button {
+    background: @button-background-base;
+    border: @button-border-base;
+    height: @button-height-base;
+    color: @button-color-base;
+    line-height: @button-height-base - @button-height-padding-top - @button-height-padding-bottom;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    >* {
+        vertical-align: @button-vertical-align;
+    }
+}
+
+.seal-button-primary {
+    background: @button-primary-background;
+    color: @button-primary-color;
+    border-radius: @button-primary-border-radius;
+
+    &:hover {
+        background: @button-primary-background-hover;
+    }
+
+    &:focus {
+        background: @button-primary-background-focus;
+    }
+}
+
+.seal-button-default {
+    background: @button-default-background;
+    color: @button-default-color;
+    border-radius: @button-default-border-radius;
+
+    &:hover {
+        background: @button-default-background-hover;
+    }
+
+    &:focus {
+        background: @button-default-background-focus;
+    }
+}
+
+.seal-button-bg {
+    padding: @button-bg-padding-top @button-bg-padding-right @button-bg-padding-bottom @button-bg-padding-left;
+    font-size: @button-bg-font-size;
+    height: @button-bg-height;
+}
+
+.seal-button-icon {
+    margin-right: @button-icon-margin-right;
+}
+
+.seal-button-disabled {
+    background: #B3D6FF;
+    cursor: not-allowed;
+}

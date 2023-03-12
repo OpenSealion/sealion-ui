@@ -20,7 +20,9 @@
     "*.css"
   ],
   "files": [
-    "dist"
+    "es",
+    "dist",
+    "lib"
   ],
   "browserslist": {
     "production": [
@@ -63,7 +65,7 @@
     "react-dom": "^17.0.2",
     "rimraf": "^4.3.0",
     "rollup": "^3.18.0",
-    "rollup-plugin-dts": "^5.2.0",
+    "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-exclude-dependencies-from-bundle": "^1.1.23",
     "rollup-plugin-node-externals": "^5.1.2",
     "rollup-plugin-postcss": "^4.0.2",
@@ -72,5 +74,8 @@
   "peerDependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
+  },
+  "dependencies": {
+    "classnames": "^2.3.2"
   }
 }

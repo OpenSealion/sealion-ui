@@ -18,7 +18,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": [
-        "src/*"
+        "components/*"
       ]
     },
     "resolveJsonModule": true,
@@ -33,6 +33,6 @@
     "skipLibCheck": true
   },
   "include": [
-    "src/**/*"
+    "components/**/*"
   ]
 }

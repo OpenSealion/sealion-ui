@@ -1,27 +1,34 @@
 import { defineConfig } from 'rollup';
 import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs'
+import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import JsonPlugin from '@rollup/plugin-json';
-import postcss from 'rollup-plugin-postcss'
+import postcss from 'rollup-plugin-postcss';
 import autoprefixer from 'autoprefixer';
-// import dts from 'rollup-plugin-dts';
 import eslint from '@rollup/plugin-eslint';
-import excludeDependenciesFromBundle from "rollup-plugin-exclude-dependencies-from-bundle"
+import excludeDependenciesFromBundle from 'rollup-plugin-exclude-dependencies-from-bundle';
+import copy from 'rollup-plugin-copy';
 
 const packageJson = require('./package.json');
-const { getFiles } = require('./scripts/utils');
+const { getFiles, copyStyleFilesToDest } = require('./scripts/utils');
 
 const extensions = ['.js', '.ts', '.jsx', '.tsx'];
+const SourceDir = 'components';
+const DestDir = 'es';
+const entry = `./${SourceDir}/index.ts`;
 
 console.log(
-    'getFiles(../ src / components, extensions)',
-    ...getFiles('src/components', extensions)
+    packageJson.name,
+    packageJson.version
 );
+const copyFileEntries = getFiles(SourceDir, extensions);
+const copyCssFileDests = copyStyleFilesToDest(copyFileEntries, [`${SourceDir}/index.ts`], SourceDir, DestDir);
+console.log(copyFileEntries);
+console.log(copyCssFileDests);
 
 export default defineConfig({
     input: [
-        './src/index.ts'
+        entry
     ],
     output: [
         // {
@@ -33,40 +40,36 @@ export default defineConfig({
         //     sourcemap: true
         // },
         {
-            dir: 'es',
+            dir: DestDir,
             format: 'es',
             preserveModules: true,
-            preserveModulesRoot: 'src',
+            preserveModulesRoot: SourceDir,
             sourcemap: true
         }
-        // {
-        //     file: 'es/index.js',
-        //     format: 'es'
-        // },
     ],
     plugins: [
-        resolve({
-            extensions: ['.js', 'jsx', '.ts', '.tsx', '.less']
+        postcss({
+            module: true,
+            use: {
+                sass: null,
+                stylus: null,
+                less: { javascriptEnabled: true }
+            },
+            plugins: [autoprefixer()],
+            extract: true
         }),
-        commonjs(),
+        resolve({
+            extensions: ['.js', 'jsx', '.ts', '.tsx']
+        }),
         typescript({
             exclude: ['**/*.stories.tsx', '**/*.test.tsx'],
         }),
         eslint(),
         JsonPlugin(),
         excludeDependenciesFromBundle(),
-        postcss({
-            use: {
-                sass: null,
-                stylus: null,
-                less: { javascriptEnabled: true }
-            },
-            extract: true
-        }),
-        // postcss({
-        //     extensions: ['.less', '.css'],
-        //     use: ['less'],
-        //     plugins: [autoprefixer()]
-        // }),
+        commonjs(),
+        copy({
+            targets: copyCssFileDests
+        })
     ]
 });
