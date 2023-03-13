@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
+import './style/index';
 
 export interface IButton {
     className?: string,

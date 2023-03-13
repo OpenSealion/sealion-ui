@@ -8,6 +8,7 @@ import autoprefixer from 'autoprefixer';
 import eslint from '@rollup/plugin-eslint';
 import excludeDependenciesFromBundle from 'rollup-plugin-exclude-dependencies-from-bundle';
 import copy from 'rollup-plugin-copy';
+import url from 'rollup-plugin-url';
 
 const packageJson = require('./package.json');
 const { getFiles, copyStyleFilesToDest } = require('./scripts/utils');
@@ -22,54 +23,61 @@ console.log(
     packageJson.version
 );
 const copyFileEntries = getFiles(SourceDir, extensions);
-const copyCssFileDests = copyStyleFilesToDest(copyFileEntries, [`${SourceDir}/index.ts`], SourceDir, DestDir);
+const copyCssFileDests = copyStyleFilesToDest(copyFileEntries, [`${SourceDir}/index.ts`, `${SourceDir}/style/index.ts`], SourceDir, DestDir);
 console.log(copyFileEntries);
-console.log(copyCssFileDests);
-
-export default defineConfig({
-    input: [
-        entry
-    ],
-    output: [
-        // {
-        //     dir: 'dist',
-        //     format: 'es',
-        //     // 用了source搬到build里面去后，就不能用file，只能用dir
-        //     preserveModules: true,
-        //     preserveModulesRoot: 'src',
-        //     sourcemap: true
-        // },
-        {
-            dir: DestDir,
-            format: 'es',
-            preserveModules: true,
-            preserveModulesRoot: SourceDir,
-            sourcemap: true
-        }
-    ],
-    plugins: [
-        postcss({
-            module: true,
-            use: {
-                sass: null,
-                stylus: null,
-                less: { javascriptEnabled: true }
-            },
-            plugins: [autoprefixer()],
-            extract: true
-        }),
-        resolve({
-            extensions: ['.js', 'jsx', '.ts', '.tsx']
-        }),
-        typescript({
-            exclude: ['**/*.stories.tsx', '**/*.test.tsx'],
-        }),
-        eslint(),
-        JsonPlugin(),
-        excludeDependenciesFromBundle(),
-        commonjs(),
-        copy({
-            targets: copyCssFileDests
-        })
-    ]
+// 把通用css复制到生成文件
+copyCssFileDests.push({
+    src: `${SourceDir}/style`,
+    dest: `${DestDir}`
 });
+
+export default defineConfig([
+    {
+        input: [
+            entry
+        ],
+        output: [
+            // {
+            //     dir: 'dist',
+            //     format: 'es',
+            //     // 用了source搬到build里面去后，就不能用file，只能用dir
+            //     preserveModules: true,
+            //     preserveModulesRoot: 'src',
+            //     sourcemap: true
+            // },
+            {
+                file: 'es/index.js',
+                format: 'es'
+            }
+        ],
+        plugins: [
+            url(),
+            postcss({
+                module: true,
+                plugins: [autoprefixer],
+                extensions: ['.less', '.css'],
+                use: ['less'],
+                extract: true
+            }),
+            resolve({
+                extensions: ['.js', 'jsx', '.ts', '.tsx']
+            }),
+            typescript({
+                exclude: ['**/*.stories.tsx', '**/*.test.tsx'],
+            }),
+            eslint(),
+            JsonPlugin(),
+            excludeDependenciesFromBundle(),
+            commonjs(),
+            // copy({
+            //     targets: copyCssFileDests
+            // })
+            copy({
+                targets: [{
+                    src: `${SourceDir}/style/core/iconfont`,
+                    dest: `${DestDir}`
+                }]
+            })
+        ]
+    }
+]);

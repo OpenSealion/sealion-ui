@@ -29,7 +29,6 @@ const getFiles = (entry, extensions = [], excludeExtensions = []) => {
 
 const getStyleDirnames = (sourceFiles = [], excludeFiles = [], styleDirname = '/style/') => {
     return sourceFiles.filter(sf => {
-        console.log(sf);
         if (excludeFiles.indexOf(sf) > -1) {
             return false;
         }
@@ -57,7 +56,6 @@ const copyStyleFilesToDest = (sourceFiles = [], excludeFiles = [], removeTagetDi
     const sourceStyleDirs = getStyleDirnames(sourceFiles, excludeFiles);
     const removeTagetDirFattern = new RegExp(`${removeTagetDir}/+`);
     const targets = [];
-    console.log(sourceStyleDirs);
 
     for (let i = 0; i < sourceStyleDirs.length; i++) {
         const sourceStyleDir = sourceStyleDirs[i];

@@ -13,7 +13,7 @@
     "rootDir": ".",
     "moduleResolution": "node",
     "declaration": true,
-    "declarationDir": "./es/types/",
+    "declarationDir": "./types/",
     "declarationMap": false,
     "baseUrl": ".",
     "paths": {
