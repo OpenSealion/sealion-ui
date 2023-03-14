@@ -1,0 +1,112 @@
+stages:
+  - build
+  - k8s_deploy
+  - notify
+
+build_image_dev:
+  stage: build
+  script:
+    - sed -i "s/$nexus_url_old/$nexus_url/g" Dockerfile
+    - docker build -t $harbor_url_prod/$PROJECT/$CI_PROJECT_NAME:${CI_COMMIT_SHA:0:8} .
+    - docker push $harbor_url_prod/$PROJECT/$CI_PROJECT_NAME:${CI_COMMIT_SHA:0:8}
+    - docker rmi $harbor_url_prod/$PROJECT/$CI_PROJECT_NAME:${CI_COMMIT_SHA:0:8}
+  tags:
+    - aliyun
+  only:
+    - develop
+    - /^tag_dev_aliyun.*$/
+
+build_image_spoc:
+  stage: build
+  script:
+    - sed -i "s/$nexus_url_old/$nexus_url/g" Dockerfile
+    - docker build -t $harbor_url_spoc/$PROJECT/$CI_PROJECT_NAME:${CI_COMMIT_SHA:0:8} .
+    - docker push $harbor_url_spoc/$PROJECT/$CI_PROJECT_NAME:${CI_COMMIT_SHA:0:8}
+    - docker rmi $harbor_url_spoc/$PROJECT/$CI_PROJECT_NAME:${CI_COMMIT_SHA:0:8}
+  tags:
+    - s72
+  only:
+    - spoc
+    - /^tag_dev_spoc_.*$/
+
+
+deploy_service_dev:
+  stage: k8s_deploy
+  script:
+    - echo "=============== 开始 k8s 部署任务 ==============="
+    - sed -i "s/latest/${CI_COMMIT_SHA:0:8}/g" $kube_file
+    - sed -i "s/$harbor_url/$harbor_url_prod/g" $kube_file
+    - sed -i "s/_harbor_url/$harbor_url_prod/g" $kube_file
+    - sed -i "s/openmmlab/openmmlab-dev/g" $kube_file
+    - sed -i "s/_namespace/openmmlab-dev/g" $kube_file
+    - sed -i "s/_replicas/$_replicas_dev/g" $kube_file
+    - sed -i "s/https_aide_url/$dev_aide_url/g" $kube_file
+    - sed -i "s/https_aide_secret/$dev_aide_secret/g" $kube_file
+    - sed -i "s/_https_uaa_url/$dev_uaa_url/g" $kube_file
+    - sed -i "s/_https_uaa_secret/$dev_uaa_secret/g" $kube_file
+    - sed -i "s/https_monitor_url/$dev_monitor_url/g" $kube_file
+    - sed -i "s/https_monitor_secret/$dev_monitor_secret/g" $kube_file
+    - sed -i "s/https_home_url/$dev_home_url/g" $kube_file
+    - sed -i "s/https_home_1_url/$dev_home_url/g" $kube_file
+    - sed -i "s/https_home_secret/$dev_home_secret/g" $kube_file
+    - sed -i "s/https_platform_url/$dev_platform_url/g" $kube_file
+    - sed -i "s/https_platform_secret/$dev_platform_secret/g" $kube_file
+    - kubectl config use-context aliyun-dev-staging
+    - kubectl apply -f $kube_file
+  tags:
+    - aliyun
+  only:
+    - develop
+    - /^tag_dev_aliyun.*$/
+
+deploy_service_spoc_dev:
+  stage: k8s_deploy
+  script:
+    - echo "=============== 开始 k8s 部署任务 ==============="
+    - sed -i "s/latest/${CI_COMMIT_SHA:0:8}/g" $kube_file
+    - sed -i "s/$harbor_url/$harbor_url_spoc/g" $kube_file
+    - sed -i "s/_harbor_url/$harbor_url_spoc/g" $kube_file
+    - sed -i "s/openmmlab/openmmlab-dev/g" $kube_file
+    - sed -i "s/_namespace/openmmlab-dev/g" $kube_file
+    - sed -i "s/_replicas/$_replicas_dev/g" $kube_file
+    - sed -i "s/https_aide_url/$spoc_aide_url/g" $kube_file
+    - sed -i "s/_https_uaa_url/$spoc_uaa_url/g" $kube_file
+    - sed -i "s/_https_doccenter_url/$spoc_doccenter_url/g" $kube_file
+    - sed -i "s/https_monitor_url/$dev_monitor_url/g" $kube_file
+    - sed -i "s/https_monitor_secret/$dev_monitor_secret/g" $kube_file
+    - sed -i "s/https_home_url/$dev_home_url/g" $kube_file
+    - sed -i "s/https_home_1_url/$dev_home_url/g" $kube_file
+    - sed -i "s/https_home_secret/$dev_home_secret/g" $kube_file
+    - sed -i "s/https_platform_url/$dev_platform_url/g" $kube_file
+    - sed -i "s/https_platform_secret/$dev_platform_secret/g" $kube_file
+    - sed -i "/tls:/,/rules:/{/tls:/!{/rules:/!d}}"  $kube_file
+    - sed -i "/tls:/d" $kube_file
+    - kubectl apply -f $kube_file
+  tags:
+    - s72
+  only:
+    - spoc
+    - /^tag_dev_spoc_.*$/
+
+# 构建失败时的通知消息
+notifyFail:
+  stage: notify
+  script:
+    - $HOME/scripts/notify/notifyFailFS.sh
+  only:
+    - develop
+    - /^tag_.*$/
+    - spoc
+  when: on_failure
+
+# 构建成功时的通知消息
+notifySuccess:
+  stage: notify
+  script:
+    - $HOME/scripts/notify/notifySuccessFS.sh
+  only:
+    - develop
+    - /^tag_.*$/
+    - spoc
+  when: on_success
+
