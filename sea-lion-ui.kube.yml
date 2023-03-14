@@ -56,14 +56,14 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: 'nginx'
     nginx.ingress.kubernetes.io/configuration-snippet: |
-#      rewrite ^(/console)$ $1/summary redirect;
+      rewrite ^(/sealion)$ $1/ redirect;
 spec:
   tls:
     - hosts:
-        - https_aide_url
-      secretName: https_aide_secret
+        - dev.openxlab.org.cn
+      secretName: dev.openxlab.org.cn-https
   rules:
-    - host: https_aide_url
+    - host: dev.openxlab.org.cn
       http:
         paths:
           - backend:
