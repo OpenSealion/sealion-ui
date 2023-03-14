@@ -17,7 +17,7 @@ module.exports = {
         'import/resolver': {
             node: {
                 paths: [
-                    'components'
+                    'src'
                 ],
                 extensions: [
                     '.js',
@@ -88,5 +88,5 @@ module.exports = {
         '@typescript-eslint/no-namespace': 'off',
         'no-restricted-operator': 'off'
     },
-    ignorePatterns: ["**/*.css", "**/*.less", "es/*"]
+    ignorePatterns: ["**/*.css", "**/*.less", "dist/*", '*.stories.tsx']
 }

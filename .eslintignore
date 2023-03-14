@@ -5,3 +5,5 @@ build
 *.d.ts
 lib
 .eslintrc.js
+stories
+*.stories.tsx
