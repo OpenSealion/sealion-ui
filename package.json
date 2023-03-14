@@ -2,13 +2,14 @@
   "name": "sea-lion-ui",
   "version": "1.0.0",
   "description": "",
-  "main": "es/index.js",
-  "module": "es/index.js",
-  "types": "es/types/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "lint": "eslint",
     "lint-fix": "eslint --fix --ext .js,.jsx,.ts,.tsx src",
     "build": "npm run clean && rollup -c rollup.config.js --bundleConfigAsCjs",
+    "dev": "npm run storybook",
     "clean": "rimraf dist",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
