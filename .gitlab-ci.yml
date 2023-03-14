@@ -1,3 +1,6 @@
+variables:
+  SERVICE_NAME: sea-lion-ui
+  PROJECT: openaide
 stages:
   - build
   - k8s_deploy
