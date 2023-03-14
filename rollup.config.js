@@ -8,15 +8,16 @@ import autoprefixer from 'autoprefixer';
 import eslint from '@rollup/plugin-eslint';
 import excludeDependenciesFromBundle from 'rollup-plugin-exclude-dependencies-from-bundle';
 import copy from 'rollup-plugin-copy';
-import url from 'rollup-plugin-url';
+import url from '@rollup/plugin-url';
+import inject from '@rollup/plugin-inject';
 
 const packageJson = require('./package.json');
 const { getFiles, copyStyleFilesToDest } = require('./scripts/utils');
 
 const extensions = ['.js', '.ts', '.jsx', '.tsx'];
-const SourceDir = 'components';
-const DestDir = 'es';
-const entry = `./${SourceDir}/index.ts`;
+const SourceDir = 'src';
+const DestDir = 'dist';
+const entry = `./${SourceDir}/index.tsx`;
 
 console.log(
     packageJson.name,
@@ -46,8 +47,9 @@ export default defineConfig([
             //     sourcemap: true
             // },
             {
-                file: 'es/index.js',
-                format: 'es'
+                file: 'dist/index.js',
+                format: 'es',
+                sourcemap: true
             }
         ],
         plugins: [
@@ -57,7 +59,8 @@ export default defineConfig([
                 plugins: [autoprefixer],
                 extensions: ['.less', '.css'],
                 use: ['less'],
-                extract: true
+                extract: true,
+                sourceMap: 'inline'
             }),
             resolve({
                 extensions: ['.js', 'jsx', '.ts', '.tsx']
@@ -77,6 +80,10 @@ export default defineConfig([
                     src: `${SourceDir}/style/core/iconfont`,
                     dest: `${DestDir}`
                 }]
+            }),
+            inject({
+                React: 'react',
+                include: ['.jsx', 'tsx']
             })
         ]
     }

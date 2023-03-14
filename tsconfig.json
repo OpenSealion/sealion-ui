@@ -6,7 +6,7 @@
       "ES2015"
     ],
     "sourceMap": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "module": "ESNext",
@@ -18,12 +18,12 @@
     "baseUrl": ".",
     "paths": {
       "@/*": [
-        "components/*"
+        "src/*"
       ]
     },
     "resolveJsonModule": true,
     "allowJs": true,
-    "outDir": "./es",
+    "outDir": "./dist",
     "removeComments": true,
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
@@ -33,6 +33,6 @@
     "skipLibCheck": true
   },
   "include": [
-    "components/**/*"
+    "src"
   ]
 }
