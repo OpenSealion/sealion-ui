@@ -86,7 +86,8 @@ module.exports = {
         'object-shorthand': 'warn',
         'import/no-extraneous-dependencies': 'off',
         '@typescript-eslint/no-namespace': 'off',
-        'no-restricted-operator': 'off'
+        'no-restricted-operator': 'off',
+        'react/button-has-type': 'off'
     },
     ignorePatterns: ["**/*.css", "**/*.less", "dist/*", '*.stories.tsx']
 }

@@ -7,13 +7,18 @@ import { Meta } from '@storybook/addon-docs';
 
 ### install
 ~~~javascript
-npm install sea-lion-ui --save
+npm install sea-lion-ui --registry='http://10.140.52.166:18081/repository/npm-all'
 ~~~
 ### 全局加载组件样式
+~~~javascript
+// 入口文件加载css
+import 'sea-lion-ui/dist/index.css';
+~~~
+### 组件内使用
 ~~~javascript
 // 使用
 import { Button, IconFont } from 'sea-lion-ui';
 ~~~
 ### 组件亮点
 * 用typescript开发，支持参数提示
-* 支持tree shaking
+* 和传统组件库自带主题不同，sea-lion提供无任何样式的core组件，可以帮助开发者实现更灵活的样式组合
