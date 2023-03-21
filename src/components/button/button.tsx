@@ -1,43 +1,50 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import classNames from 'classnames';
+import SLButton, {
+    SLButtonProps
+} from '../core/sl-button/sl-button';
 
-export interface IButton {
+export interface ButtonProps extends SLButtonProps {
     className?: string,
-    icon?: ReactNode,
-    type?: 'default' | 'primary',
-    size?: string,
     disabled?: boolean,
-    onMouseOver?: () => void,
-    onMouseOut?: () => void,
-    onClick?: () => void,
-    id?: string
-    style?: React.CSSProperties
+    pure?: boolean
 }
 
-const Button: React.FC<IButton> = (props) => {
+const Button: React.FC<ButtonProps> = (props) => {
     const {
-        children, className, icon, type = 'default', size, disabled, ...rest
+        className,
+        btnType,
+        size,
+        status,
+        disabled = false,
+        pure = false,
+        children,
+        ...rest
     } = props;
-    const btnClasses = classNames(
+    const themeClasses = classNames(
         className,
         'seal-button',
         disabled && 'seal-button-disabled',
-        type === 'primary' && 'seal-button-primary',
-        type === 'default' && 'seal-button-default',
-        size === 'large' && 'seal-button-bg'
+        {
+            [`seal-button-${btnType}`]: !!btnType,
+            [`seal-button-${size}`]: !!size,
+            [`seal-button-${status}`]: !!status
+        }
     );
+
+    const btnClasses = pure ? '' : themeClasses;
 
     return (
         // eslint-disable-next-line react/button-has-type
-        <button
+        <SLButton
             className={btnClasses}
+            btnType={btnType}
+            size={size}
+            disabled={disabled}
             {...rest}
         >
-            {icon && (
-                <span className="seal-button-icon">{icon}</span>
-            )}
             {children}
-        </button>
+        </SLButton>
     );
 };
 export default Button;
