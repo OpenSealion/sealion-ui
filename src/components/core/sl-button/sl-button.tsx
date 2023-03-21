@@ -11,7 +11,7 @@ export interface SLButtonProps {
     size?: SLButtonSizes;
     className?: string;
     type?: SLHostButtonType;
-    status: SLButtonStatus;
+    status?: SLButtonStatus;
 }
 
 const SLButton: React.FC<SLButtonProps> = ({
