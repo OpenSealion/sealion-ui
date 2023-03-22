@@ -19,13 +19,13 @@ const CountInput: React.FC<ICountInput> = ({
     type = 'primary',
     showCount = false,
     defaultValue = '',
-    maxLength,
+    maxLength = 9999,
     value = defaultValue,
     style,
     className,
-    onChange,
+    onChange = (value) => null,
     reg = /.*/,
-    validateMessage,
+    validateMessage = 'something went wrong',
     ...rest
 }) => {
     const [errorClass, setErrorClass] = useState('');
@@ -44,6 +44,9 @@ const CountInput: React.FC<ICountInput> = ({
                     }
                     if (value.length < maxLength || (value.length === maxLength && e.target.value.length < maxLength)) {
                         onChange(e.target.value);
+                    }
+                    if (e.target.value.length > maxLength) {
+                        onChange(e.target.value.slice(0, maxLength))
                     }
                 }}
                 {...rest}
