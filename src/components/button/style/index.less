@@ -6,7 +6,7 @@
 @seal-button-padding-hoz: 24px;
 @seal-button-padding-ver-small: 6px;
 @seal-button-padding-hoz-small: 16px;
-@seal-button-icon-padding: 4px;
+@seal-button-icon-padding: 2px;
 
 // 功能色
 @seal-button-success: @success-color;
@@ -34,6 +34,7 @@
     padding: @seal-button-padding-ver @seal-button-padding-hoz;
     font-size: @font-size-base;
     border-radius: @button-border-base;
+    transition: all 0.2s;
 
     // 针对icon进行优化排版
     & > .iconfont {

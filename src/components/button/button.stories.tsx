@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Button, { ButtonProps } from './button';
 import { SLButton } from '../core';
@@ -15,7 +15,7 @@ const Template: ComponentStory<ButtonProps> = (args) => (<Button {...args} />);
 export const defaultButton = Template.bind({});
 defaultButton.storyName = '主要参数使用';
 defaultButton.args = {
-    children: '平平无奇的按钮',
+    children: '🌈 平平无奇的按钮',
     btnType: 'primary',
     size: 'normal',
     disabled: false,
@@ -104,19 +104,19 @@ export const ButtonIcon = () => (
         <IconFont icon="icon-xiazai" />
       </Button>
     </div>
-    <h4>小正常尺寸icon button</h4>
+    <h4>自定义尺寸</h4>
     <div>
       <Button
         btnType="icon"
         size="small"
       >
-        <IconFont icon="icon-LicenseOutlined" />
+        <IconFont icon="icon-LicenseOutlined" fontSize="30px"/>
       </Button>
       <Button
         btnType="icon2"
         size="small"
       >
-        <IconFont icon="icon-InfoFilled" />
+        <IconFont icon="icon-InfoFilled" fontSize="20px" />
       </Button>
     </div>
     <h4>disabled icon button</h4>
@@ -139,6 +139,43 @@ export const ButtonIcon = () => (
 
 ButtonIcon.storyName = 'icon按钮';
 
+
+export const ButtonWithLoading = () => {
+  const [loading, setLoading] = useState(false);
+
+  const handleClick = () => {
+    setLoading(!loading);
+  }
+
+  return (
+    <div>
+      <Button
+        btnType="primary"
+        disabled={loading}
+        style={{
+          width: 200
+        }}
+        onClick={handleClick}
+      >
+        {
+          loading
+            ? (
+              <>
+                <IconFont
+                  icon="icon-RefreshOutlined"
+                  className="spin"
+                />
+                loading
+              </>
+            ) : 'submit'
+        }
+      </Button>
+    </div>
+  );
+}
+
+ButtonWithLoading.storyName = '实现loading效果';
+
 const splitStyle = {
   color: 'orange'
 }
@@ -153,5 +190,5 @@ export const ButtonWithCore = () => (
   </div>
 );
 
-ButtonWithCore.storyName = 'Core Button——不带任何内外边距和边框的按钮';
+ButtonWithCore.storyName = 'Core Button——不带任何内外边距和边框的按钮(🎨设计同学可以忽略这块)';
 

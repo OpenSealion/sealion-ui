@@ -1,4 +1,5 @@
 import "../src/style/index.less";
+import "../src/style/stories/index.less";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
