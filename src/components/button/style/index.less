@@ -1,9 +1,12 @@
+@import './mixin.less';
+
 // common
 @seal-button-line-height: 1em;
 @seal-button-padding-ver: 11px;
 @seal-button-padding-hoz: 24px;
 @seal-button-padding-ver-small: 6px;
 @seal-button-padding-hoz-small: 16px;
+@seal-button-icon-padding: 4px;
 
 // 功能色
 @seal-button-success: @success-color;
@@ -52,11 +55,6 @@
 @seal-button-disabled-background-color-primary: #B3D6FF;
 @seal-button-disabled-color-primary: rgba(255, 255, 255, 0.75);
 
-.button-state-color(@color, @bg) {
-    color: @color;
-    background-color: @bg;
-}
-
 .seal-button-primary {
     .button-state-color(@seal-button-color-primary, @seal-button-background-color-primary);
 
@@ -89,32 +87,6 @@
 @seal-button-disabled-background-color-line: #B3D6FF;
 @seal-button-disabled-color-line: rgba(255, 255, 255, 0.75);
 
-.button-line-state-color(@color, @border) {
-    color: @color;
-    border: @border;
-}
-
-.seal-button-status-mixin(@color, @bg, @border) {
-    .seal-button-success {
-        .button-line-state-color(@seal-button-color-line, @seal-button-border-line);
-            
-        &:hover {
-            .button-line-state-color(@seal-button-hover-color-line, @seal-button-hover-border-line);
-        }
-    
-        &:active {
-            .button-line-state-color(@seal-button-link-color-line, @seal-button-link-border-line);
-        }
-    
-        &:disabled,
-        &.seal-button-disabled {
-            .button-line-state-color(@seal-button-color-line, @seal-button-border-line);
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-    }
-}
-
 .seal-button-line {
     padding: @seal-button-padding-ver-line @seal-button-padding-hoz-line;
 
@@ -139,27 +111,6 @@
 @seal-button-color-secondary: @text-color;
 @seal-button-hover-bg-secondary: #F9F9F9;
 @seal-button-link-bg-secondary:#EBECF0;
-
-.seal-button-secondary-mix(@color) {
-    @secondary-color: @color;
-
-    .button-state-color(@secondary-color, @button-bg-secondary);
-
-    &:hover {
-        .button-state-color(@secondary-color, @seal-button-hover-bg-secondary);
-    }
-
-    &:active {
-        .button-state-color(@secondary-color, @seal-button-link-bg-secondary);
-    }
-
-    &:disabled,
-    &.seal-button-disabled {
-        .button-state-color(@secondary-color, @seal-button-hover-bg-secondary);
-        opacity: 0.3;
-        cursor: not-allowed;
-    }
-}
 
 .seal-button-secondary {
     .seal-button-secondary-mix(@seal-button-color-secondary);
@@ -190,5 +141,22 @@
         .button-state-color(@primary-color, transparent);
         opacity: 0.3;
         cursor: not-allowed;
+    }
+}
+
+.seal-button.seal-button-icon {
+    padding: @seal-button-icon-padding;
+    .seal-button-secondary();
+
+    & > .iconfont {
+        margin-right: 0;
+    }
+}
+
+.seal-button.seal-button-icon2 {
+    padding: @seal-button-icon-padding;
+    .seal-button-secondary2();
+    &>.iconfont {
+        margin-right: 0;
     }
 }
