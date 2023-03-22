@@ -1,22 +1,22 @@
 import React from 'react';
 import classNames from 'classnames';
 
-export type SLButtonTypes = 'primary' | 'secondary' | 'secondary2' | 'line' | 'text';
+export type SLButtonTypes = 'primary' | 'secondary' | 'secondary2' | 'line' | 'text' | 'icon' | 'icon2';
 export type SLButtonSizes = 'normal' | 'large' | 'small';
 export type SLHostButtonType = 'button' | 'submit' | 'reset';
 export type SLButtonStatus = 'success' | 'warn' | 'danger';
 
-export interface SLButtonProps {
+export interface SLButtonProps extends Omit<React.ButtonHTMLAttributes<any>, 'type'> {
     btnType?: SLButtonTypes;
     size?: SLButtonSizes;
     className?: string;
     type?: SLHostButtonType;
-    status: SLButtonStatus;
+    status?: SLButtonStatus;
 }
 
 const SLButton: React.FC<SLButtonProps> = ({
-    btnType = 'primary',
-    size = 'normal',
+    btnType,
+    size,
     className,
     children,
     type = 'button',

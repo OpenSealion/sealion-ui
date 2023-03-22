@@ -76,7 +76,11 @@ export const ButtonWithIcon = () => (
       <IconFont icon="icon-InfoFilled" />
       注意！
     </Button>
-    <Button btnType="texts" size="small">
+    <Button
+      btnType="text"
+      size="small"
+      onClick={() => alert('download success')}
+    >
       <IconFont icon="icon-xiazai" />
       下载
     </Button>
@@ -84,6 +88,56 @@ export const ButtonWithIcon = () => (
 );
 
 ButtonWithIcon.storyName = '带icon的按钮';
+
+export const ButtonIcon = () => (
+  <>
+    <h4>正常尺寸icon button</h4>
+    <div>
+      <Button
+        btnType="icon"
+      >
+        <IconFont icon="icon-AttentionOutlined" />
+      </Button>
+      <Button
+        btnType="icon2"
+      >
+        <IconFont icon="icon-xiazai" />
+      </Button>
+    </div>
+    <h4>小正常尺寸icon button</h4>
+    <div>
+      <Button
+        btnType="icon"
+        size="small"
+      >
+        <IconFont icon="icon-LicenseOutlined" />
+      </Button>
+      <Button
+        btnType="icon2"
+        size="small"
+      >
+        <IconFont icon="icon-InfoFilled" />
+      </Button>
+    </div>
+    <h4>disabled icon button</h4>
+    <div>
+      <Button
+        btnType="icon"
+        disabled
+      >
+        <IconFont icon="icon-SoundOnOutlined" />
+      </Button>
+      <Button
+        btnType="icon2"
+        disabled
+      >
+        <IconFont icon="icon-ShowOutlined" />
+      </Button>
+    </div>
+  </>
+);
+
+ButtonIcon.storyName = 'icon按钮';
 
 const splitStyle = {
   color: 'orange'

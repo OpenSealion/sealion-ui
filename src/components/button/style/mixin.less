@@ -1,0 +1,51 @@
+.button-state-color(@color, @bg) {
+    color: @color;
+    background-color: @bg;
+}
+
+.button-line-state-color(@color, @border) {
+    color: @color;
+    border: @border;
+}
+
+.seal-button-status-mixin(@color, @bg, @border) {
+    .seal-button-success {
+        .button-line-state-color(@seal-button-color-line, @seal-button-border-line);
+
+        &:hover {
+            .button-line-state-color(@seal-button-hover-color-line, @seal-button-hover-border-line);
+        }
+
+        &:active {
+            .button-line-state-color(@seal-button-link-color-line, @seal-button-link-border-line);
+        }
+
+        &:disabled,
+        &.seal-button-disabled {
+            .button-line-state-color(@seal-button-color-line, @seal-button-border-line);
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.seal-button-secondary-mix(@color) {
+    @secondary-color: @color;
+
+    .button-state-color(@secondary-color, @button-bg-secondary);
+
+    &:hover {
+        .button-state-color(@secondary-color, @seal-button-hover-bg-secondary);
+    }
+
+    &:active {
+        .button-state-color(@secondary-color, @seal-button-link-bg-secondary);
+    }
+
+    &:disabled,
+    &.seal-button-disabled {
+        .button-state-color(@secondary-color, @seal-button-hover-bg-secondary);
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+}

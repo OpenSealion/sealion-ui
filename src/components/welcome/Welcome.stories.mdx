@@ -9,6 +9,11 @@ import { Meta } from '@storybook/addon-docs';
 ~~~javascript
 npm install sea-lion-ui --registry='http://10.140.52.166:18081/repository/npm-all'
 ~~~
+### 组件更新
+由于组件目前在快速更新中，所以你可能需要更新命令
+~~~javascript
+npm update sea-lion-ui --registry='http://10.140.52.166:18081/repository/npm-all'
+~~~
 ### 全局加载组件样式
 ~~~javascript
 // 入口文件加载css
@@ -22,3 +27,6 @@ import { Button, IconFont } from 'sea-lion-ui';
 ### 组件亮点
 * 用typescript开发，支持参数提示
 * 和传统组件库自带主题不同，sea-lion提供无任何样式的core组件，可以帮助开发者实现更灵活的样式组合
+
+### 常见问题
+* 为什么安装不了最新的版本？可能是本地缓存问题，建议用<code>npm cache clean --force</code> 清楚一下本地缓存

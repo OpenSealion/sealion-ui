@@ -40,6 +40,7 @@ const Button: React.FC<ButtonProps> = (props) => {
             className={btnClasses}
             btnType={btnType}
             size={size}
+            status={status}
             disabled={disabled}
             {...rest}
         >
