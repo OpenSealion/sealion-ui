@@ -28,7 +28,7 @@ export const ButtonWithColor = () => (
       <Button btnType="line"> line button </Button>
       <Button btnType="secondary"> secondary button </Button>
       <Button btnType="secondary2"> secondary2 button </Button>
-    <Button btnType="text"> text button </Button>
+      <Button btnType="text"> text button </Button>
     </>
 );
 
@@ -148,29 +148,27 @@ export const ButtonWithLoading = () => {
   }
 
   return (
-    <div>
-      <Button
-        btnType="primary"
-        disabled={loading}
-        style={{
-          width: 200
-        }}
-        onClick={handleClick}
-      >
-        {
-          loading
-            ? (
-              <>
-                <IconFont
-                  icon="icon-RefreshOutlined"
-                  className="spin"
-                />
-                loading
-              </>
-            ) : 'submit'
-        }
-      </Button>
-    </div>
+    <Button
+      btnType="primary"
+      disabled={loading}
+      style={{
+        width: 200
+      }}
+      onClick={handleClick}
+    >
+      {
+        loading
+          ? (
+            <>
+              <IconFont
+                icon="icon-RefreshOutlined"
+                className="spin"
+              />
+              loading
+            </>
+          ) : 'submit'
+      }
+    </Button>
   );
 }
 
