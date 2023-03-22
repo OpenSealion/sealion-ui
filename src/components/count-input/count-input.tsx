@@ -23,7 +23,7 @@ const CountInput: React.FC<ICountInput> = ({
     value = defaultValue,
     style,
     className,
-    onChange = (value) => {},
+    onChange = (value) => null,
     reg = /.*/,
     validateMessage = 'something went wrong',
     ...rest
