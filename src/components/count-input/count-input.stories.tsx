@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import CountInput, { ICountInput } from './count-input';
 
@@ -16,5 +16,25 @@ defaultCountInput.args = {
     defaultValue: 'I am coding...',
     showCount: true,
     type: 'primary',
-    maxLength: 30
+    maxLength: 30,
 };
+export const CountInputHandler = () => {
+    const [val, setVal] = useState('I am coding...');
+
+    const handleChange = (value) => {
+        setVal(value)
+    }
+
+    return (
+        <div>
+            <CountInput
+                maxLength={30}
+                showCount
+                value={val}
+                onChange={handleChange}
+            />
+        </div>
+    );
+}
+
+CountInputHandler.storyName = 'input change';
