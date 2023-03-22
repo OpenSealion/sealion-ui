@@ -25,7 +25,7 @@ const CountInput: React.FC<ICountInput> = ({
     className,
     onChange = (value) => null,
     reg = /.*/,
-    validateMessage = 'something went wrong',
+    validateMessage,
     ...rest
 }) => {
     const [errorClass, setErrorClass] = useState('');
