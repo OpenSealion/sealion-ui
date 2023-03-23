@@ -8,7 +8,7 @@
     border: @border;
 }
 
-.button-state-color(@color, @bg, @border) {
+.button-state-color-all(@color, @bg, @border) {
     color: @color;
     background-color: @bg;
     border: @border;
@@ -31,19 +31,19 @@
     @disabled-bg,
     @disabled-border
 ) {
-    .button-state-color(@color, @bg, @border);
+    .button-state-color-all(@color, @bg, @border);
     
     &:hover {
-        .button-state-color(@hover-color, @hover-bg, @hover-border);
+        .button-state-color-all(@hover-color, @hover-bg, @hover-border);
     }
 
     &:active {
-        .button-state-color(@active-color, @active-bg, @active-border);
+        .button-state-color-all(@active-color, @active-bg, @active-border);
     }
 
     &:disabled,
     &.seal-button-disabled {
-        .button-state-color(@disabled-color, @disabled-bg, @disabled-border);
+        .button-state-color-all(@disabled-color, @disabled-bg, @disabled-border);
         cursor: not-allowed;
     }
 }
