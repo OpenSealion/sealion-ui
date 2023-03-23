@@ -8,24 +8,43 @@
     border: @border;
 }
 
-.seal-button-status-mixin(@color, @bg, @border) {
-    .seal-button-success {
-        .button-line-state-color(@seal-button-color-line, @seal-button-border-line);
+.button-state-color(@color, @bg, @border) {
+    color: @color;
+    background-color: @bg;
+    border: @border;
+}
 
-        &:hover {
-            .button-line-state-color(@seal-button-hover-color-line, @seal-button-hover-border-line);
-        }
+.seal-button-status-mixin(
+    @color,
+    @bg,
+    @border,
 
-        &:active {
-            .button-line-state-color(@seal-button-link-color-line, @seal-button-link-border-line);
-        }
+    @hover-color,
+    @hover-bg,
+    @hover-border,
 
-        &:disabled,
-        &.seal-button-disabled {
-            .button-line-state-color(@seal-button-color-line, @seal-button-border-line);
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
+    @active-color,
+    @active-bg,
+    @active-border,
+
+    @disabled-color,
+    @disabled-bg,
+    @disabled-border
+) {
+    .button-state-color(@color, @bg, @border);
+    
+    &:hover {
+        .button-state-color(@hover-color, @hover-bg, @hover-border);
+    }
+
+    &:active {
+        .button-state-color(@active-color, @active-bg, @active-border);
+    }
+
+    &:disabled,
+    &.seal-button-disabled {
+        .button-state-color(@disabled-color, @disabled-bg, @disabled-border);
+        cursor: not-allowed;
     }
 }
 
@@ -46,6 +65,24 @@
     &.seal-button-disabled {
         .button-state-color(@secondary-color, @seal-button-hover-bg-secondary);
         opacity: 0.3;
+        cursor: not-allowed;
+    }
+}
+
+.seal-button-link-mix(@color, @hover-color, @active-color, @disabled-color) {
+    color: @color;
+
+    &:hover {
+        color: @hover-color;
+    }
+
+    &:active {
+        color: @active-color
+    }
+
+    &:disabled,
+    &.seal-button-disabled {
+        color: @disabled-color;
         cursor: not-allowed;
     }
 }
