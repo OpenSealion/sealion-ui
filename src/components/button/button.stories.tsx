@@ -210,6 +210,38 @@ export const ButtonWithFunc = () => (
   <>
     <div className="row">
       <Button
+        btnType="primary"
+      >
+        primary btn
+      </Button>
+      <Button
+        btnType="primary"
+        status="success"
+      >
+        primary success btn
+      </Button>
+      <Button
+        btnType="primary"
+        status="warn"
+      >
+        primary warn btn
+      </Button>
+      <Button
+        btnType="primary"
+        status="danger"
+      >
+        primary danger btn
+      </Button>
+      <Button
+        btnType="primary"
+        status="success"
+        disabled
+      >
+        disabled btn
+      </Button>
+    </div>
+    <div className="row">
+      <Button
         btnType="line"
       >
         line btn

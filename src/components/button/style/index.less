@@ -94,6 +94,57 @@
         opacity: 0.3;
         cursor: not-allowed;
     }
+
+    &.seal-button-success {
+        .seal-button-status-mixin(
+            @white,
+            @seal-button-success,
+            none,
+            @white,
+            @seal-button-hover-success,
+            none,
+            @white,
+            @seal-button-link-success,
+            none,
+            @white,
+            @seal-button-disabled-success,
+            none
+        );
+    }
+
+    &.seal-button-warn {
+        .seal-button-status-mixin(
+            @white,
+            @seal-button-warn,
+            none,
+            @white,
+            @seal-button-hover-warn,
+            none,
+            @white,
+            @seal-button-link-warn,
+            none,
+            @white,
+            @seal-button-disabled-warn,
+            none
+        );
+    }
+
+    &.seal-button-danger {
+        .seal-button-status-mixin(
+            @white,
+            @seal-button-danger,
+            none,
+            @white,
+            @seal-button-hover-danger,
+            none,
+            @white,
+            @seal-button-link-danger,
+            none,
+            @white,
+            @seal-button-disabled-danger,
+            none
+        );
+    }
 }
 
 
@@ -209,7 +260,7 @@
 
 .seal-button-text {
 
-    .button-state-color(@primary-color, transparent);
+    .button-state-color(@seal-button-color-secondary, transparent);
 
     &:hover {
         .button-state-color(@suspend-color, @button-bg-secondary);
@@ -227,18 +278,50 @@
     }
 }
 
+@seal-button-icon-color: rgba(18, 19, 22, 0.8);
 .seal-button.seal-button-icon {
     padding: @seal-button-icon-padding;
-    .seal-button-secondary();
+    .button-state-color(@seal-button-icon-color, transparent);
+    
+    &:hover {
+        .button-state-color(@seal-button-icon-color, @button-bg-secondary);
+    }
 
-    & > .iconfont {
+    &:active {
+        .button-state-color(@seal-button-icon-color, @seal-button-link-bg-text);
+    }
+
+    &:disabled,
+    &.seal-button-disabled {
+        .button-state-color(@seal-button-icon-color, transparent);
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+
+    &>.iconfont {
         margin-right: 0;
     }
 }
 
 .seal-button.seal-button-icon2 {
     padding: @seal-button-icon-padding;
-    .seal-button-secondary2();
+    .button-state-color(@primary-color, transparent);
+    
+    &:hover {
+        .button-state-color(@primary-color, @button-bg-secondary);
+    }
+
+    &:active {
+        .button-state-color(@primary-color, @seal-button-link-bg-text);
+    }
+
+    &:disabled,
+    &.seal-button-disabled {
+        .button-state-color(@primary-color, transparent);
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+
     &>.iconfont {
         margin-right: 0;
     }
