@@ -49,6 +49,7 @@
     font-size: @font-size-base;
     border-radius: @button-border-base;
     transition: all 0.2s;
+    cursor: pointer;
 
     // 针对icon进行优化排版
     & > .iconfont {
@@ -328,28 +329,29 @@
 }
 
 // link 链接按钮
-@link-color: @text-color;
-@link-hover-color: rgba(18, 19, 22, 0.5);
-@link-active-color: @heading-color;
-@link-disabled-color: rgba(18, 19, 22, 0.2);
+@seal-button-link-color: @text-color;
+@seal-button-link-hover-color: rgba(18, 19, 22, 0.5);
+@seal-button-link-active-color: @heading-color;
+@seal-button-link-disabled-color: rgba(18, 19, 22, 0.2);
 
 .seal-button-link {
     .seal-button-link-mix(
-        @link-color,
-        @link-hover-color,
-        @link-active-color,
-        @link-disabled-color
+        @seal-button-link-color,
+        @seal-button-link-hover-color,
+        @seal-button-link-active-color,
+        @seal-button-link-disabled-color
     );
 }
 
-@link-color2: @primary-color;
-@link-hover-color2: @suspend-color;
-@link-active-color2: @seal-button-line-background-color-primary;
-@link-disabled-color2: @seal-button-disabled-background-color-primary;
+@seal-button-link-color2: @primary-color;
+@seal-button-link-hover-color2: @suspend-color;
+@seal-button-link-active-color2: @seal-button-line-background-color-primary;
+@seal-button-link-disabled-color2: @seal-button-disabled-background-color-primary;
 .seal-button-link2 {
     .seal-button-link-mix(
-        @link-color2,
-        @link-hover-color2,
-        @link-active-color2,
-        @link-disabled-color2 );
+        @seal-button-link-color2,
+        @seal-button-link-hover-color2,
+        @seal-button-link-active-color2,
+        @seal-button-link-disabled-color2
+    );
 }
