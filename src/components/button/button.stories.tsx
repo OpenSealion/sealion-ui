@@ -46,6 +46,68 @@ export const ButtonWithDisabled = () => (
 
 ButtonWithDisabled.storyName = '不同类型的按钮状态为disabled';
 
+export const ButtonWithLink = () => (
+  <>
+    <div className="row">
+      <Button
+        btnType="link"
+      >
+        link btn
+      </Button>
+      <Button
+        btnType="link"
+      >
+        <IconFont icon="icon-VideoOutlined" />
+        播放
+      </Button>
+      <Button
+        btnType="link"
+        disabled
+      >
+        disabled link btn
+      </Button>
+      <Button
+        btnType="link"
+        disabled
+      >
+        <IconFont icon="icon-VideoOutlined" />
+        播放
+      </Button>
+      
+    </div>
+
+    <div className="row">
+      <Button
+        btnType="link2"
+      >
+        link2 btn
+      </Button>
+      <Button
+        btnType="link2"
+      >
+        <IconFont icon="icon-ViewDocumentOutlined" />
+        search
+      </Button>
+
+      <Button
+        btnType="link2"
+        disabled
+      >
+        disabled link2 btn
+      </Button>
+      <Button
+        btnType="link2"
+        disabled
+      >
+        <IconFont icon="icon-ViewDocumentOutlined" />
+        search
+      </Button>
+    </div>
+  </>
+);
+
+ButtonWithLink.storyName = '链接按钮';
+
 export const ButtonWithSize = () => (
   <>
     <h4>目前尺寸只有两种，普通尺寸就是大尺寸</h4>
@@ -63,7 +125,12 @@ ButtonWithSize.storyName = '小尺寸的按钮';
 export const ButtonWithIcon = () => (
   <>
     <Button btnType="primary">
-      <IconFont icon="icon-CompassionOutlined" />
+      <IconFont
+        icon="icon-CompassionOutlined"
+        style={{
+          color: 'red'
+        }}
+      />
       primary button with icon
     </Button>
 
@@ -110,7 +177,7 @@ export const ButtonIcon = () => (
         btnType="icon"
         size="small"
       >
-        <IconFont icon="icon-LicenseOutlined" fontSize="30px"/>
+        <IconFont icon="icon-LicenseOutlined" fontSize="20px"/>
       </Button>
       <Button
         btnType="icon2"
@@ -138,6 +205,78 @@ export const ButtonIcon = () => (
 );
 
 ButtonIcon.storyName = 'icon按钮';
+
+export const ButtonWithFunc = () => (
+  <>
+    <div className="row">
+      <Button
+        btnType="line"
+      >
+        line btn
+      </Button>
+      <Button
+        btnType="line"
+        status="success"
+      >
+        line success btn
+      </Button>
+      <Button
+        btnType="line"
+        status="warn"
+      >
+        line warn btn
+      </Button>
+      <Button
+        btnType="line"
+        status="danger"
+      >
+        line danger btn
+      </Button>
+      <Button
+        btnType="line"
+        status="success"
+        disabled
+      >
+        disabled btn
+      </Button>
+    </div>
+    
+    <div className="row">
+      <Button
+        btnType="secondary"
+      >
+        secondary btn
+      </Button>
+      <Button
+        btnType="secondary"
+        status="success"
+      >
+        secondary success btn
+      </Button>
+      <Button
+        btnType="secondary"
+        status="warn"
+      >
+        secondary warn btn
+      </Button>
+      <Button
+        btnType="secondary"
+        status="danger"
+      >
+        secondary danger btn
+      </Button>
+      <Button
+        btnType="secondary"
+        status="success"
+        disabled
+      >
+        disabled btn
+      </Button>
+    </div>
+  </>
+);
+
+ButtonWithFunc.storyName = '功能主题按钮';
 
 
 export const ButtonWithLoading = () => {

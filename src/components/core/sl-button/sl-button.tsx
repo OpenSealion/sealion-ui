@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-export type SLButtonTypes = 'primary' | 'secondary' | 'secondary2' | 'line' | 'text' | 'icon' | 'icon2';
+export type SLButtonTypes = 'primary' | 'secondary' | 'secondary2' | 'line' | 'text' | 'icon' | 'icon2' | 'link' | 'link2';
 export type SLButtonSizes = 'normal' | 'large' | 'small';
 export type SLHostButtonType = 'button' | 'submit' | 'reset';
 export type SLButtonStatus = 'success' | 'warn' | 'danger';
