@@ -12,7 +12,8 @@
     "dev": "npm run storybook",
     "clean": "rimraf dist",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "release": "npm run build && release-it --ci"
   },
   "repository": {
     "type": "git",
@@ -92,6 +93,7 @@
     "postcss": "^8.4.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "release-it": "^15.9.3",
     "rimraf": "^4.3.0",
     "rollup": "^3.18.0",
     "rollup-plugin-copy": "^3.4.0",
@@ -110,5 +112,6 @@
   },
   "dependencies": {
     "classnames": "^2.3.2"
-  }
+  },
+  "release-it": {}
 }
