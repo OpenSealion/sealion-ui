@@ -52,6 +52,11 @@ npm run dev
 
 # 打包
 npm run build
-
+```
+# 发布
+1. 首先发布前要登录，不清楚私有仓库账号密码，可以私信@duxiaoqing
+2. 执行命令：
+```sh
+npm run release
 ```
 
