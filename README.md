@@ -52,6 +52,16 @@ npm run dev
 
 # 打包
 npm run build
+```
+# 发布
+1. 首先发布前要登录，不清楚私有仓库账号密码，可以私信@duxiaoqing
+2. 以下两个命令选择一个执行即可：
+```sh
+# interactive and allows you to confirm each task before execution
+npm run release
+# or auto increase version on patch
+npm run release-auto;
 
+# more info: https://github.com/release-it/release-it
 ```
 
