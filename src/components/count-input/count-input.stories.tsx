@@ -36,5 +36,26 @@ export const CountInputHandler = () => {
         </div>
     );
 }
-
 CountInputHandler.storyName = 'input change';
+
+export const CountTextareaHandler = () => {
+    const [val, setVal] = useState('I am coding...');
+
+    const handleChange = (value) => {
+        setVal(value)
+    }
+
+    return (
+        <div>
+            <CountInput
+                maxLength={200}
+                showCount
+                value={val}
+                onChange={handleChange}
+                textarea
+            />
+        </div>
+    );
+}
+
+CountInputHandler.storyName = 'textarea';
