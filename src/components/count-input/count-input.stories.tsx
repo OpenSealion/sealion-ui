@@ -36,10 +36,10 @@ export const CountInputHandler = () => {
         </div>
     );
 }
-CountInputHandler.storyName = 'input change';
+CountInputHandler.storyName = 'onChange';
 
 export const CountTextareaHandler = () => {
-    const [val, setVal] = useState('I am coding...');
+    const [val, setVal] = useState('I am a textarea...');
 
     const handleChange = (value) => {
         setVal(value)
@@ -58,4 +58,26 @@ export const CountTextareaHandler = () => {
     );
 }
 
-CountInputHandler.storyName = 'textarea';
+CountTextareaHandler.storyName = 'Textarea';
+
+
+export const NormalInputHandler = () => {
+    const [val, setVal] = useState('I am a normal input...');
+
+    const handleChange = (value) => {
+        setVal(value)
+    }
+
+    return (
+        <div>
+            <CountInput
+                maxLength={40}
+                showCount={false}
+                value={val}
+                onChange={handleChange}
+            />
+        </div>
+    );
+}
+
+NormalInputHandler.storyName = 'Normal';
