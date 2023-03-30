@@ -14,7 +14,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "release": "npm run build && release-it",
-    "release-auto": "npm run build && release-it --ci"
+    "release-auto": "release-it --ci"
   },
   "repository": {
     "type": "git",
