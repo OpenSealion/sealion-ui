@@ -1,6 +1,6 @@
-import React from "react";
-import IconFont from "../icon";
-import classNames from "classnames";
+import React from 'react';
+import classNames from 'classnames';
+import IconFont from '../icon';
 
 export interface INotification {
     icon?: string | React.ReactNode;
@@ -38,16 +38,16 @@ const defaultProps = {
 };
 
 const Notification: React.FC<INotification> = ({
-   icon,
-   title = '',
-   message = '',
-   button,
-   closeable = false,
-   onClose,
-   type = 'info',
-   className,
-   style,
-   children
+    icon,
+    title = '',
+    message = '',
+    button,
+    closeable = false,
+    onClose,
+    type = 'info',
+    className,
+    style,
+    children
 }) => {
     const themeClasses = classNames(
         className,
@@ -61,13 +61,13 @@ const Notification: React.FC<INotification> = ({
         {
             [`seal-notification-${type}-icon`]: !!type,
         }
-    )
+    );
     const titleClasses = classNames(
         'seal-notification-title',
         {
             [`seal-notification-${type}-title`]: !!type,
         }
-    )
+    );
     const [close, setClose] = React.useState(false);
 
     const hasCustomIcon = typeof icon !== 'string' && React.isValidElement(icon);
