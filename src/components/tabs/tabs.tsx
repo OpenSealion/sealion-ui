@@ -16,6 +16,7 @@ const getMoveStyle = ({ x = 0, y = 0 }) => {
 const Tabs: React.FC<TabsProps> = ({
     className
 }) => {
+    const extraRef = useRef(null);
     const [tabList, setTabList] = useState([]);
     const [position, scrollRef, isExpandContainer] = useMounseWheel(tabList);
     const classes = classNames(className, 'seal-tabs');
@@ -28,7 +29,9 @@ const Tabs: React.FC<TabsProps> = ({
     return (
         <div className={classes}>
             <div className="seal-tabs-nav">
-                <div className={tabsContainerClasses}>
+                <div
+                    className={tabsContainerClasses}
+                >
                     <div
                         className="seal-tabs-list"
                         ref={scrollRef}
@@ -48,7 +51,16 @@ const Tabs: React.FC<TabsProps> = ({
                     </div>
                 </div>
                 {
-                    isExpandContainer && (<div className="seal-tabs-extra-content" onClick={handleAddClick}>新增</div>)
+                    isExpandContainer
+                        && (
+                            <div
+                                ref={extraRef}
+                                className="seal-tabs-extra-content"
+                                onClick={handleAddClick}
+                            >
+                                新增
+                            </div>
+                        )
                 }
             </div>
         </div>
