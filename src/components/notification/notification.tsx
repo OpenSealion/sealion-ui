@@ -1,5 +1,6 @@
 import React from "react";
 import IconFont from "../icon";
+import classNames from "classnames";
 
 export interface INotification {
     icon?: string | React.ReactNode;
@@ -9,6 +10,8 @@ export interface INotification {
     closeable?: boolean;
     onClose?: () => void;
     type?: 'info' | 'success' | 'warning' | 'error';
+    className?: string,
+    style?: React.CSSProperties
 }
 
 const defaultProps = {
@@ -42,8 +45,29 @@ const Notification: React.FC<INotification> = ({
    closeable = false,
    onClose,
    type = 'info',
+   className,
+   style,
    children
 }) => {
+    const themeClasses = classNames(
+        className,
+        'seal-notification',
+        {
+            [`seal-notification-${type}`]: !!type,
+        }
+    );
+    const iconClasses = classNames(
+        'seal-notification-icon',
+        {
+            [`seal-notification-${type}-icon`]: !!type,
+        }
+    )
+    const titleClasses = classNames(
+        'seal-notification-title',
+        {
+            [`seal-notification-${type}-title`]: !!type,
+        }
+    )
     const [close, setClose] = React.useState(false);
 
     const hasCustomIcon = typeof icon !== 'string' && React.isValidElement(icon);
@@ -55,17 +79,18 @@ const Notification: React.FC<INotification> = ({
     };
 
     return !close && (
-        <div className="notification" style={{ borderColor: defaultProps[type].color, backgroundColor: defaultProps[type].background }}>
+        <div className={themeClasses} style={style}>
             {closeable && (
                 <div className="close" onClick={handleClose}>
                     <IconFont icon="icon-cuowu1" style={{ fontSize: '16px', lineHeight: 1, color: '#464A53' }} />
                 </div>
             )}
             <div className="wrapper">
-                {hasCustomIcon ? icon : <IconFont icon={(icon || defaultProps[type].icon) as string} className="default-icon" style={{ color: defaultProps[type].color }} />}
+                {hasCustomIcon ? icon : <IconFont icon={(icon || defaultProps[type].icon) as string} className={iconClasses} />}
                 <div className="text">
-                    {title && <span className="title" style={{ color: defaultProps[type].color }}>{title}</span>}
-                    {(message || children) && <span className="desc">{message || children}</span>}
+                    {title && <span className={titleClasses}>{title}</span>}
+                    {message && <span className="desc">{message}</span>}
+                    {children}
                 </div>
                 {hasCustomButton && <div className="button">{button}</div>}
             </div>
