@@ -17,4 +17,12 @@ declare module '@openmmlab/header-and-footer';
 declare module 'js-cookie'
 declare module 'lodash'
 // 声明谷歌埋点工具
-declare interface Window { gtag: any; mlog: any }
+declare interface Window {
+    gtag: any;
+    mlog: any;
+    attachEvent: any;
+}
+
+declare interface Document {
+    mozFullScreen: any;
+}
