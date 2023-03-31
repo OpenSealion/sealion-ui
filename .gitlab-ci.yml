@@ -19,6 +19,18 @@ build_image_dev:
     - develop
     - /^tag_dev_aliyun.*$/
 
+build_image_main:
+  stage: build
+  script:
+    - sed -i "s/$nexus_url_old/$nexus_url/g" Dockerfile
+    - docker build -f MainDockerfile -t $harbor_url_prod/$PROJECT/$CI_PROJECT_NAME:${CI_COMMIT_SHA:0:8} .
+    - docker push $harbor_url_prod/$PROJECT/$CI_PROJECT_NAME:${CI_COMMIT_SHA:0:8}
+    - docker rmi $harbor_url_prod/$PROJECT/$CI_PROJECT_NAME:${CI_COMMIT_SHA:0:8}
+  tags:
+    - aliyun
+  only:
+    - main
+
 build_image_spoc:
   stage: build
   script:
