@@ -1,0 +1,357 @@
+@import './mixin.less';
+
+// common
+@seal-button-line-height: 1em;
+@seal-button-padding-ver: 11px;
+@seal-button-padding-hoz: 24px;
+@seal-button-padding-ver-small: 6px;
+@seal-button-padding-hoz-small: 16px;
+@seal-button-line-padding-ver-small: 5px;
+@seal-button-line-padding-hoz-small: 15px;
+@seal-button-icon-padding: 2px;
+
+// 功能色
+@seal-button-success: @success-color;
+@seal-button-success-border: 1px solid @seal-button-success;
+@seal-button-hover-success: #1FBF74;
+@seal-button-hover-success-border: 1px solid @seal-button-hover-success;
+@seal-button-link-success: #008C54;
+@seal-button-link-success-border: 1px solid @seal-button-link-success;
+@seal-button-disabled-success: #68D99D;
+@seal-button-disabled-success-border: 1px solid @seal-button-disabled-success;
+
+@seal-button-warn: @warning-color;
+@seal-button-warn-border: 1px solid @seal-button-warn;
+@seal-button-hover-warn: #FFA229;
+@seal-button-hover-warn-border: 1px solid @seal-button-hover-warn;
+@seal-button-link-warn: #D96C00;
+@seal-button-link-warn-border: 1px solid @seal-button-link-warn;
+@seal-button-disabled-warn: #FFCE7A;
+@seal-button-disabled-warn-border: 1px solid @seal-button-disabled-warn;
+
+@seal-button-danger: @error-color;
+@seal-button-danger-border: 1px solid @seal-button-danger;
+@seal-button-hover-danger: #FF7566;
+@seal-button-hover-danger-border: 1px solid @seal-button-hover-danger;
+@seal-button-link-danger: #CF2D27;
+@seal-button-link-danger-border: 1px solid @seal-button-link-danger;
+@seal-button-disabled-danger: #FFC3B8;
+@seal-button-disabled-danger-border: 1px solid @seal-button-disabled-danger;
+
+
+// 目前大尺寸就是普通尺寸
+.seal-button,
+.seal-button-normal,
+.seal-button-large
+{
+    line-height: @seal-button-line-height;
+    padding: @seal-button-padding-ver @seal-button-padding-hoz;
+    font-size: @font-size-base;
+    border-radius: @button-border-base;
+    transition: all 0.2s;
+    cursor: pointer;
+
+    // 针对icon进行优化排版
+    & > .iconfont {
+        margin-right: 6px;
+        vertical-align: bottom;
+    }
+}
+
+.seal-button.seal-button-small {
+    font-size: @font-size-small;
+    padding: @seal-button-padding-ver-small @seal-button-padding-hoz-small;
+}
+
+.seal-button-small.seal-button-line {
+    padding: @seal-button-line-padding-ver-small @seal-button-line-padding-hoz-small;
+}
+
+// success
+
+
+// primary
+@seal-button-color-primary: @white;
+@seal-button-background-color-primary: @primary-color;
+@seal-button-hover-color-primary: rgba(255, 255, 255, 0.95);
+@seal-button-line-background-color-primary: #0238B8;
+@seal-button-disabled-background-color-primary: #B3D6FF;
+@seal-button-disabled-color-primary: rgba(255, 255, 255, 0.75);
+
+.seal-button-primary {
+    .button-state-color(@seal-button-color-primary, @seal-button-background-color-primary);
+
+    &:hover {
+        .button-state-color(@seal-button-hover-color-primary, @suspend-color);
+    }
+
+    &:active {
+        .button-state-color(@seal-button-hover-color-primary, @seal-button-line-background-color-primary);
+    }
+
+    &:disabled,
+    &.seal-button-disabled {
+        .button-state-color(@seal-button-color-primary, @seal-button-background-color-primary);
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+
+    &.seal-button-success {
+        .seal-button-status-mixin(
+            @white,
+            @seal-button-success,
+            none,
+            @white,
+            @seal-button-hover-success,
+            none,
+            @white,
+            @seal-button-link-success,
+            none,
+            @white,
+            @seal-button-disabled-success,
+            none
+        );
+    }
+
+    &.seal-button-warn {
+        .seal-button-status-mixin(
+            @white,
+            @seal-button-warn,
+            none,
+            @white,
+            @seal-button-hover-warn,
+            none,
+            @white,
+            @seal-button-link-warn,
+            none,
+            @white,
+            @seal-button-disabled-warn,
+            none
+        );
+    }
+
+    &.seal-button-danger {
+        .seal-button-status-mixin(
+            @white,
+            @seal-button-danger,
+            none,
+            @white,
+            @seal-button-hover-danger,
+            none,
+            @white,
+            @seal-button-link-danger,
+            none,
+            @white,
+            @seal-button-disabled-danger,
+            none
+        );
+    }
+}
+
+
+// line
+@seal-button-padding-ver-line: 10px;
+@seal-button-padding-hoz-line: 23px;
+@seal-button-color-line: @primary-color;
+@seal-button-border-line: 1px solid @primary-color;
+@seal-button-hover-color-line: @suspend-color;
+@seal-button-hover-border-line: 1px solid @seal-button-hover-color-line;
+@seal-button-link-color-line: @seal-button-line-background-color-primary;
+@seal-button-link-border-line: 1px solid @seal-button-link-color-line;
+@seal-button-disabled-background-color-line: #B3D6FF;
+@seal-button-disabled-color-line: rgba(255, 255, 255, 0.75);
+
+.seal-button-line {
+    padding: @seal-button-padding-ver-line @seal-button-padding-hoz-line;
+
+    .button-line-state-color(@seal-button-color-line, @seal-button-border-line);
+
+    &:hover {
+        .button-line-state-color(@seal-button-hover-color-line, @seal-button-hover-border-line);
+    }
+
+    &:active {
+        .button-line-state-color(@seal-button-link-color-line, @seal-button-link-border-line);
+    }
+
+    &:disabled,
+    &.seal-button-disabled {
+        .button-line-state-color(@seal-button-color-line, @seal-button-border-line);
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+
+    &.seal-button-success {
+        .seal-button-status-mixin(
+            @seal-button-success,
+            transparent,
+            @seal-button-success-border,
+            @seal-button-hover-success,
+            transparent,
+            @seal-button-hover-success-border,
+            @seal-button-link-success,
+            transparent,
+            @seal-button-link-success-border,
+            @seal-button-disabled-success,
+            transparent,
+            @seal-button-disabled-success-border
+        );
+    }
+
+    &.seal-button-warn {
+        .seal-button-status-mixin(
+            @seal-button-warn,
+            transparent,
+            @seal-button-warn-border,
+            @seal-button-hover-warn,
+            transparent,
+            @seal-button-hover-warn-border,
+            @seal-button-link-warn,
+            transparent,
+            @seal-button-link-warn-border,
+            @seal-button-disabled-warn,
+            transparent,
+            @seal-button-disabled-warn-border
+        );
+    }
+
+    &.seal-button-danger {
+        .seal-button-status-mixin(
+            @seal-button-danger,
+            transparent,
+            @seal-button-danger-border,
+            @seal-button-hover-danger,
+            transparent,
+            @seal-button-hover-danger-border,
+            @seal-button-link-danger,
+            transparent,
+            @seal-button-link-danger-border,
+            @seal-button-disabled-danger,
+            transparent,
+            @seal-button-disabled-danger-border );
+    }
+}
+
+@seal-button-color-secondary: @text-color;
+@seal-button-hover-bg-secondary: #F9F9F9;
+@seal-button-link-bg-secondary:#EBECF0;
+
+.seal-button-secondary {
+    .seal-button-secondary-mix(@seal-button-color-secondary);
+    &.seal-button-success {
+        .seal-button-secondary-mix(@seal-button-success);
+    }
+
+    &.seal-button-warn {
+        .seal-button-secondary-mix(@seal-button-warn);
+    }
+
+    &.seal-button-danger {
+        .seal-button-secondary-mix(@seal-button-danger);
+    }
+}
+
+.seal-button-secondary2 {
+    .seal-button-secondary-mix(@primary-color);
+}
+
+// text
+@seal-button-link-color-text:@seal-button-line-background-color-primary;
+@seal-button-link-bg-text: @seal-button-link-bg-secondary;
+
+.seal-button-text {
+
+    .button-state-color(@primary-color, transparent);
+
+    &:hover {
+        .button-state-color(@suspend-color, @button-bg-secondary);
+    }
+
+    &:active {
+        .button-state-color(@seal-button-link-color-text, @seal-button-link-bg-text);
+    }
+
+    &:disabled,
+    &.seal-button-disabled {
+        .button-state-color(@primary-color, transparent);
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+}
+
+@seal-button-icon-color: rgba(18, 19, 22, 0.8);
+.seal-button.seal-button-icon {
+    padding: @seal-button-icon-padding;
+    .button-state-color(@seal-button-icon-color, transparent);
+    
+    &:hover {
+        .button-state-color(@seal-button-icon-color, @button-bg-secondary);
+    }
+
+    &:active {
+        .button-state-color(@seal-button-icon-color, @seal-button-link-bg-text);
+    }
+
+    &:disabled,
+    &.seal-button-disabled {
+        .button-state-color(@seal-button-icon-color, transparent);
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+
+    &>.iconfont {
+        margin-right: 0;
+    }
+}
+
+.seal-button.seal-button-icon2 {
+    padding: @seal-button-icon-padding;
+    .button-state-color(@primary-color, transparent);
+    
+    &:hover {
+        .button-state-color(@primary-color, @button-bg-secondary);
+    }
+
+    &:active {
+        .button-state-color(@primary-color, @seal-button-link-bg-text);
+    }
+
+    &:disabled,
+    &.seal-button-disabled {
+        .button-state-color(@primary-color, transparent);
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+
+    &>.iconfont {
+        margin-right: 0;
+    }
+}
+
+// link 链接按钮
+@seal-button-link-color: @text-color;
+@seal-button-link-hover-color: rgba(18, 19, 22, 0.5);
+@seal-button-link-active-color: @heading-color;
+@seal-button-link-disabled-color: rgba(18, 19, 22, 0.2);
+
+.seal-button-link {
+    .seal-button-link-mix(
+        @seal-button-link-color,
+        @seal-button-link-hover-color,
+        @seal-button-link-active-color,
+        @seal-button-link-disabled-color
+    );
+}
+
+@seal-button-link-color2: @primary-color;
+@seal-button-link-hover-color2: @suspend-color;
+@seal-button-link-active-color2: @seal-button-line-background-color-primary;
+@seal-button-link-disabled-color2: @seal-button-disabled-background-color-primary;
+.seal-button-link2 {
+    .seal-button-link-mix(
+        @seal-button-link-color2,
+        @seal-button-link-hover-color2,
+        @seal-button-link-active-color2,
+        @seal-button-link-disabled-color2
+    );
+}

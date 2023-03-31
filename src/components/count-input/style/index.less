@@ -1,0 +1,59 @@
+.seal-input-container {
+    position: relative;
+    textarea {
+        resize: vertical;
+    }
+    .seal-input {
+        background: #F4F5F9;
+        border-radius: 2px;
+        box-shadow: none;
+        padding: 5px 16px;
+        line-height: 24px;
+        box-sizing: border-box;
+        border: 1px solid #F4F5F9;
+        width: 100%;
+        &::placeholder {
+            color: rgba(18, 19, 22, 0.35);
+        }
+        &:hover {
+            background: #EBECF0;
+        }
+        &:focus {
+            background: #FFFFFF;
+            border: 1px solid @link-color;
+        }
+        &:focus-visible {
+            outline-style: none;
+        }
+    }
+    .seal-input.seal-input-disable {
+        background: @border-color-divisionline;
+        color: rgba(18, 19, 22, 0.2);
+        cursor: not-allowed;
+        &:hover {
+            background: @border-color-divisionline;
+            color: rgba(18, 19, 22, 0.2);
+        }
+        &:focus {
+            background: @border-color-divisionline;
+            color: rgba(18, 19, 22, 0.2);
+        }
+    }
+    .seal-input-count {
+        position: absolute;
+        right: 12px;
+        top: 6px;
+        .text-1-paragraph-regular();
+        color: rgba(18, 19, 22, 0.5);
+    }
+    .seal-input.seal-input-error,
+    [aria-invalid="true"] {
+        border: 1px solid #F5483B;
+        padding: 5px 16px;
+    }
+    .seal-input-error-desc {
+        position: absolute;
+        color: #F5483B;
+        .text-1-regular();
+    }
+}
