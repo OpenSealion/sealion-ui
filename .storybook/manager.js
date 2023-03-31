@@ -5,7 +5,7 @@ const myTheme = create({
     ...themes.dark,
     brandTitle: 'Sea-lion-ui',
     brandUrl: 'https://openaide.pjlab.org.cn',
-    brandImage: 'https://oss.openmmlab.com/aide/AIDE_logo.svg',
+    brandImage: 'https://openxlabs.oss-cn-shanghai.aliyuncs.com/openxlab/uploads/sea-lion-ui.png',
     brandTarget: '_self',
 });
 

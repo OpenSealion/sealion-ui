@@ -67,5 +67,5 @@ npm run release-auto;
 
 # 组件开发
 1. 首先checkout一个功能分支，分支名为：feat-cmp-xxx，xxx为需要开发的组件名，比如开发button组件，分支名为：feat-cmp-button
-2. 发布成功后提一个mr，合并到develop分支，管理员代码审核通过后会通过mr，然后合并到master。
+2. 发布成功后提一个mr，合并到develop分支，管理员代码审核通过后会通过mr，然后合并到main。
 
