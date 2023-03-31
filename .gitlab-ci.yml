@@ -23,6 +23,7 @@ build_image_main:
   stage: build
   script:
     - sed -i "s/$nexus_url_old/$nexus_url/g" Dockerfile
+    - echo "//$nexus_url/repository/npm-all/:_authToken=${NPM_TOKEN}" >> .npmrc
     - docker build -f MainDockerfile -t $harbor_url_prod/$PROJECT/$CI_PROJECT_NAME:${CI_COMMIT_SHA:0:8} .
     - docker push $harbor_url_prod/$PROJECT/$CI_PROJECT_NAME:${CI_COMMIT_SHA:0:8}
     - docker rmi $harbor_url_prod/$PROJECT/$CI_PROJECT_NAME:${CI_COMMIT_SHA:0:8}
