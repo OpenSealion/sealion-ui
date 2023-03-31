@@ -1,0 +1,64 @@
+@seal-progress-info-color: #0D53DE;
+@seal-progress-success-color: #00B365;
+@seal-progress-warning-color: #FF8800;
+@seal-progress-error-color: #F5483B;
+@seal-progress-background: #F4F5F9;
+@seal-progress-border-radius: 8px;
+@seal-progress-bar-height: 6px;
+@seal-progress-num-color: rgba(18, 19, 22, 0.8);
+
+.seal-progress-container {
+  width: 90%;
+  height: @seal-progress-bar-height;
+  margin-right: 8px;
+  border-radius: @seal-progress-border-radius;
+  background-color: @seal-progress-background;
+  display: inline-block;
+  .seal-progress {
+    height: 100%;
+    border-radius: @seal-progress-border-radius;
+  }
+  .seal-progress-info {
+    background-color: @seal-progress-info-color;
+  }
+  .seal-progress-success {
+    background-color: @seal-progress-success-color;
+  }
+  .seal-progress-warning {
+    background-color: @seal-progress-warning-color;
+  }
+  .seal-progress-error {
+    background-color: @seal-progress-error-color;
+  }
+}
+
+.seal-progress-num {
+  .text-1-regular();
+  color: @seal-progress-num-color;
+}
+
+.seal-progress-circle-background {
+  fill: none;
+  stroke: @seal-progress-background;
+}
+.seal-progress-circle-progress {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.seal-progress-circle-info {
+  stroke: @seal-progress-info-color;
+}
+.seal-progress-circle-success {
+  stroke: @seal-progress-success-color;
+}
+.seal-progress-circle-warning {
+  stroke: @seal-progress-warning-color;
+}
+.seal-progress-circle-error {
+  stroke: @seal-progress-error-color;
+}
+.seal-progress-circle-num {
+  .text-1-semibold();
+  color: @seal-progress-num-color;
+}
