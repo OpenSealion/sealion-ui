@@ -4,4 +4,5 @@ WORKDIR /build/
 ADD ./ /build/
 RUN npm install --registry=http://10.1.32.251:18081/repository/npm-all/
 RUN npm run build
-RUN npm login && npm run release-auto
+RUN npm login --registry=http://10.1.32.251:18081/repository/npm-all/ && npm run release-auto
+
