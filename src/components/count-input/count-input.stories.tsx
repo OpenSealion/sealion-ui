@@ -17,9 +17,10 @@ defaultCountInput.args = {
     showCount: true,
     type: 'primary',
     maxLength: 30,
+    disabled: false
 };
 export const CountInputHandler = () => {
-    const [val, setVal] = useState('I am coding...');
+    const [val, setVal] = useState('');
 
     const handleChange = (value) => {
         setVal(value)
@@ -32,6 +33,7 @@ export const CountInputHandler = () => {
                 showCount
                 value={val}
                 onChange={handleChange}
+                placeholder="this is a placeholder"
             />
         </div>
     );
