@@ -13,6 +13,7 @@ export interface ICountInput {
     textarea?: boolean,
     rows?: number,
     validateMessage?: string,
+    disabled?: boolean,
     onChange?: (e) => void,
     [key: string]: any
 }
@@ -29,11 +30,14 @@ const CountInput: React.FC<ICountInput> = ({
     reg = /.*/,
     validateMessage,
     textarea = false,
+    disabled = false,
     rows = 2,
     ...rest
 }) => {
     const [errorClass, setErrorClass] = useState('');
-    const inputClasses = classNames('seal-input', type === 'disable' && 'seal-input-disable', errorClass);
+    const inputWrapperClasses = classNames('seal-input-wrapper', (type === 'disable' || disabled) && 'seal-input-wrapper-disable');
+    const inputClasses = classNames('seal-input', (type === 'disable' || disabled) && 'seal-input-disable', errorClass);
+    const textareaClasses = classNames('seal-input-textarea', (type === 'disable' || disabled) && 'seal-input-disable', errorClass);
     const handleChange = (e) => {
         if (!new RegExp(reg).test(e.target.value) && e.target.value) {
             setErrorClass('seal-input-error');
@@ -49,33 +53,41 @@ const CountInput: React.FC<ICountInput> = ({
     };
     return (
         <div style={style} className={classNames(className, 'seal-input-container')}>
-            {textarea ? (
-                <textarea
-                    value={value}
-                    disabled={type === 'disable'}
-                    className={inputClasses}
-                    onChange={handleChange}
-                    rows={rows}
-                    {...rest}
-                />
-            ) : (
-                <input
-                    value={value}
-                    disabled={type === 'disable'}
-                    className={inputClasses}
-                    onChange={handleChange}
-                    {...rest}
-                />
-            )}
-            {showCount && (
-                <span className="seal-input-count">
-                    {value.length}
-                    {' '}
-                    /
-                    {' '}
-                    {maxLength}
-                </span>
-            )}
+            <div className={inputWrapperClasses}>
+                {textarea ? (
+                    <>
+                        <textarea
+                            value={value}
+                            disabled={type === 'disable' || disabled}
+                            className={textareaClasses}
+                            onChange={handleChange}
+                            rows={rows}
+                            {...rest}
+                        />
+                        {showCount && (
+                            <span className="seal-input-count-textarea">
+                                {`${value.length} / ${maxLength}`}
+                            </span>
+                        )}
+                    </>
+
+                ) : (
+                    <>
+                        <input
+                            value={value}
+                            disabled={type === 'disable' || disabled}
+                            className={inputClasses}
+                            onChange={handleChange}
+                            {...rest}
+                        />
+                        {showCount && (
+                            <span className="seal-input-count">
+                                {`${value.length} / ${maxLength}`}
+                            </span>
+                        )}
+                    </>
+                )}
+            </div>
             <div className="seal-input-error-desc">{errorClass ? validateMessage : ''}</div>
         </div>
     );
