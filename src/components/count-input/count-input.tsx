@@ -35,9 +35,9 @@ const CountInput: React.FC<ICountInput> = ({
     ...rest
 }) => {
     const [errorClass, setErrorClass] = useState('');
-    const inputWrapperClasses = classNames('seal-input-wrapper', (type === 'disable' || disabled) && 'seal-input-wrapper-disable');
-    const inputClasses = classNames('seal-input', (type === 'disable' || disabled) && 'seal-input-disable', errorClass);
-    const textareaClasses = classNames('seal-input-textarea', (type === 'disable' || disabled) && 'seal-input-disable', errorClass);
+    const inputWrapperClasses = classNames('seal-input-wrapper', (type === 'disable' || disabled) && 'seal-input-wrapper-disable', errorClass);
+    const inputClasses = classNames('seal-input', (type === 'disable' || disabled) && 'seal-input-disable');
+    const textareaClasses = classNames('seal-input-textarea', (type === 'disable' || disabled) && 'seal-input-disable');
     const handleChange = (e) => {
         if (!new RegExp(reg).test(e.target.value) && e.target.value) {
             setErrorClass('seal-input-error');

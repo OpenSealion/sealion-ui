@@ -17,7 +17,7 @@ defaultCountInput.args = {
     showCount: true,
     type: 'primary',
     maxLength: 30,
-    disabled: false
+    disabled: false,
 };
 export const CountInputHandler = () => {
     const [val, setVal] = useState('');
@@ -33,6 +33,8 @@ export const CountInputHandler = () => {
                 showCount
                 value={val}
                 onChange={handleChange}
+                reg={/^[0-9a-zA-Z]+$/}
+                validateMessage="ERROR"
                 placeholder="this is a placeholder"
             />
         </div>
@@ -54,6 +56,8 @@ export const CountTextareaHandler = () => {
                 showCount
                 value={val}
                 onChange={handleChange}
+                reg={/^[0-9a-zA-Z]+$/}
+                validateMessage="ERROR"
                 textarea
             />
         </div>
