@@ -80,10 +80,34 @@ export const NormalInputHandler = () => {
                 maxLength={40}
                 showCount={false}
                 value={val}
-                onChange={handleChange}
+                reg={/^[0-9a-zA-Z]+$/}
             />
         </div>
     );
 }
 
 NormalInputHandler.storyName = 'Normal';
+
+
+export const BlurInputHandler = () => {
+    const [val, setVal] = useState('I am a normal input...');
+
+    const handleChange = (value) => {
+        setVal(value)
+    }
+
+    return (
+        <div>
+            <CountInput
+                maxLength={40}
+                showCount={false}
+                value={val}
+                reg={/^[0-9a-zA-Z]+$/}
+                // onChange={handleChange}
+                onBlur={handleChange}
+            />
+        </div>
+    );
+}
+
+BlurInputHandler.storyName = 'onBlur';
