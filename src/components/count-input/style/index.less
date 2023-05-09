@@ -6,20 +6,29 @@
     .seal-input-wrapper {
         display: inline-flex;
         width: 100%;
+        padding: 5px 16px;
         background: #F4F5F9;
         border: 1px solid transparent;
-        &:hover {
+        box-sizing: border-box;
+        &:hover:not(:focus-within) {
             background: #EBECF0;
+            .seal-input:not(:hover), .seal-input-textarea:not(:hover) {
+                background: #EBECF0;
+            }
         }
         &:focus-within {
             background: #FFFFFF;
             border: 1px solid @link-color;
         }
     }
+    
     .seal-input-wrapper-disable {
         cursor: not-allowed;
-        &:hover {
+        &:hover:not(:focus-within) {
             background: @border-color-divisionline;
+            .seal-input:not(:hover), .seal-input-textarea:not(:hover) {
+                background: @border-color-divisionline;
+            }
         }
         &:focus-within {
             background: @border-color-divisionline;
@@ -27,13 +36,15 @@
         }
     }
     .seal-input, .seal-input-textarea {
+        position: relative;
+        display: inline-block;
+        width: 100%;
         border-radius: 2px;
         box-shadow: none;
-        padding: 5px 16px;
         line-height: 24px;
         box-sizing: border-box;
-        border: 1px solid transparent;
-        width: calc(100% - 40px);
+        border: none;
+        padding: 0;
         background: #F4F5F9;
         &::placeholder {
             color: rgba(18, 19, 22, 0.35);
@@ -46,6 +57,13 @@
         }
         &:focus-visible {
             outline-style: none;
+        }
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus,
+        &:-webkit-autofill:active {
+            -webkit-transition-delay: 99999s;
+            -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
         }
     }
     .seal-input-textarea {
@@ -65,9 +83,10 @@
         }
     }
     .seal-input-count {
-        position: absolute;
-        right: 12px;
-        top: 6px;
+        position: relative;
+        display: flex;
+        flex: none;
+        align-items: center;
         .text-1-paragraph-regular();
         color: rgba(18, 19, 22, 0.5);
     }
@@ -79,10 +98,9 @@
         .text-1-paragraph-regular();
         color: rgba(18, 19, 22, 0.5);
     }
-    .seal-input.seal-input-error,
-    [aria-invalid="true"] {
+    .seal-input-wrapper.seal-input-error {
+        box-sizing: border-box;
         border: 1px solid #F5483B;
-        padding: 5px 16px;
     }
     .seal-input-error-desc {
         position: absolute;

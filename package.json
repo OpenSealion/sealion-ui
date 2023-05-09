@@ -1,6 +1,6 @@
 {
   "name": "sea-lion-ui",
-  "version": "1.0.18",
+  "version": "1.0.23",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -14,7 +14,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "release": "npm run build && release-it",
-    "release-auto": "release-it --ci"
+    "release-auto": "npm run build && release-it --ci"
   },
   "repository": {
     "type": "git",

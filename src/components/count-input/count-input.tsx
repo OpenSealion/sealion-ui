@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export interface ICountInput {
     type?: string;
@@ -15,6 +15,7 @@ export interface ICountInput {
     validateMessage?: string,
     disabled?: boolean,
     onChange?: (e) => void,
+    onBlur?: (e) => void,
     [key: string]: any
 }
 
@@ -26,7 +27,8 @@ const CountInput: React.FC<ICountInput> = ({
     value = defaultValue,
     style,
     className,
-    onChange = (value) => null,
+    onChange,
+    onBlur,
     reg = /.*/,
     validateMessage,
     textarea = false,
@@ -34,33 +36,68 @@ const CountInput: React.FC<ICountInput> = ({
     rows = 2,
     ...rest
 }) => {
+    const [_value, setValue] = useState(value);
     const [errorClass, setErrorClass] = useState('');
-    const inputWrapperClasses = classNames('seal-input-wrapper', (type === 'disable' || disabled) && 'seal-input-wrapper-disable');
-    const inputClasses = classNames('seal-input', (type === 'disable' || disabled) && 'seal-input-disable', errorClass);
-    const textareaClasses = classNames('seal-input-textarea', (type === 'disable' || disabled) && 'seal-input-disable', errorClass);
-    const handleChange = (e) => {
+    const inputWrapperClasses = classNames('seal-input-wrapper', (type === 'disable' || disabled) && 'seal-input-wrapper-disable', errorClass);
+    const inputClasses = classNames('seal-input', (type === 'disable' || disabled) && 'seal-input-disable');
+    const textareaClasses = classNames('seal-input-textarea', (type === 'disable' || disabled) && 'seal-input-disable');
+    const handleValidate = (e) => {
         if (!new RegExp(reg).test(e.target.value) && e.target.value) {
             setErrorClass('seal-input-error');
         } else {
             setErrorClass('');
         }
-        if (value.length < maxLength || (value.length === maxLength && e.target.value.length < maxLength)) {
-            onChange(e.target.value);
-        }
-        if (e.target.value.length > maxLength) {
-            onChange(e.target.value.slice(0, maxLength));
+    };
+    const handleChange = (e) => {
+        if (onChange) {
+            // 有onChange函数传入，在change时执行校验规则
+            handleValidate(e);
+            if (value.length < maxLength || (value.length === maxLength && e.target.value.length < maxLength)) {
+                onChange(e.target.value);
+                setValue(e.target.value);
+            }
+            if (e.target.value.length > maxLength) {
+                onChange(e.target.value.slice(0, maxLength));
+                setValue(e.target.value.slice(0, maxLength));
+            }
+        } else {
+            // chang函数默认行为
+            if (value.length < maxLength || (value.length === maxLength && e.target.value.length < maxLength)) {
+                setValue(e.target.value);
+            }
+            if (e.target.value.length > maxLength) {
+                setValue(e.target.value.slice(0, maxLength));
+            }
         }
     };
+    const handleBlur = (e) => {
+        if (onBlur) {
+            // 有onBlur函数传入，在blur时执行校验规则
+            handleValidate(e);
+            if (value.length < maxLength || (value.length === maxLength && e.target.value.length < maxLength)) {
+                onBlur(e.target.value);
+            }
+            if (e.target.value.length > maxLength) {
+                onBlur(e.target.value.slice(0, maxLength));
+            }
+        }
+    };
+
+    useEffect(() => {
+        setValue(value);
+    }, [value]);
+
     return (
         <div style={style} className={classNames(className, 'seal-input-container')}>
             <div className={inputWrapperClasses}>
                 {textarea ? (
                     <>
                         <textarea
-                            value={value}
+                            value={_value}
                             disabled={type === 'disable' || disabled}
                             className={textareaClasses}
                             onChange={handleChange}
+                            onBlur={handleBlur}
                             rows={rows}
                             {...rest}
                         />
@@ -74,10 +111,11 @@ const CountInput: React.FC<ICountInput> = ({
                 ) : (
                     <>
                         <input
-                            value={value}
+                            value={_value}
                             disabled={type === 'disable' || disabled}
                             className={inputClasses}
                             onChange={handleChange}
+                            onBlur={handleBlur}
                             {...rest}
                         />
                         {showCount && (
