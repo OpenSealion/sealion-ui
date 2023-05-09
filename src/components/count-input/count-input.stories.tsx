@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import CountInput, { ICountInput } from './count-input';
+import {Form} from "antd";
 
 export default ({
     title: 'count input',
@@ -111,3 +112,50 @@ export const BlurInputHandler = () => {
 }
 
 BlurInputHandler.storyName = 'onBlur';
+export const FormInputHandler = () => {
+    const [val, setVal] = useState('I am a normal input...');
+    const [form] = Form.useForm();
+
+    const handleChange = (value) => {
+        setVal(value)
+    }
+
+    return (
+        <Form form={form}>
+            <Form.Item
+                name="inputInForm"
+                validateTrigger={['onChange']}
+                style={{ marginBottom: 24 }}
+                rules={[
+                    {
+                        pattern: /^[0-9a-zA-Z]+$/,
+                        message: '报错信息'
+                    }
+                ]}
+            >
+                <CountInput
+                    maxLength={40}
+                    showCount
+                />
+            </Form.Item>
+            <Form.Item
+                name="textareaInForm"
+                validateTrigger={['onChange']}
+                rules={[
+                    {
+                        pattern: /^[0-9a-zA-Z]+$/,
+                        message: '报错信息'
+                    }
+                ]}
+            >
+                <CountInput
+                    maxLength={40}
+                    showCount
+                    textarea
+                />
+            </Form.Item>
+        </Form>
+    );
+}
+
+FormInputHandler.storyName = 'Used in a form';
