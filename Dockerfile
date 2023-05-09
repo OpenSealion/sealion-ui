@@ -1,7 +1,7 @@
 FROM node:16-alpine as builder
 WORKDIR /build/
 ADD ./ /build/
-RUN npm install --registry=http://10.1.32.251:18081/repository/npm-all/
+RUN npm install --registry=​http://10.140.52.166:18081/repository/npm-all/
 RUN npm run build-storybook
 RUN ls /build/storybook-static
 
