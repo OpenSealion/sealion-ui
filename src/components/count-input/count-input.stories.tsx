@@ -106,6 +106,7 @@ export const BlurInputHandler = () => {
                 reg={/^[0-9a-zA-Z]+$/}
                 // onChange={handleChange}
                 onBlur={handleChange}
+                validateMessage='reg message: /^[0-9a-zA-Z]+$/'
             />
         </div>
     );
