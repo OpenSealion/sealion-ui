@@ -1,0 +1,27 @@
+@message-bg-color: #ffffff;
+@message-padding: 12px 20px;
+@message-shadow: 0 4px 12px 2px rgba(18, 19, 22, 0.12);
+@message-radius: 4px;
+@message-title-color: rgba(18, 19, 22, 0.8);
+
+.seal-message-wrapper {
+  padding: @message-padding;
+  background: @message-bg-color;
+  box-shadow: @message-shadow;
+  border-radius: @message-shadow;
+  display: flex;
+  align-items: center;
+
+  .seal-message-icon {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+
+  .seal-message-title {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: @message-title-color;
+  }
+
+}
