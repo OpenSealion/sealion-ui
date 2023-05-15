@@ -1,43 +1,52 @@
+import React from 'react';
+import { Portal } from "../react-portal";
 import Message, {IMessageProps} from './message';
+import {createPortal} from "react-dom";
 
-Message.success = (props: IMessageProps) => {
+const message = Message;
+
+message.success = (props: IMessageProps) => {
     const { title, duration = 5 } = props;
-    return (
-        <Message
-            type="success"
-            title={title}
-            {...props}
-        />
-    )
+    Portal.open(<Message
+        type="success"
+        title={title}
+        {...props}
+    />);
+    setTimeout(() => {
+        Portal.destroy();
+    }, duration * 1000);
 }
-Message.warning = (props: IMessageProps) => {
+message.warning = (props: IMessageProps) => {
     const { title, duration = 5 } = props;
-    return (
-        <Message
-            type="warning"
-            title={title}
-            {...props}
-        />
-    )
+    Portal.open(<Message
+        type="warning"
+        title={title}
+        {...props}
+    />);
+    setTimeout(() => {
+        Portal.destroy();
+    }, duration * 1000);
 }
-Message.info = (props: IMessageProps) => {
+message.info = (props: IMessageProps) => {
     const { title, duration = 5 } = props;
-    return (
-        <Message
-            type="info"
-            title={title}
-            {...props}
-        />
-    )
+    Portal.open(<Message
+        type="info"
+        title={title}
+        {...props}
+    />);
+    setTimeout(() => {
+        Portal.destroy();
+    }, duration * 1000);
 }
-Message.error = (props: IMessageProps) => {
+message.error = (props: IMessageProps) => {
     const { title, duration = 5 } = props;
-    return (
-        <Message
-            type="error"
-            title={title}
-            {...props}
-        />
-    )
+    Portal.open(<Message
+        type="error"
+        title={title}
+        {...props}
+    />);
+    setTimeout(() => {
+        Portal.destroy();
+    }, duration * 1000);
 }
-export default Message;
+export default message;

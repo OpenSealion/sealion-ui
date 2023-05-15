@@ -39,16 +39,9 @@ const Message: React.FC<IMessageProps> = (props, context) => {
         closable = false,
         onClose
     } = props;
-    const [visible, setVisible] = React.useState(true);
     const wrapperClasses = classNames('seal-message-wrapper', `seal-message-${type}`, className);
 
-    useEffect(() => {
-        setTimeout(() => {
-            // setVisible(false);
-        }, duration * 1000);
-    }, []);
-
-    return visible ? (
+    return (
         <div style={{ display: 'inline-block' }}>
             <div className={wrapperClasses} style={style}>
                 <IconFont icon={iconMap[type]} style={{ color: colorMap[type] }} className={'seal-message-icon'}/>
@@ -60,7 +53,7 @@ const Message: React.FC<IMessageProps> = (props, context) => {
                 )}
             </div>
         </div>
-    ) : <></>
+    )
 }
 
 export default Message;
