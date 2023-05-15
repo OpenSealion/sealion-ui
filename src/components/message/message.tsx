@@ -49,7 +49,7 @@ const Message: React.FC<IMessageProps> = (props, context) => {
     if (!visible) return null;
 
     return (
-        <div style={{ display: 'inline-block' }}>
+        <div style={{ display: 'inline-block', position: 'absolute' }}>
             <div className={wrapperClasses} style={style}>
                 <IconFont icon={iconMap[type]} style={{ color: colorMap[type] }} className="seal-message-icon" />
                 <span className="seal-message-title">{children || title}</span>

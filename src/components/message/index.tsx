@@ -1,11 +1,11 @@
 import React from 'react';
-import { Portal, ReactPortal } from '../react-portal';
+import { Portal } from '../react-portal';
 import Message, { IMessageProps } from './message';
 
 const message = Message;
 
 message.success = (props: IMessageProps) => {
-    const { title, duration = 5 } = props;
+    const { title, duration = 50 } = props;
     Portal.open(<Message
         type="success"
         title={title}

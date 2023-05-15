@@ -4,20 +4,17 @@ import ReactDOM, { createPortal } from 'react-dom';
 export const Portal = {
     wrapperElement: null,
     open(children) {
-        console.log('open');
         // if (this.wrapperElement) {
         //     document.body.removeChild(this.wrapperElement);
         //     this.wrapperElement = null;
         // }
         if (!this.wrapperElement) {
             this.wrapperElement = document.createElement('div');
-            this.wrapperElement.id = 'react-portal-wrapper';
             document.body.appendChild(this.wrapperElement);
         }
         ReactDOM.render(children, this.wrapperElement);
     },
     destroy() {
-        console.log('destroy');
         if (this.wrapperElement) {
             document.body.removeChild(this.wrapperElement);
             this.wrapperElement = null;
