@@ -25,7 +25,7 @@ export const Portal = {
         }
     }
 }
-export const ReactPortal = ({ children, wrapperId = "react-portal-wrapper" }) => {
+export const ReactPortal = ({ children = <></>, wrapperId = "react-portal-wrapper" }) => {
     const [wrapperElement, setWrapperElement] = useState(null);
 
     useLayoutEffect(() => {
