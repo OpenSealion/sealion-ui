@@ -1,6 +1,6 @@
-import React, {useEffect} from "react";
-import classNames from "classnames";
-import IconFont from "../icon";
+import React, { useEffect } from 'react';
+import classNames from 'classnames';
+import IconFont from '../icon';
 
 export interface IMessageProps {
     children?: React.ReactNode;
@@ -19,14 +19,14 @@ const iconMap = {
     error: 'icon-CloseCircleFilled',
     warning: 'icon-InfoFilled',
     info: 'icon-InfoFilled'
-}
+};
 
 const colorMap = {
     success: '#00B365',
     error: '#F5483B',
     warning: '#FFA425',
     info: '#1B67FF',
-}
+};
 const Message: React.FC<IMessageProps> = (props, context) => {
     const {
         title,
@@ -51,16 +51,16 @@ const Message: React.FC<IMessageProps> = (props, context) => {
     return (
         <div style={{ display: 'inline-block' }}>
             <div className={wrapperClasses} style={style}>
-                <IconFont icon={iconMap[type]} style={{ color: colorMap[type] }} className={'seal-message-icon'}/>
-                <span className={'seal-message-title'}>{children || title}</span>
+                <IconFont icon={iconMap[type]} style={{ color: colorMap[type] }} className="seal-message-icon" />
+                <span className="seal-message-title">{children || title}</span>
                 {closable && (
-                    <div className={'seal-message-close'}>
-                        <IconFont icon={'icon-cuowu1'} onClick={onClose}/>
+                    <div className="seal-message-close">
+                        <IconFont icon="icon-cuowu1" onClick={onClose} />
                     </div>
                 )}
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Message;

@@ -1,6 +1,6 @@
 import React from 'react';
-import {Portal, ReactPortal} from "../react-portal";
-import Message, {IMessageProps} from './message';
+import { Portal, ReactPortal } from '../react-portal';
+import Message, { IMessageProps } from './message';
 
 const message = Message;
 
@@ -14,7 +14,7 @@ message.success = (props: IMessageProps) => {
     setTimeout(() => {
         Portal.destroy();
     }, duration * 1000);
-}
+};
 message.warning = (props: IMessageProps) => {
     const { title, duration = 5 } = props;
     Portal.open(<Message
@@ -25,7 +25,7 @@ message.warning = (props: IMessageProps) => {
     setTimeout(() => {
         Portal.destroy();
     }, duration * 1000);
-}
+};
 message.info = (props: IMessageProps) => {
     const { title, duration = 5 } = props;
     Portal.open(<Message
@@ -36,7 +36,7 @@ message.info = (props: IMessageProps) => {
     setTimeout(() => {
         Portal.destroy();
     }, duration * 1000);
-}
+};
 message.error = (props: IMessageProps) => {
     const { title, duration = 5 } = props;
     Portal.open(<Message
@@ -47,5 +47,5 @@ message.error = (props: IMessageProps) => {
     setTimeout(() => {
         Portal.destroy();
     }, duration * 1000);
-}
+};
 export default message;
