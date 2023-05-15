@@ -39,7 +39,14 @@ const Message: React.FC<IMessageProps> = (props, context) => {
         closable = false,
         onClose
     } = props;
+    const [visible, setVisible] = React.useState(true);
     const wrapperClasses = classNames('seal-message-wrapper', `seal-message-${type}`, className);
+
+    setTimeout(() => {
+        setVisible(false);
+    }, duration * 1000);
+
+    if (!visible) return null;
 
     return (
         <div style={{ display: 'inline-block' }}>

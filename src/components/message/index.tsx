@@ -1,7 +1,6 @@
 import React from 'react';
-import { Portal } from "../react-portal";
+import {Portal, ReactPortal} from "../react-portal";
 import Message, {IMessageProps} from './message';
-import {createPortal} from "react-dom";
 
 const message = Message;
 
