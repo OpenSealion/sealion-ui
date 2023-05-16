@@ -1,26 +1,6 @@
 import { useState, useLayoutEffect } from 'react';
 import ReactDOM, { createPortal } from 'react-dom';
 
-export const Portal = {
-    wrapperElement: null,
-    open(children) {
-        // if (this.wrapperElement) {
-        //     document.body.removeChild(this.wrapperElement);
-        //     this.wrapperElement = null;
-        // }
-        if (!this.wrapperElement) {
-            this.wrapperElement = document.createElement('div');
-            document.body.appendChild(this.wrapperElement);
-        }
-        ReactDOM.render(children, this.wrapperElement);
-    },
-    destroy() {
-        if (this.wrapperElement) {
-            document.body.removeChild(this.wrapperElement);
-            this.wrapperElement = null;
-        }
-    }
-};
 export const ReactPortal = ({ children = '', wrapperId = 'react-portal-wrapper' }) => {
     const [wrapperElement, setWrapperElement] = useState(null);
 
@@ -50,4 +30,22 @@ export const ReactPortal = ({ children = '', wrapperId = 'react-portal-wrapper' 
     if (wrapperElement === null) return null;
 
     return createPortal(children, wrapperElement);
+};
+
+export const MessagePortal = {
+    messageList: [],
+    destroy(children) {
+        this.messageList = this.messageList.filter((item) => item !== children);
+    },
+    open(children) {
+        this.messageList.push(children);
+        let messageWrapper = document.getElementById('message-root-wrapper');
+        if (!messageWrapper) {
+            messageWrapper = document.createElement('div');
+            messageWrapper.id = 'message-root-wrapper';
+            messageWrapper.className = 'message-root-wrapper';
+            document.body.appendChild(messageWrapper);
+        }
+        ReactDOM.render(this.messageList.map((item) => item), messageWrapper);
+    },
 };

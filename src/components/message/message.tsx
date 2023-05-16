@@ -33,23 +33,24 @@ const Message: React.FC<IMessageProps> = (props, context) => {
         children,
         content,
         type = 'success',
-        duration = 50,
+        duration = 5,
         className,
         style,
         closable = false,
-        onClose
+        onClose = () => null
     } = props;
     const [visible, setVisible] = React.useState(true);
     const wrapperClasses = classNames('seal-message-wrapper', `seal-message-${type}`, className);
 
     setTimeout(() => {
+        onClose();
         setVisible(false);
     }, duration * 1000);
 
     if (!visible) return null;
 
     return (
-        <div style={{ display: 'inline-block', position: 'absolute' }}>
+        <div>
             <div className={wrapperClasses} style={style}>
                 <IconFont icon={iconMap[type]} style={{ color: colorMap[type] }} className="seal-message-icon" />
                 <span className="seal-message-title">{children || title}</span>

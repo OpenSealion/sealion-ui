@@ -20,33 +20,33 @@ defaultMessage.args = {
 
     }
 };
-// export const typesMessage = () => {
-//     return (
-//         <div style={{ display: 'flex', gap: 36 }}>
-//             <Message
-//                 type="success"
-//                 title="成功消息通知"
-//                 duration={3000}
-//             />
-//             <Message
-//                 type="warning"
-//                 title="警告消息通知"
-//                 duration={3000}
-//             />
-//             <Message
-//                 type="info"
-//                 title="普通消息通知"
-//                 duration={3000}
-//             />
-//             <Message
-//                 type="error"
-//                 title="失败消息通知"
-//                 duration={3000}
-//             />
-//         </div>
-//     );
-// }
-// typesMessage.storyName = '不同类型的消息通知';
+export const typesMessage = () => {
+    return (
+        <div style={{ display: 'flex', gap: 36 }}>
+            <Message
+                type="success"
+                title="成功消息通知"
+                duration={3000}
+            />
+            <Message
+                type="warning"
+                title="警告消息通知"
+                duration={3000}
+            />
+            <Message
+                type="info"
+                title="普通消息通知"
+                duration={3000}
+            />
+            <Message
+                type="error"
+                title="失败消息通知"
+                duration={3000}
+            />
+        </div>
+    );
+}
+typesMessage.storyName = '不同类型的消息通知';
 
 export const runtimeMessage = () => {
     return (
@@ -55,7 +55,7 @@ export const runtimeMessage = () => {
                 btnType="primary"
                 status={'success'}
                 onClick={() => {
-                    message.success({title: '成功消息通知'});
+                    message.success({title: '成功消息通知, duration: 20s', duration: 20});
                 }}
             >
                 成功消息通知
