@@ -4,14 +4,21 @@
 @message-radius: 4px;
 @message-title-color: rgba(18, 19, 22, 0.8);
 
+.message-root-wrapper {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
 .seal-message-wrapper {
   padding: @message-padding;
   background: @message-bg-color;
   box-shadow: @message-shadow;
   border-radius: @message-shadow;
-  //position: fixed;
-  //top: 40px;
-  //left: 50%;
   display: flex;
   align-items: center;
 

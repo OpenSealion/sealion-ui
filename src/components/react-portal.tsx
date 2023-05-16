@@ -1,31 +1,7 @@
 import { useState, useLayoutEffect } from 'react';
-import {createPortal} from "react-dom";
+import ReactDOM, { createPortal } from 'react-dom';
 
-
-export const Portal = {
-    wrapperElement: null,
-    open(children) {
-        console.log('open');
-        // if (this.wrapperElement) {
-        //     document.body.removeChild(this.wrapperElement);
-        //     this.wrapperElement = null;
-        // }
-        if (!this.wrapperElement) {
-            this.wrapperElement = document.createElement("div");
-            this.wrapperElement.id = "react-portal-wrapper";
-            document.body.appendChild(this.wrapperElement);
-        }
-        return createPortal(children, this.wrapperElement);
-    },
-    destroy() {
-        console.log('destroy');
-        if (this.wrapperElement) {
-            document.body.removeChild(this.wrapperElement);
-            this.wrapperElement = null;
-        }
-    }
-}
-export const ReactPortal = ({ children = <></>, wrapperId = "react-portal-wrapper" }) => {
+export const ReactPortal = ({ children = '', wrapperId = 'react-portal-wrapper' }) => {
     const [wrapperElement, setWrapperElement] = useState(null);
 
     useLayoutEffect(() => {
@@ -34,12 +10,12 @@ export const ReactPortal = ({ children = <></>, wrapperId = "react-portal-wrappe
         // create and append to body
         let systemCreated = false;
         if (!element) {
-            const wrapper = document.createElement("div");
+            const wrapper = document.createElement('div');
             document.body.appendChild(wrapper);
             element = wrapper;
             systemCreated = true;
         }
-        setWrapperElement(element)
+        setWrapperElement(element);
 
         return () => {
             // If the systemCreated is true, we’ll delete the element from the DOM
@@ -47,11 +23,29 @@ export const ReactPortal = ({ children = <></>, wrapperId = "react-portal-wrappe
             if (systemCreated && element.parentNode) {
                 element.parentNode.removeChild(element);
             }
-        }
+        };
     }, [wrapperId]);
 
     // wrapperElement state will be null on the very first render.
     if (wrapperElement === null) return null;
 
     return createPortal(children, wrapperElement);
-}
+};
+
+export const MessagePortal = {
+    messageList: [],
+    destroy(children) {
+        this.messageList = this.messageList.filter((item) => item !== children);
+    },
+    open(children) {
+        this.messageList.push(children);
+        let messageWrapper = document.getElementById('message-root-wrapper');
+        if (!messageWrapper) {
+            messageWrapper = document.createElement('div');
+            messageWrapper.id = 'message-root-wrapper';
+            messageWrapper.className = 'message-root-wrapper';
+            document.body.appendChild(messageWrapper);
+        }
+        ReactDOM.render(this.messageList.map((item) => item), messageWrapper);
+    },
+};
