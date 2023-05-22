@@ -1,24 +1,28 @@
 import Message, {IMessageProps} from "./message";
 import message from "./index";
 import {ComponentMeta, ComponentStory} from "@storybook/react";
-import Button, {ButtonProps} from "../button/button";
+import Button from "../button/button";
 export default ({
     title: 'message',
-    component: Button
-}) as ComponentMeta<ButtonProps>;
+    component: Message
+}) as ComponentMeta<IMessageProps>;
 
-const Template: ComponentStory<ButtonProps> = (args) => (<Button {...args} />);
+const Template: ComponentStory<IMessageProps> = (args) => (<Button
+    btnType="primary"
+    onClick={() => {
+        message.info({...args})
+    }}
+>
+    点击出现消息通知
+</Button>);
 
 
 export const defaultMessage = Template.bind({});
 defaultMessage.storyName = '主要参数使用';
 defaultMessage.args = {
-    children: '确认',
-    btnType: 'primary',
-    size: 'normal',
-    onClick: () => {
-
-    }
+    title: '普通消息通知',
+    type: 'info',
+    duration: 5,
 };
 export const typesMessage = () => {
     return (
@@ -41,6 +45,11 @@ export const typesMessage = () => {
             <Message
                 type="error"
                 title="失败消息通知"
+                duration={3000}
+            />
+            <Message
+                type="loading"
+                title="加载消息通知"
                 duration={3000}
             />
         </div>
