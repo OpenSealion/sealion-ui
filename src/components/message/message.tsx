@@ -22,13 +22,6 @@ const iconMap = {
     loading: 'icon-RefreshOutlined'
 };
 
-const colorMap = {
-    success: '#00B365',
-    error: '#F5483B',
-    warning: '#FFA425',
-    info: '#1B67FF',
-    loading: '#1B67FF',
-};
 const Message: React.FC<IMessageProps> = (props, context) => {
     const {
         title,
@@ -43,7 +36,7 @@ const Message: React.FC<IMessageProps> = (props, context) => {
     } = props;
     const [visible, setVisible] = React.useState(true);
     const iconClasses = classNames('seal-message-icon', type === 'loading' && 'seal-message-loading');
-    const wrapperClasses = classNames('seal-message-wrapper', `seal-message-${type}`, className);
+    const wrapperClasses = classNames('seal-message-wrapper', `seal-message-${type}`, type, className);
 
     setTimeout(() => {
         onClose();
@@ -55,7 +48,7 @@ const Message: React.FC<IMessageProps> = (props, context) => {
     return (
         <div>
             <div className={wrapperClasses} style={style}>
-                <IconFont icon={iconMap[type]} style={{ color: colorMap[type] }} className={iconClasses} />
+                <IconFont icon={iconMap[type]} className={iconClasses} />
                 <span className="seal-message-title">{children || title}</span>
                 {closable && (
                     <div className="seal-message-close">
