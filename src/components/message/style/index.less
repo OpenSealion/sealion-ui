@@ -3,6 +3,8 @@
 @message-shadow: 0 4px 12px 2px rgba(18, 19, 22, 0.12);
 @message-radius: 4px;
 @message-title-color: rgba(18, 19, 22, 0.8);
+@message-icon-size: 20px;
+@message-font-size: 14px;
 
 .message-root-wrapper {
   position: fixed;
@@ -23,14 +25,15 @@
   align-items: center;
 
   .seal-message-icon {
-    font-size: 20px;
+    font-size: @message-icon-size;
+    line-height: @message-icon-size;
     margin-right: 10px;
   }
 
   .seal-message-title {
     font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: @message-font-size;
+    line-height: @message-icon-size;
     color: @message-title-color;
   }
 

@@ -45,8 +45,9 @@ const ModalCard: React.FC<IModalProps> = (props) => {
         onClose = () => null,
     } = props;
 
+    const iconClasses = classNames('seal-modal-icon');
     const wrapperClasses = classNames('seal-modal-card', className);
-    const Icon = icon || <IconFont icon="icon-InfoFilled" style={{ color: '#1B67FF', fontSize: 24 }} />;
+    const Icon = icon || <IconFont icon="icon-InfoFilled" className={iconClasses} />;
     const CloseIcon = closeIcon || (
         <Button btnType="icon" onClick={onClose}>
             <IconFont icon="icon-cuowu1" style={{ fontSize: 24, cursor: 'pointer' }} />
@@ -61,6 +62,7 @@ const ModalCard: React.FC<IModalProps> = (props) => {
                     onCancel();
                     onClose();
                 }}
+                style={{ marginRight: 8 }}
             >
                 {cancelText || '取消'}
             </Button>
