@@ -1,0 +1,171 @@
+@step-line-finish-color: #0D53DE;
+@step-line-wait-color: #D7D8DD;
+@step-error-color: #F5483B;
+@step-finish-bg-color: rgba(94, 155, 247, 0.1);
+@step-finish-text-color: #0D53DE;
+@step-process-bg-color: #0D53DE;
+@step-process-text-color: #ffffff;
+@step-wait-bg-color: #F4F5F9;
+@step-text-color: #121316;
+.seal-step {
+    width: 100%;
+}
+.seal-step-direction-horizontal {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    .seal-step-label-horizontal {
+        display: flex;
+        gap: 8px;
+        overflow: hidden;
+        &:not(:last-child) {
+            .seal-step-item-title::after {
+                position: absolute;
+                top: 12px;
+                inset-inline-start: 100%;
+                display: block;
+                width: 9999px;
+                height: 1px;
+                background: @step-line-wait-color;
+                content: "";
+            }
+        }
+    }
+    .seal-step-label-vertical {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        &:not(:last-child) {
+            .seal-step-item-tail::after {
+                position: absolute;
+                top: 12px;
+                inset-inline-start: calc(50% + 12px);
+                display: block;
+                height: 1px;
+                width: 100%;
+                background: @step-line-wait-color;
+                content: "";
+            }
+        }
+        .seal-step-item-content {
+            text-align: center;
+        }
+    }
+    .seal-step-item-finish {
+        &:not(:last-child) {
+            .seal-step-item-title::after {
+                background: @step-line-finish-color;
+            }
+
+            .seal-step-item-tail::after {
+                background: @step-line-finish-color;
+            }
+        }
+    }
+}
+.seal-step-direction-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    .seal-step-item {
+        display: flex;
+        overflow: hidden;
+        gap: 8px;
+        &:not(:last-child) {
+            .seal-step-item-tail::after {
+                position: absolute;
+                top: 24px;
+                inset-inline-start: 12px;
+                display: block;
+                height: 9999px;
+                width: 1px;
+                background: @step-line-wait-color;
+                content: "";
+                padding: 28px 0 8px;
+                box-sizing: border-box;
+            }
+        }
+    }
+    .seal-step-item-finish {
+        &:not(:last-child) {
+            .seal-step-item-title::after {
+                background: @step-line-finish-color;
+            }
+
+            .seal-step-item-tail::after {
+                background: @step-line-finish-color;
+            }
+        }
+    }
+}
+.seal-step-item {
+    position: relative;
+    width: 100%;
+    .seal-step-item-tail {
+        display: contents;
+        position: relative;
+    }
+    .seal-step-item-icon {
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+    }
+    .seal-step-item-title {
+        position: relative;
+        display: inline-block;
+        padding-inline-end: 8px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        color: rgba(18, 19, 22, 0.5);
+    }
+    .seal-step-item-description {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 20px;
+        color: rgba(18, 19, 22, 0.5);
+    }
+}
+
+.seal-step-item[role='button'] {
+    cursor: pointer;
+}
+.seal-step-item-finish {
+    .seal-step-item-icon {
+        background: @step-finish-bg-color;
+        color: @step-finish-text-color;
+    }
+    .seal-step-item-title {
+        color: rgba(18, 19, 22, 0.8);
+    }
+}
+.seal-step-item-process {
+    .seal-step-item-icon {
+        background: @step-process-bg-color;
+        color: @step-process-text-color;
+    }
+    .seal-step-item-title {
+        font-weight: 600;
+        color: rgba(18, 19, 22, 0.8);
+    }
+}
+.seal-step-item-wait {
+    .seal-step-item-icon {
+        background: @step-wait-bg-color;
+        color: @step-text-color;
+    }
+}
+.seal-step-item-error {
+    .seal-step-item-icon {
+        background: @step-error-color;
+        color: @step-process-text-color;
+    }
+}
