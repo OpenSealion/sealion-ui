@@ -18,7 +18,6 @@ export interface StepsProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const StepsContext = React.createContext({
-    latestIndex: 0,
     currentIndex: 0,
     initial: 0,
     size: 'default',
@@ -47,7 +46,6 @@ const Steps: React.FC<StepsProps> = (props) => {
     const mergedClassName = classNames('seal-step', `seal-step-direction-${direction}`, `seal-step-dash-${dashed}`, className);
     const stepsContext = React.useMemo(() => {
         return {
-            latestIndex: 0,
             currentIndex: current,
             initial,
             size,
@@ -62,7 +60,7 @@ const Steps: React.FC<StepsProps> = (props) => {
     return (
         <div className={mergedClassName} style={style}>
             <StepsContext.Provider value={stepsContext}>
-                {items.map((item, index) => {
+                {Array.isArray(items) && items.map((item, index) => {
                     return <StepItem {...item} index={initial + index} key={item.title + index} />;
                 })}
             </StepsContext.Provider>

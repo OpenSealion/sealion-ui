@@ -5,8 +5,8 @@ import IconFont from '../icon/icon';
 
 export interface StepItemProps extends React.HTMLAttributes<HTMLDivElement>{
     index: number;
-    title: string;
-    description?: string;
+    title: string | React.ReactNode;
+    description?: string | React.ReactNode;
     icon?: React.ReactNode;
     status?: 'wait' | 'process' | 'finish' | 'error';
     disabled?: boolean;
@@ -19,7 +19,7 @@ const StepItem: React.FC<StepItemProps> = (props) => {
     } = props;
 
     const {
-        currentIndex, latestIndex, initial, size, direction, labelPlacement, progressDot, onChange
+        currentIndex, initial, size, direction, labelPlacement, progressDot, onChange
     } = React.useContext(StepsContext);
 
     // 水平方向下，label垂直才有意义; 垂直方向下，label只能水平
