@@ -1,0 +1,100 @@
+@seal-switch-width-normal: 42px;
+@seal-switch-height-normal: 20px;
+@seal-switch-width-small: 32px;
+@seal-switch-height-small: 16px;
+@seal-switch-slider-background-color: #B4B6BC;
+@seal-switch-slider-border-radius: 32px;
+@seal-switch-slider-background-color-before: #fff;
+@seal-switch-slider-padding-ver: 4px;
+@seal-switch-slider-padding-hoz: 2px;
+@seal-switch-slider-width-normal: @seal-switch-height-normal - @seal-switch-slider-padding-ver;
+@seal-switch-slider-height-normal: @seal-switch-height-normal - @seal-switch-slider-padding-ver;
+@seal-switch-slider-left-normal: @seal-switch-slider-padding-hoz;
+@seal-switch-slider-top-normal: calc(50% - @seal-switch-slider-height-normal/2);
+@seal-switch-slider-checked-left-normal: @seal-switch-width-normal - @seal-switch-slider-width-normal - @seal-switch-slider-padding-hoz;
+@seal-switch-slider-checked-top-normal: calc(50% - @seal-switch-slider-height-normal/2);
+@seal-switch-slider-width-small: @seal-switch-height-small - @seal-switch-slider-padding-ver;
+@seal-switch-slider-height-small: @seal-switch-height-small - @seal-switch-slider-padding-ver;
+@seal-switch-slider-left-small: @seal-switch-slider-padding-hoz;
+@seal-switch-slider-top-small: calc(50% - @seal-switch-slider-height-small/2);
+@seal-switch-slider-checked-left-small: @seal-switch-width-small - @seal-switch-slider-width-small - @seal-switch-slider-padding-hoz;
+@seal-switch-slider-checked-top-small: calc(50% - @seal-switch-slider-height-small/2);
+
+.seal-switch,
+.seal-switch-normal {
+    width: @seal-switch-width-normal;
+    height: @seal-switch-height-normal;
+}
+
+.seal-switch-small {
+    width: @seal-switch-width-small;
+    height: @seal-switch-height-small;
+}
+
+.seal-switch-label {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    position: relative;
+}
+
+.seal-switch-checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.seal-switch-slider,
+.seal-switch-slider-normal,
+.seal-switch-slider-small {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: @seal-switch-slider-background-color;
+    border-radius: @seal-switch-slider-border-radius;
+    cursor: pointer;
+}
+  
+.seal-switch-slider:before,
+.seal-switch-slider-normal:before,
+.seal-switch-slider-small:before {
+    position: absolute;
+    content: "";
+    border-radius: 50%;
+    background-color: @seal-switch-slider-background-color-before;
+    transition: all .2s ease-in-out;
+}
+
+.seal-switch-slider:before,
+.seal-switch-slider-normal:before {
+    left: @seal-switch-slider-left-normal;
+    top: @seal-switch-slider-top-normal;
+    width: @seal-switch-slider-width-normal;
+    height: @seal-switch-slider-height-normal;
+}
+
+.seal-switch-slider-small:before {
+    left: @seal-switch-slider-left-small;
+    top: @seal-switch-slider-top-small;
+    width: @seal-switch-slider-width-small;
+    height: @seal-switch-slider-height-small;
+}
+  
+.seal-switch-checkbox:checked + .seal-switch-slider,
+.seal-switch-checkbox:checked + .seal-switch-slider-normal,
+.seal-switch-checkbox:checked + .seal-switch-slider-small {
+    background-color: #0D53DE;
+}
+
+.seal-switch-checkbox:checked + .seal-switch-slider:before,
+.seal-switch-checkbox:checked + .seal-switch-slider-normal:before {
+    left: @seal-switch-slider-checked-left-normal;
+    top: @seal-switch-slider-checked-top-normal;
+}
+
+.seal-switch-checkbox:checked + .seal-switch-slider-small:before {
+    left: @seal-switch-slider-checked-left-small;
+    top: @seal-switch-slider-checked-top-small;
+}
