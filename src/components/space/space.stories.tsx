@@ -4,7 +4,7 @@ import Button from "../button/button";
 import IconFont from "../icon/index";
 import Divider from "../divider/index";
 export default ({
-    title: 'space',
+    title: 'Space',
     component: Space
 }) as ComponentMeta<ISpaceProps>;
 

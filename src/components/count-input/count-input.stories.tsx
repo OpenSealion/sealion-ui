@@ -4,7 +4,7 @@ import CountInput, { ICountInput } from './count-input';
 import {Form} from "antd";
 
 export default ({
-    title: 'count input',
+    title: 'Count input',
     component: CountInput
 }) as ComponentMeta<ICountInput>;
 
