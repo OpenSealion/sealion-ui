@@ -1,0 +1,23 @@
+@seal-tab-item-height: 24px;
+
+.seal-tab-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: @seal-tab-item-height;
+    padding: 12px 0;
+    cursor: pointer;
+
+    &.seal-tab-card {
+
+    }
+
+    &.seal-tab-text {
+        color: @heading-color;
+        font-size: @font-size-large;
+
+        &.seal-tab-item-active {
+            color: @primary-color;
+        }
+    }
+}
