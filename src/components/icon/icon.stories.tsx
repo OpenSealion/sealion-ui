@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import IconFont, { IIconFOnt } from './icon';
 
 export default ({
-    title: 'icon',
+    title: 'Icon',
     component: IconFont
 }) as ComponentMeta<IIconFOnt>;
 

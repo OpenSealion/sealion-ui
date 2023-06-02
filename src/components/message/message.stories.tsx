@@ -3,7 +3,7 @@ import message from "./index";
 import {ComponentMeta, ComponentStory} from "@storybook/react";
 import Button from "../button/button";
 export default ({
-    title: 'message',
+    title: 'Message',
     component: Message
 }) as ComponentMeta<IMessageProps>;
 
