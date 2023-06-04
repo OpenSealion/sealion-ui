@@ -4,7 +4,7 @@ import CountInput, { ICountInput } from './count-input';
 import {Form} from "antd";
 
 export default ({
-    title: 'count input',
+    title: 'Count input',
     component: CountInput
 }) as ComponentMeta<ICountInput>;
 
@@ -64,9 +64,7 @@ export const CountTextareaHandler = () => {
         </div>
     );
 }
-
 CountTextareaHandler.storyName = 'Textarea';
-
 
 export const NormalInputHandler = () => {
     const [val, setVal] = useState('I am a normal input...');
@@ -86,9 +84,7 @@ export const NormalInputHandler = () => {
         </div>
     );
 }
-
 NormalInputHandler.storyName = 'Normal';
-
 
 export const BlurInputHandler = () => {
     const [val, setVal] = useState('I am a normal input...');
@@ -111,8 +107,8 @@ export const BlurInputHandler = () => {
         </div>
     );
 }
-
 BlurInputHandler.storyName = 'onBlur';
+
 export const FormInputHandler = () => {
     const [val, setVal] = useState('I am a normal input...');
     const [form] = Form.useForm();
@@ -158,5 +154,4 @@ export const FormInputHandler = () => {
         </Form>
     );
 }
-
 FormInputHandler.storyName = 'Used in a form';

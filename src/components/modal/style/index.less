@@ -1,0 +1,83 @@
+@modal-mask-bg: rgba(0, 0, 0, 0.4);
+@modal-wrapper-bg: #FFFFFF;
+@modal-wrapper-padding: 24px 32px;
+@modal-wrapper-shadow: 0 8px 26px rgba(0, 0, 0, 0.12);
+@modal-wrapper-border-radius: 4px;
+@modal-wrapper-top: 200px;
+@modal-icon-size: 24px;
+
+.seal-modal-root {
+    .seal-modal-mask {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: @modal-mask-bg;
+    }
+    .seal-modal-wrapper {
+        position: fixed;
+        inset-inline-end: 0;
+        inset-inline-start: 0;
+        overflow: auto;
+        outline: 0;
+        top: @modal-wrapper-top;
+        z-index: 1000;
+    }
+    .seal-modal-card {
+        width: 400px;
+        display: flex;
+        gap: 4px;
+        padding: @modal-wrapper-padding;
+        background: @modal-wrapper-bg;
+        box-shadow: @modal-wrapper-shadow;
+        border-radius: @modal-wrapper-border-radius;
+        margin: auto;
+    }
+    .seal-modal-icon {
+        color: #1B67FF;
+        font-size: @modal-icon-size;
+        line-height: @modal-icon-size;
+    }
+    .seal-modal-right {
+        width: 100%;
+        .seal-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .seal-modal-title {
+            font-style: normal;
+            .title-3-semibold();
+            display: flex;
+            align-items: center;
+            color: @heading-color;
+        }
+        .seal-modal-content {
+            .text-1-regular();
+            line-height: 22px;
+            color: @text-color;
+            margin-bottom: 20px;
+        }
+        .seal-modal-footer {
+            float: right;
+        }
+        .seal-modal-animation {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.4);
+        }
+        .seal-modal-animation-enter-done {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+        }
+        .seal-modal-animation-exit {
+            opacity: 0;
+            transform: scale(0.4);
+        }
+    }
+}

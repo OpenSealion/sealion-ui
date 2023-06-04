@@ -51,7 +51,7 @@ const useMounseWheel = (tabList) => {
                 cancelMouseWheelEvent();
             }
         };
-    }, [scrollRef.current, position, tabList]);
+    }, [position, tabList]);
 
     return [position, scrollRef, isExpandContainer];
 };
