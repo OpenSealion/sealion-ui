@@ -47,14 +47,21 @@ export const switchDisabledChecked = () => (
 
 switchDisabledChecked.storyName = 'disabled的开关';
 
-// 带文字或者图标的开关
-// export const switchChildrenChecked = () => (
-//     <>
-//         <Switch unCheckedUpChildren={<Icon icon='icon-NoticeOpeningOutlined' />} />
-//         <Switch defaultChecked checkedUpChildren={<Icon icon='icon-NoticeOpeningOutlined' />} />
-//         <Switch unCheckedUpChildren={<Icon icon='icon-NoticeOpeningOutlined' />} size='small' />
-//         <Switch defaultChecked checkedUpChildren={<Icon icon='icon-NoticeOpeningOutlined' />} size='small' />
-//     </>
-// );
+// 带图标的开关
+export const switchChildrenChecked = () => (
+    <>
+        <Switch
+            unCheckedUpIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ fontSize: 10 }} />}
+            checkedIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ fontSize: 10 }} />}
+            defaultChecked
+        />
+        <Switch
+            unCheckedUpIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ transform: 'scale(0.5)' }} />}
+            checkedIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ transform: 'scale(0.5)' }} />}
+            size='small'
+            defaultChecked
+        />
+    </>
+);
 
-// switchChildrenChecked.storyName = '带文字或者图标的开关';
+switchChildrenChecked.storyName = '带图标的开关';

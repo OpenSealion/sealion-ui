@@ -5,17 +5,17 @@ import classNames from 'classnames';
 
 export type SwitchSizes = 'normal' | 'small';
 
-export interface SwitchProps {
+export interface SwitchProps extends Omit<React.HTMLAttributes<any>, 'onChange' | 'onClick'> {
     className?: string,
     size?: SwitchSizes,
     disabled?: boolean,
     defaultChecked?: boolean,
     checked?: boolean,
     onChange?: (checked?: boolean, event?: Event) => void,
-    checkedUpChildren?: React.ReactNode,
-    unCheckedUpChildren?: React.ReactNode,
-    checkedDownChildren?: React.ReactNode,
-    unCheckedDownChildren?: React.ReactNode
+    checkedIcon?: React.ReactNode,
+    unCheckedUpIcon?: React.ReactNode,
+    checkedText?: React.ReactNode,
+    unCheckedText?: React.ReactNode
 }
 
 const Switch: React.FC<SwitchProps> = (props) => {
@@ -26,10 +26,10 @@ const Switch: React.FC<SwitchProps> = (props) => {
         defaultChecked,
         checked,
         onChange,
-        checkedUpChildren,
-        unCheckedUpChildren,
-        checkedDownChildren,
-        unCheckedDownChildren,
+        checkedIcon,
+        unCheckedUpIcon,
+        checkedText,
+        unCheckedText,
         ...rest
     } = props;
     const [isChecked, setIsChecked] = useState<boolean>(checked || defaultChecked || false);
@@ -43,9 +43,13 @@ const Switch: React.FC<SwitchProps> = (props) => {
         disabled && 'seal-switch-disabled',
         !!size && `seal-switch-slider-${size}`
     );
-    const innerClasses = classNames(
+    const innerUpClasses = classNames(
         'seal-switch-inner',
         !!size && `seal-switch-inner-${size}`
+    );
+    const innerUpCheckedClasses = classNames(
+        'seal-switch-checked-inner',
+        !!size && `seal-switch-checked-inner-${size}`
     );
 
     const handleChange = (e) => {
@@ -70,13 +74,13 @@ const Switch: React.FC<SwitchProps> = (props) => {
                 />
                 <span className={sliderClasses}>
                     {
-                        unCheckedUpChildren && (
-                            <div className={innerClasses}>{unCheckedUpChildren}</div>
+                        unCheckedUpIcon && (
+                            <div className={innerUpClasses}>{unCheckedUpIcon}</div>
                         )
                     }
                     {
-                        checkedUpChildren && (
-                            <div className="seal-switch-checked-inner">{checkedUpChildren}</div>
+                        checkedIcon && (
+                            <div className={innerUpCheckedClasses}>{checkedIcon}</div>
                         )
                     }
                 </span>
