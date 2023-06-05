@@ -41,14 +41,14 @@ const TabItem: React.FC<TabItemProps> = ({
         `seal-tab-${type}`
     );
 
-    const handleClick = () => {
+    const handleClick = (e: MouseEvent) => {
         const width = itemRef.current.clientWidth;
         const left = itemRef.current.offsetLeft;
         onClick({
             width,
             left,
             itemKey
-        });
+        }, e);
     };
 
     useEffect(() => {
