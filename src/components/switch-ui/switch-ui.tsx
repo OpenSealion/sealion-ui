@@ -43,13 +43,21 @@ const Switch: React.FC<SwitchProps> = (props) => {
         disabled && 'seal-switch-disabled',
         !!size && `seal-switch-slider-${size}`
     );
-    const innerUpClasses = classNames(
+    const innerIconClasses = classNames(
         'seal-switch-inner',
         !!size && `seal-switch-inner-${size}`
     );
-    const innerUpCheckedClasses = classNames(
+    const innerIconCheckedClasses = classNames(
         'seal-switch-checked-inner',
         !!size && `seal-switch-checked-inner-${size}`
+    );
+    const innerTextClasses = classNames(
+        'seal-switch-text',
+        !!size && `seal-switch-text-${size}`
+    );
+    const innerTextCheckedClasses = classNames(
+        'seal-switch-checked-text',
+        !!size && `seal-switch-checked-text-${size}`
     );
 
     const handleChange = (e) => {
@@ -75,12 +83,22 @@ const Switch: React.FC<SwitchProps> = (props) => {
                 <span className={sliderClasses}>
                     {
                         unCheckedUpIcon && (
-                            <div className={innerUpClasses}>{unCheckedUpIcon}</div>
+                            <div className={innerIconClasses}>{unCheckedUpIcon}</div>
                         )
                     }
                     {
                         checkedIcon && (
-                            <div className={innerUpCheckedClasses}>{checkedIcon}</div>
+                            <div className={innerIconCheckedClasses}>{checkedIcon}</div>
+                        )
+                    }
+                    {
+                        unCheckedText && (
+                            <div className={innerTextClasses}>{unCheckedText}</div>
+                        )
+                    }
+                    {
+                        checkedText && (
+                            <div className={innerTextCheckedClasses}>{checkedText}</div>
                         )
                     }
                 </span>
