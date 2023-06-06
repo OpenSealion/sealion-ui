@@ -85,17 +85,6 @@ export const switchTextChecked = () => (
             size='small'
             style={{ marginTop: 5 }}
         />
-        <Switch
-            unCheckedText='offoffoffoff'
-            checkedText='ononononoononon'
-            style={{ marginTop: 5 }}
-        />
-        <Switch
-            unCheckedText='offoffoffoff'
-            checkedText='ononononoononon'
-            style={{ marginTop: 5 }}
-            size='small'
-        />
     </>
 );
 

@@ -12,13 +12,13 @@
 @seal-switch-slider-height-normal: @seal-switch-height-normal - @seal-switch-slider-padding-ver;
 @seal-switch-slider-left-normal: @seal-switch-slider-padding-hoz;
 @seal-switch-slider-top-normal: calc(50% - @seal-switch-slider-height-normal/2);
-@seal-switch-slider-checked-left-normal: @seal-switch-slider-padding-hoz;
+@seal-switch-slider-checked-left-normal: calc(100% - @seal-switch-slider-width-normal - @seal-switch-slider-padding-hoz);
 @seal-switch-slider-checked-top-normal: calc(50% - @seal-switch-slider-height-normal/2);
 @seal-switch-slider-width-small: @seal-switch-height-small - @seal-switch-slider-padding-ver;
 @seal-switch-slider-height-small: @seal-switch-height-small - @seal-switch-slider-padding-ver;
 @seal-switch-slider-left-small: @seal-switch-slider-padding-hoz;
 @seal-switch-slider-top-small: calc(50% - @seal-switch-slider-height-small/2);
-@seal-switch-slider-checked-left-small: @seal-switch-slider-padding-hoz;
+@seal-switch-slider-checked-left-small: calc(100% - @seal-switch-slider-width-small - @seal-switch-slider-padding-hoz);
 @seal-switch-slider-checked-top-small: calc(50% - @seal-switch-slider-height-small/2);
 @seal-switch-checked-inner-line-height-normal: @seal-switch-height-normal - @seal-switch-slider-padding-ver;
 @seal-switch-checked-inner-line-height-small: @seal-switch-height-small;
@@ -41,13 +41,10 @@
 .seal-switch-normal {
     display: block;
     height: @seal-switch-height-normal;
-
 }
 
 .seal-switch-small {
     height: @seal-switch-height-small;
-    display: block;
-
 }
 
 .seal-switch-label,
@@ -91,7 +88,7 @@
     content: "";
     border-radius: 50%;
     background-color: @seal-switch-color-unchecked-before;
-    transition: all .2s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
 .seal-switch-slider:before,
@@ -124,13 +121,13 @@
 .seal-switch-checkbox:checked + .seal-switch-slider:before,
 .seal-switch-checkbox:checked + .seal-switch-slider-normal:before {
     left: auto;
-    right: @seal-switch-slider-checked-left-normal;
+    left: @seal-switch-slider-checked-left-normal;
     top: @seal-switch-slider-checked-top-normal;
 }
 
 .seal-switch-checkbox:checked + .seal-switch-slider-small:before {
     left: auto;
-    right: @seal-switch-slider-checked-left-small;
+    left: @seal-switch-slider-checked-left-small;
     top: @seal-switch-slider-checked-top-small;
 }
 
