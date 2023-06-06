@@ -17,7 +17,11 @@ defaultSwitch.args = {
     size: 'normal',
     disabled: false,
     defaultChecked: false,
-    checked: false
+    checked: false,
+    checkedIcon: '',
+    unCheckedUpIcon: '',
+    checkedText: '',
+    unCheckedText: ''
 };
 
 // 默认打开的开关
@@ -31,7 +35,7 @@ switchDefaultChecked.storyName = '默认打开的开关';
 export const switchSmallChecked = () => (
     <>
         <Switch size='small' />
-        <Switch size='small' defaultChecked />
+        <Switch size='small' defaultChecked style={{ marginTop: 5 }} />
     </>
 );
 
@@ -41,7 +45,7 @@ switchSmallChecked.storyName = '小尺寸的开关';
 export const switchDisabledChecked = () => (
     <>
         <Switch disabled />
-        <Switch disabled defaultChecked />
+        <Switch disabled defaultChecked style={{ marginTop: 5 }} />
     </>
 );
 
@@ -60,6 +64,7 @@ export const switchIconChecked = () => (
             checkedIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ transform: 'scale(0.5)' }} />}
             size='small'
             defaultChecked
+            style={{ marginTop: 5 }}
         />
     </>
 );
@@ -74,17 +79,21 @@ export const switchTextChecked = () => (
             checkedText='开'
             defaultChecked
         />
-        {/* <Switch
-            unCheckedText='offoffoffoff'
-            // checkedText='开'
-        />
-        <Switch
-            checkedText='ononononoononon'
-            defaultChecked
-        /> */}
         <Switch
             unCheckedText='关'
             checkedText='开'
+            size='small'
+            style={{ marginTop: 5 }}
+        />
+        <Switch
+            unCheckedText='offoffoffoff'
+            checkedText='ononononoononon'
+            style={{ marginTop: 5 }}
+        />
+        <Switch
+            unCheckedText='offoffoffoff'
+            checkedText='ononononoononon'
+            style={{ marginTop: 5 }}
             size='small'
         />
     </>

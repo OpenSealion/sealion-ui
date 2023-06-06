@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 export type SwitchSizes = 'normal' | 'small';
 
-export interface SwitchProps extends Omit<React.HTMLAttributes<any>, 'onChange' | 'onClick'> {
+export interface SwitchProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onChange' | 'onClick'> {
     className?: string,
     size?: SwitchSizes,
     disabled?: boolean,
@@ -15,7 +15,8 @@ export interface SwitchProps extends Omit<React.HTMLAttributes<any>, 'onChange' 
     checkedIcon?: React.ReactNode,
     unCheckedUpIcon?: React.ReactNode,
     checkedText?: React.ReactNode,
-    unCheckedText?: React.ReactNode
+    unCheckedText?: React.ReactNode,
+    onClick?: (checked?: boolean, event?: Event) => void
 }
 
 const Switch: React.FC<SwitchProps> = (props) => {
@@ -30,6 +31,7 @@ const Switch: React.FC<SwitchProps> = (props) => {
         unCheckedUpIcon,
         checkedText,
         unCheckedText,
+        onClick,
         ...rest
     } = props;
     const [isChecked, setIsChecked] = useState<boolean>(checked || defaultChecked || false);
@@ -37,6 +39,10 @@ const Switch: React.FC<SwitchProps> = (props) => {
         className,
         'seal-switch',
         !!size && `seal-switch-${size}`
+    );
+    const labelClasses = classNames(
+        'seal-switch-label',
+        !!size && `seal-switch-label-${size}`
     );
     const sliderClasses = classNames(
         'seal-switch-slider',
@@ -59,11 +65,22 @@ const Switch: React.FC<SwitchProps> = (props) => {
         'seal-switch-checked-text',
         !!size && `seal-switch-checked-text-${size}`
     );
+    const holderClasses = classNames(
+        'seal-switch-text-holder',
+        !!size && `seal-switch-text-holder-${size}`
+    );
+    const holderCheckedClasses = classNames(
+        'seal-switch-checked-text-holder',
+        !!size && `seal-switch-checked-text-holder-${size}`
+    );
 
     const handleChange = (e) => {
         setIsChecked(!isChecked);
         if (onChange) {
             onChange(e.target.checked, e);
+        }
+        if (onClick) {
+            onClick(e.target.checked, e);
         }
     };
 
@@ -72,7 +89,7 @@ const Switch: React.FC<SwitchProps> = (props) => {
             className={switchClasses}
             {...rest}
         >
-            <label className="seal-switch-label">
+            <label className={labelClasses}>
                 <input
                     type="checkbox"
                     className="seal-switch-checkbox"
@@ -92,16 +109,26 @@ const Switch: React.FC<SwitchProps> = (props) => {
                         )
                     }
                     {
-                        unCheckedText && (
+                        !isChecked && unCheckedText && (
                             <div className={innerTextClasses}>{unCheckedText}</div>
                         )
                     }
                     {
-                        checkedText && (
+                        isChecked && checkedText && (
                             <div className={innerTextCheckedClasses}>{checkedText}</div>
                         )
                     }
                 </span>
+                {
+                    !isChecked && unCheckedText && (
+                        <div className={holderClasses}>{unCheckedText}</div>
+                    )
+                }
+                {
+                    isChecked && checkedText && (
+                        <div className={holderCheckedClasses}>{checkedText}</div>
+                    )
+                }
             </label>
         </div>
     );
