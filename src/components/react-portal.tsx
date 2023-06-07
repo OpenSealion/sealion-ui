@@ -37,7 +37,7 @@ export const MessagePortal = {
     messageWrapper: null,
     destroy() {
         if (this.messageWrapper && !this.messageWrapper.children.length) {
-            document.body.removeChild(this.messageWrapper);
+            this.messageWrapper.parentNode.removeChild(this.messageWrapper);
             this.messageWrapper = null;
             this.messageList = [];
         }
@@ -45,9 +45,7 @@ export const MessagePortal = {
     open(children) {
         this.messageList.push(children);
         if (!this.messageWrapper) {
-            const wrapperId = new Date().getTime().toString();
             this.messageWrapper = document.createElement('div');
-            this.messageWrapper.id = wrapperId;
             this.messageWrapper.className = 'message-root-wrapper';
             document.body.appendChild(this.messageWrapper);
         }

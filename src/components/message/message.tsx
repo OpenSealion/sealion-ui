@@ -13,6 +13,7 @@ export interface IMessageProps {
     style?: React.CSSProperties; // 自定义样式
     closable?: boolean; // 是否显示关闭按钮
     onClose?: () => void; // 关闭回调
+    maxCount?: number; // 最大显示数量
 }
 
 const iconMap = {
@@ -33,6 +34,7 @@ const Message: React.FC<IMessageProps> = (props, context) => {
         className,
         style,
         closable = false,
+        maxCount = 10,
         onClose = () => null
     } = props;
     const [visible, setVisible] = React.useState(true);
