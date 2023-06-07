@@ -14,6 +14,7 @@ export interface IMessageProps {
     closable?: boolean; // 是否显示关闭按钮
     onClose?: () => void; // 关闭回调
     maxCount?: number; // 最大显示数量
+    getContainer?: () => HTMLElement; // 挂载的节点
 }
 
 const iconMap = {
@@ -47,7 +48,7 @@ const Message: React.FC<IMessageProps> = (props, context) => {
         MessagePortal.destroy();
     }, duration * 1000);
 
-    if (!visible) return null;
+    if (!visible || MessagePortal.messageList.length >= maxCount) return null;
 
     return (
         <div>

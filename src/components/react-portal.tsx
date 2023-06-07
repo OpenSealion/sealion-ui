@@ -42,12 +42,12 @@ export const MessagePortal = {
             this.messageList = [];
         }
     },
-    open(children) {
+    open(children, getContainer = () => document.body) {
         this.messageList.push(children);
         if (!this.messageWrapper) {
             this.messageWrapper = document.createElement('div');
             this.messageWrapper.className = 'message-root-wrapper';
-            document.body.appendChild(this.messageWrapper);
+            getContainer().appendChild(this.messageWrapper);
         }
         ReactDOM.render(this.messageList.map((item) => item), this.messageWrapper);
     },
