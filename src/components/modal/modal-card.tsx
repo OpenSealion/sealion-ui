@@ -62,7 +62,7 @@ const ModalCard: React.FC<IModalProps> = (props) => {
                     onCancel();
                     onClose();
                 }}
-                style={{ marginRight: 8 }}
+                style={{ marginRight: 12 }}
             >
                 {cancelText || '取消'}
             </Button>
