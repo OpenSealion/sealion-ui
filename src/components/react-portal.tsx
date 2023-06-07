@@ -46,7 +46,7 @@ export const MessagePortal = {
         this.messageList.push(children);
         if (!this.messageWrapper) {
             this.messageWrapper = document.createElement('div');
-            this.messageWrapper.className = 'message-root-wrapper';
+            this.messageWrapper.classList.add('seal-message-root-wrapper');
             getContainer().appendChild(this.messageWrapper);
         }
         ReactDOM.render(this.messageList.map((item) => item), this.messageWrapper);
