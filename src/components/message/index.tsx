@@ -4,64 +4,38 @@ import Message, { IMessageProps } from './message';
 
 const message = Message;
 
-message.success = (props: IMessageProps | string) => {
+const messagePropsHandler = (props: (IMessageProps | string), type: string) => {
     if (typeof props === 'string') {
-        MessagePortal.open(<Message
-            type="success"
-            title={props}
-        />);
-    } else if (typeof props === 'object') {
-        const { title } = props;
-        MessagePortal.open(<Message
-            type="success"
-            title={title}
-            {...props}
-        />);
+        return {
+            type,
+            title: props
+        };
     }
+    if (typeof props === 'object' && props.title) {
+        const { title } = props;
+        return {
+            type,
+            title,
+            ...props
+        };
+    }
+    return {};
+};
+
+message.success = (props: IMessageProps | string) => {
+    const messageProps = messagePropsHandler(props, 'success');
+    MessagePortal.open(<Message {...messageProps} />);
 };
 message.warning = (props: IMessageProps) => {
-    if (typeof props === 'string') {
-        MessagePortal.open(<Message
-            type="warning"
-            title={props}
-        />);
-    } else if (typeof props === 'object') {
-        const { title } = props;
-        MessagePortal.open(<Message
-            type="warning"
-            title={title}
-            {...props}
-        />);
-    }
+    const messageProps = messagePropsHandler(props, 'warning');
+    MessagePortal.open(<Message {...messageProps} />);
 };
 message.info = (props: IMessageProps) => {
-    if (typeof props === 'string') {
-        MessagePortal.open(<Message
-            type="info"
-            title={props}
-        />);
-    } else if (typeof props === 'object') {
-        const { title } = props;
-        MessagePortal.open(<Message
-            type="info"
-            title={title}
-            {...props}
-        />);
-    }
+    const messageProps = messagePropsHandler(props, 'info');
+    MessagePortal.open(<Message {...messageProps} />);
 };
 message.error = (props: IMessageProps) => {
-    if (typeof props === 'string') {
-        MessagePortal.open(<Message
-            type="error"
-            title={props}
-        />);
-    } else if (typeof props === 'object') {
-        const { title } = props;
-        MessagePortal.open(<Message
-            type="error"
-            title={title}
-            {...props}
-        />);
-    }
+    const messageProps = messagePropsHandler(props, 'error');
+    MessagePortal.open(<Message {...messageProps} />);
 };
 export default message;
