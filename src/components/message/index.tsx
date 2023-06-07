@@ -11,15 +11,18 @@ const messagePropsHandler = (props: (IMessageProps | string), type: string) => {
             title: props
         };
     }
-    if (typeof props === 'object' && props.title) {
+    if (typeof props === 'object') {
         const { title } = props;
         return {
             type,
-            title,
+            title: title?.toString(),
             ...props
         };
     }
-    return {};
+    return {
+        type,
+        title: '',
+    };
 };
 
 message.success = (props: IMessageProps | string) => {
