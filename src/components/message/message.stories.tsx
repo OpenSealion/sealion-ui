@@ -1,3 +1,4 @@
+import React from "react";
 import Message, {IMessageProps} from "./message";
 import message from "./index";
 import {ComponentMeta, ComponentStory} from "@storybook/react";
@@ -58,8 +59,10 @@ export const typesMessage = () => {
 typesMessage.storyName = '不同类型的消息通知';
 
 export const runtimeMessage = () => {
+    const ref = React.useRef(null);
     return (
         <div style={{ display: 'flex', gap: 36 }}>
+            {/*<div ref={ref}>x</div>*/}
             <Button
                 btnType="primary"
                 status={'success'}
