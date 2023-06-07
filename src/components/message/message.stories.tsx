@@ -73,7 +73,7 @@ export const runtimeMessage = () => {
                 btnType="primary"
                 status={'danger'}
                 onClick={() => {
-                    message.error({title: '失败消息通知'});
+                    message.error('失败消息通知');
                 }}
             >
                 失败消息通知
@@ -82,7 +82,7 @@ export const runtimeMessage = () => {
                 btnType="primary"
                 status={'warn'}
                 onClick={() => {
-                    message.warning({title: '警告消息通知'})
+                    message.warning('警告消息通知')
                 }}
             >
                 警告消息通知
@@ -90,7 +90,7 @@ export const runtimeMessage = () => {
             <Button
                 btnType="primary"
                 onClick={() => {
-                    message.info({title: '普通消息通知'})
+                    message.info('普通消息通知')
                 }}
             >
                 普通消息通知
