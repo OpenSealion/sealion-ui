@@ -2,40 +2,64 @@
 @seal-switch-height-normal: 20px;
 @seal-switch-width-small: 32px;
 @seal-switch-height-small: 16px;
-@seal-switch-slider-background-color: #B4B6BC;
+@seal-switch-color-checked: #0D53DE;
+@seal-switch-color-unchecked: #B4B6BC;
 @seal-switch-slider-border-radius: 32px;
-@seal-switch-slider-background-color-before: #fff;
+@seal-switch-color-unchecked-before: #fff;
 @seal-switch-slider-padding-ver: 4px;
 @seal-switch-slider-padding-hoz: 2px;
 @seal-switch-slider-width-normal: @seal-switch-height-normal - @seal-switch-slider-padding-ver;
 @seal-switch-slider-height-normal: @seal-switch-height-normal - @seal-switch-slider-padding-ver;
 @seal-switch-slider-left-normal: @seal-switch-slider-padding-hoz;
 @seal-switch-slider-top-normal: calc(50% - @seal-switch-slider-height-normal/2);
-@seal-switch-slider-checked-left-normal: @seal-switch-width-normal - @seal-switch-slider-width-normal - @seal-switch-slider-padding-hoz;
+@seal-switch-slider-checked-left-normal: calc(100% - @seal-switch-slider-width-normal - @seal-switch-slider-padding-hoz);
 @seal-switch-slider-checked-top-normal: calc(50% - @seal-switch-slider-height-normal/2);
 @seal-switch-slider-width-small: @seal-switch-height-small - @seal-switch-slider-padding-ver;
 @seal-switch-slider-height-small: @seal-switch-height-small - @seal-switch-slider-padding-ver;
 @seal-switch-slider-left-small: @seal-switch-slider-padding-hoz;
 @seal-switch-slider-top-small: calc(50% - @seal-switch-slider-height-small/2);
-@seal-switch-slider-checked-left-small: @seal-switch-width-small - @seal-switch-slider-width-small - @seal-switch-slider-padding-hoz;
+@seal-switch-slider-checked-left-small: calc(100% - @seal-switch-slider-width-small - @seal-switch-slider-padding-hoz);
 @seal-switch-slider-checked-top-small: calc(50% - @seal-switch-slider-height-small/2);
+@seal-switch-checked-inner-line-height-normal: @seal-switch-height-normal - @seal-switch-slider-padding-ver;
+@seal-switch-checked-inner-line-height-small: @seal-switch-height-small;
+@seal-switch-checked-inner-left-normal: calc(@seal-switch-width-normal - @seal-switch-slider-width-normal/2 - @seal-switch-slider-padding-hoz);
+@seal-switch-checked-inner-left-small: calc(@seal-switch-width-small - @seal-switch-slider-width-small/2 - @seal-switch-slider-padding-hoz);
+@seal-switch-inner-left-normal: calc(@seal-switch-slider-width-normal/2 + @seal-switch-slider-padding-hoz);
+@seal-switch-inner-left-small: calc(@seal-switch-slider-width-small/2 + @seal-switch-slider-padding-hoz);
+@seal-switch-text-fontsize: 12px;
+@seal-switch-text-margin: 4px;
+@seal-switch-text-left-normal: calc(@seal-switch-slider-width-normal + @seal-switch-slider-padding-hoz + @seal-switch-text-margin);
+@seal-switch-text-margin-small: 3px;
+@seal-switch-text-left-small: calc(@seal-switch-slider-width-small + @seal-switch-slider-padding-hoz + @seal-switch-text-margin-small);
+@seal-switch-checked-text-left-normal: calc(@seal-switch-slider-padding-hoz + @seal-switch-slider-width-normal + @seal-switch-text-margin);
+@seal-switch-checked-text-left-small: calc(@seal-switch-slider-padding-hoz + @seal-switch-slider-width-small + @seal-switch-text-margin-small);
+@seal-switch-text-margin: 8px;
+@seal-switch-text-holder-hidden-normal: -14px;
+@seal-switch-text-holder-hidden-small: -15px;
 
 .seal-switch,
 .seal-switch-normal {
-    width: @seal-switch-width-normal;
+    display: block;
     height: @seal-switch-height-normal;
 }
 
 .seal-switch-small {
-    width: @seal-switch-width-small;
     height: @seal-switch-height-small;
 }
 
-.seal-switch-label {
-    width: 100%;
-    height: 100%;
-    display: inline-block;
+.seal-switch-label,
+.seal-switch-label-normal {
     position: relative;
+    display: inline-block;
+    min-width: @seal-switch-width-normal;
+    height: @seal-switch-height-normal;
+}
+
+.seal-switch-label-small {
+    position: relative;
+    display: inline-block;
+    min-width: @seal-switch-width-small;
+    height: @seal-switch-height-small;
 }
 
 .seal-switch-checkbox {
@@ -52,7 +76,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: @seal-switch-slider-background-color;
+    background-color: @seal-switch-color-unchecked;
     border-radius: @seal-switch-slider-border-radius;
     cursor: pointer;
 }
@@ -63,38 +87,8 @@
     position: absolute;
     content: "";
     border-radius: 50%;
-    background-color: @seal-switch-slider-background-color-before;
-    transition: all .2s ease-in-out;
-
-    .seal-switch-inner {
-        height: 10px;
-        width: 10px;
-        position: absolute;
-        left: 9px;
-        top: 10px;
-        transform: translate(-50%, -50%);
-        z-index: 999;
-        text-align: center;
-        line-height: 10px;
-        color: #B4B6BC;
-        font-size: 8px;
-        transition: right ease-in-out .3s, opacity ease-in-out .15s;
-    }
-    
-    .seal-switch-checked-inner {
-        height: 10px;
-        width: 10px;
-        position: absolute;
-        left: 9px;
-        top: 10px;
-        transform: translate(-50%, -50%);
-        z-index: 999;
-        text-align: center;
-        line-height: 10px;
-        color: #B4B6BC;
-        font-size: 8px;
-        transition: right ease-in-out .3s, opacity ease-in-out .15s;
-    }
+    background-color: @seal-switch-color-unchecked-before;
+    transition: all .3s ease-in-out;
 }
 
 .seal-switch-slider:before,
@@ -115,7 +109,7 @@
 .seal-switch-checkbox:checked + .seal-switch-slider,
 .seal-switch-checkbox:checked + .seal-switch-slider-normal,
 .seal-switch-checkbox:checked + .seal-switch-slider-small {
-    background-color: #0D53DE;
+    background-color: @seal-switch-color-checked;
 }
 
 .seal-switch-checkbox:checked + .seal-switch-slider:before,
@@ -126,11 +120,13 @@
 
 .seal-switch-checkbox:checked + .seal-switch-slider:before,
 .seal-switch-checkbox:checked + .seal-switch-slider-normal:before {
+    left: auto;
     left: @seal-switch-slider-checked-left-normal;
     top: @seal-switch-slider-checked-top-normal;
 }
 
 .seal-switch-checkbox:checked + .seal-switch-slider-small:before {
+    left: auto;
     left: @seal-switch-slider-checked-left-small;
     top: @seal-switch-slider-checked-top-small;
 }
@@ -138,4 +134,186 @@
 .seal-switch-disabled {
     cursor: not-allowed;
     opacity: .3;
+}
+
+.seal-switch-inner,
+.seal-switch-inner-normal,
+.seal-switch-inner-small {
+    position: absolute;
+    z-index: 999;
+    color: @seal-switch-color-unchecked;
+    transition: right ease-in-out .3s, opacity ease-in-out .15s;
+}
+
+.seal-switch-inner,
+.seal-switch-inner-normal {
+    line-height: @seal-switch-checked-inner-line-height-normal;
+    left: @seal-switch-inner-left-normal;
+    transform: translateX(-50%);
+}
+
+.seal-switch-inner-small {
+    line-height: @seal-switch-checked-inner-line-height-small;
+    left: @seal-switch-inner-left-small;
+    transform: translateX(-50%);
+}
+
+.seal-switch-checkbox:checked + .seal-switch-slider .seal-switch-inner,
+.seal-switch-checkbox:checked + .seal-switch-slider-normal .seal-switch-inner {
+    opacity: 0;
+    line-height: @seal-switch-checked-inner-line-height-normal;
+    left: @seal-switch-inner-left-normal;
+    transform: translateX(-50%);
+}
+
+.seal-switch-checkbox:checked + .seal-switch-slider-small .seal-switch-inner {
+    opacity: 0;
+    line-height: @seal-switch-checked-inner-line-height-small;
+    left: @seal-switch-inner-left-small;
+    transform: translateX(-50%);
+}
+
+.seal-switch-checked-inner,
+.seal-switch-checked-inner-normal,
+.seal-switch-checked-inner-small {
+    opacity: 0;
+    position: absolute;
+    z-index: 999;
+    transition: right ease-in-out .3s, opacity ease-in-out .15s;
+    color: @seal-switch-color-checked;
+}
+
+.seal-switch-checked-inner,
+.seal-switch-checked-inner-normal {
+    line-height: @seal-switch-checked-inner-line-height-normal;
+    left: @seal-switch-checked-inner-left-normal;
+    transform: translateX(-50%);
+}
+
+.seal-switch-checked-inner-small {
+    line-height: @seal-switch-checked-inner-line-height-small;
+    left: @seal-switch-checked-inner-left-small;
+    transform: translateX(-50%);
+}
+
+.seal-switch-checkbox:checked + .seal-switch-slider .seal-switch-checked-inner,
+.seal-switch-checkbox:checked + .seal-switch-slider-normal .seal-switch-checked-inner {
+    opacity: 1;
+    line-height: @seal-switch-checked-inner-line-height-normal;
+    left: @seal-switch-checked-inner-left-normal;
+    transform: translateX(-50%);
+}
+
+.seal-switch-checkbox:checked + .seal-switch-slider-small .seal-switch-checked-inner {
+    opacity: 1;
+    line-height: @seal-switch-checked-inner-line-height-small;
+    left: @seal-switch-checked-inner-left-small;
+    transform: translateX(-50%);
+}
+
+.seal-switch-text,
+.seal-switch-text-normal,
+.seal-switch-text-small {
+    position: absolute;
+    font-size: @seal-switch-text-fontsize;
+    color: @seal-switch-color-unchecked-before;
+    transition: right ease-in-out .3s, opacity ease-in-out .15s;
+    user-select: none;
+}
+
+.seal-switch-text,
+.seal-switch-text-normal {
+    line-height: @seal-switch-height-normal;
+    left: @seal-switch-text-left-normal;
+}
+
+.seal-switch-text-small {
+    line-height: @seal-switch-height-small;
+    left: @seal-switch-text-left-small;
+}
+
+.seal-switch-checkbox:checked + .seal-switch-slider .seal-switch-text,
+.seal-switch-checkbox:checked + .seal-switch-slider-normal .seal-switch-text {
+    opacity: 0;
+    line-height: @seal-switch-height-normal;
+    left: @seal-switch-text-left-normal;
+}
+
+.seal-switch-checkbox:checked + .seal-switch-slider-small .seal-switch-text {
+    opacity: 0;
+    line-height: @seal-switch-height-small;
+    left: @seal-switch-text-left-small;
+}
+
+.seal-switch-checked-text,
+.seal-switch-checked-text-normal,
+.seal-switch-checked-text-small {
+    opacity: 0;
+    position: absolute;
+    font-size: @seal-switch-text-fontsize;
+    color: @seal-switch-color-unchecked-before;
+    transition: right ease-in-out .3s, opacity ease-in-out .15s;
+    user-select: none;
+}
+
+.seal-switch-checked-text,
+.seal-switch-checked-text-normal {
+    line-height: @seal-switch-height-normal;
+    right: @seal-switch-checked-text-left-normal;
+}
+
+.seal-switch-checked-text-small {
+    line-height: @seal-switch-height-small;
+    right: @seal-switch-checked-text-left-small;
+}
+
+.seal-switch-checkbox:checked + .seal-switch-slider .seal-switch-checked-text,
+.seal-switch-checkbox:checked + .seal-switch-slider-normal .seal-switch-checked-text {
+    opacity: 1;
+    line-height: @seal-switch-height-normal;
+    right: @seal-switch-checked-text-left-normal;
+}
+
+.seal-switch-checkbox:checked + .seal-switch-slider-small .seal-switch-checked-text {
+    opacity: 1;
+    line-height: @seal-switch-height-small;
+    right: @seal-switch-checked-text-left-small;
+}
+
+.seal-switch-text-holder,
+.seal-switch-text-holder-normal,
+.seal-switch-text-holder-small {
+    opacity: 0;
+    position: relative;
+    z-index: -1;
+    cursor: pointer;
+    font-size: @seal-switch-text-fontsize;
+}
+
+.seal-switch-text-holder,
+.seal-switch-text-holder-normal {
+    margin: @seal-switch-text-holder-hidden-normal @seal-switch-text-margin 0 @seal-switch-text-left-normal;
+}
+
+.seal-switch-text-holder-small {
+    margin: @seal-switch-text-holder-hidden-small @seal-switch-text-margin 0 @seal-switch-text-left-small;
+}
+
+.seal-switch-checked-text-holder,
+.seal-switch-checked-text-holder-normal,
+.seal-switch-checked-text-holder-small {
+    position: relative;
+    font-size: @seal-switch-text-fontsize;
+    opacity: 0;
+    cursor: pointer;
+    z-index: -1;
+}
+
+.seal-switch-checked-text-holder,
+.seal-switch-checked-text-holder-normal {
+    margin: @seal-switch-text-holder-hidden-normal @seal-switch-text-left-normal 0 @seal-switch-text-margin;
+}
+
+.seal-switch-checked-text-holder-small {
+    margin: @seal-switch-text-holder-hidden-small @seal-switch-text-left-small 0 @seal-switch-text-margin;
 }

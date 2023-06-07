@@ -17,7 +17,11 @@ defaultSwitch.args = {
     size: 'normal',
     disabled: false,
     defaultChecked: false,
-    checked: false
+    checked: false,
+    checkedIcon: '',
+    unCheckedIcon: '',
+    checkedText: '',
+    unCheckedText: ''
 };
 
 // 默认打开的开关
@@ -31,7 +35,7 @@ switchDefaultChecked.storyName = '默认打开的开关';
 export const switchSmallChecked = () => (
     <>
         <Switch size='small' />
-        <Switch size='small' defaultChecked />
+        <Switch size='small' defaultChecked style={{ marginTop: 5 }} />
     </>
 );
 
@@ -41,20 +45,47 @@ switchSmallChecked.storyName = '小尺寸的开关';
 export const switchDisabledChecked = () => (
     <>
         <Switch disabled />
-        <Switch disabled defaultChecked />
+        <Switch disabled defaultChecked style={{ marginTop: 5 }} />
     </>
 );
 
 switchDisabledChecked.storyName = 'disabled的开关';
 
-// 带文字或者图标的开关
-// export const switchChildrenChecked = () => (
-//     <>
-//         <Switch unCheckedUpChildren={<Icon icon='icon-NoticeOpeningOutlined' />} />
-//         <Switch defaultChecked checkedUpChildren={<Icon icon='icon-NoticeOpeningOutlined' />} />
-//         <Switch unCheckedUpChildren={<Icon icon='icon-NoticeOpeningOutlined' />} size='small' />
-//         <Switch defaultChecked checkedUpChildren={<Icon icon='icon-NoticeOpeningOutlined' />} size='small' />
-//     </>
-// );
+// 带图标的开关
+export const switchIconChecked = () => (
+    <>
+        <Switch
+            unCheckedIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ fontSize: 10 }} />}
+            checkedIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ fontSize: 10 }} />}
+            defaultChecked
+        />
+        <Switch
+            unCheckedIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ transform: 'scale(0.5)' }} />}
+            checkedIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ transform: 'scale(0.5)' }} />}
+            size='small'
+            defaultChecked
+            style={{ marginTop: 5 }}
+        />
+    </>
+);
 
-// switchChildrenChecked.storyName = '带文字或者图标的开关';
+switchIconChecked.storyName = '带图标的开关';
+
+// 带文案的开关
+export const switchTextChecked = () => (
+    <>
+        <Switch
+            unCheckedText='关'
+            checkedText='开'
+            defaultChecked
+        />
+        <Switch
+            unCheckedText='off'
+            checkedText='on'
+            size='small'
+            style={{ marginTop: 5 }}
+        />
+    </>
+);
+
+switchTextChecked.storyName = '带文案的开关';

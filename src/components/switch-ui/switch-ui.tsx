@@ -5,17 +5,18 @@ import classNames from 'classnames';
 
 export type SwitchSizes = 'normal' | 'small';
 
-export interface SwitchProps {
+export interface SwitchProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onChange' | 'onClick'> {
     className?: string,
     size?: SwitchSizes,
     disabled?: boolean,
     defaultChecked?: boolean,
     checked?: boolean,
     onChange?: (checked?: boolean, event?: Event) => void,
-    checkedUpChildren?: React.ReactNode,
-    unCheckedUpChildren?: React.ReactNode,
-    checkedDownChildren?: React.ReactNode,
-    unCheckedDownChildren?: React.ReactNode
+    checkedIcon?: React.ReactNode,
+    unCheckedIcon?: React.ReactNode,
+    checkedText?: React.ReactNode,
+    unCheckedText?: React.ReactNode,
+    onClick?: (checked?: boolean, event?: Event) => void
 }
 
 const Switch: React.FC<SwitchProps> = (props) => {
@@ -26,10 +27,11 @@ const Switch: React.FC<SwitchProps> = (props) => {
         defaultChecked,
         checked,
         onChange,
-        checkedUpChildren,
-        unCheckedUpChildren,
-        checkedDownChildren,
-        unCheckedDownChildren,
+        checkedIcon,
+        unCheckedIcon,
+        checkedText,
+        unCheckedText,
+        onClick,
         ...rest
     } = props;
     const [isChecked, setIsChecked] = useState<boolean>(checked || defaultChecked || false);
@@ -38,14 +40,38 @@ const Switch: React.FC<SwitchProps> = (props) => {
         'seal-switch',
         !!size && `seal-switch-${size}`
     );
+    const labelClasses = classNames(
+        'seal-switch-label',
+        !!size && `seal-switch-label-${size}`
+    );
     const sliderClasses = classNames(
         'seal-switch-slider',
         disabled && 'seal-switch-disabled',
         !!size && `seal-switch-slider-${size}`
     );
-    const innerClasses = classNames(
+    const innerIconClasses = classNames(
         'seal-switch-inner',
         !!size && `seal-switch-inner-${size}`
+    );
+    const innerIconCheckedClasses = classNames(
+        'seal-switch-checked-inner',
+        !!size && `seal-switch-checked-inner-${size}`
+    );
+    const innerTextClasses = classNames(
+        'seal-switch-text',
+        !!size && `seal-switch-text-${size}`
+    );
+    const innerTextCheckedClasses = classNames(
+        'seal-switch-checked-text',
+        !!size && `seal-switch-checked-text-${size}`
+    );
+    const holderClasses = classNames(
+        'seal-switch-text-holder',
+        !!size && `seal-switch-text-holder-${size}`
+    );
+    const holderCheckedClasses = classNames(
+        'seal-switch-checked-text-holder',
+        !!size && `seal-switch-checked-text-holder-${size}`
     );
 
     const handleChange = (e) => {
@@ -53,14 +79,21 @@ const Switch: React.FC<SwitchProps> = (props) => {
         if (onChange) {
             onChange(e.target.checked, e);
         }
+        if (onClick) {
+            onClick(e.target.checked, e);
+        }
     };
+
+    const unCheckedTextRender = (classes: string) => !isChecked && unCheckedText && <div className={classes}>{unCheckedText}</div>;
+
+    const checkedTextRender = (classes: string) => isChecked && checkedText && <div className={classes}>{checkedText}</div>;
 
     return (
         <div
             className={switchClasses}
             {...rest}
         >
-            <label className="seal-switch-label">
+            <label className={labelClasses}>
                 <input
                     type="checkbox"
                     className="seal-switch-checkbox"
@@ -70,16 +103,20 @@ const Switch: React.FC<SwitchProps> = (props) => {
                 />
                 <span className={sliderClasses}>
                     {
-                        unCheckedUpChildren && (
-                            <div className={innerClasses}>{unCheckedUpChildren}</div>
+                        unCheckedIcon && (
+                            <div className={innerIconClasses}>{unCheckedIcon}</div>
                         )
                     }
                     {
-                        checkedUpChildren && (
-                            <div className="seal-switch-checked-inner">{checkedUpChildren}</div>
+                        checkedIcon && (
+                            <div className={innerIconCheckedClasses}>{checkedIcon}</div>
                         )
                     }
+                    {unCheckedTextRender(innerTextClasses)}
+                    {checkedTextRender(innerTextCheckedClasses)}
                 </span>
+                {unCheckedTextRender(holderClasses)}
+                {checkedTextRender(holderCheckedClasses)}
             </label>
         </div>
     );
