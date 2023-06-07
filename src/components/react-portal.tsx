@@ -34,22 +34,23 @@ export const ReactPortal = ({ children = '', wrapperId = 'react-portal-wrapper' 
 
 export const MessagePortal = {
     messageList: [],
+    messageWrapper: null,
     destroy() {
-        const messageWrapper = document.getElementById('message-root-wrapper');
-        if (messageWrapper && !messageWrapper.children.length) {
-            document.body.removeChild(messageWrapper);
+        if (this.messageWrapper && !this.messageWrapper.children.length) {
+            document.body.removeChild(this.messageWrapper);
+            this.messageWrapper = null;
+            this.messageList = [];
         }
-        this.messageList = [];
     },
     open(children) {
         this.messageList.push(children);
-        let messageWrapper = document.getElementById('message-root-wrapper');
-        if (!messageWrapper) {
-            messageWrapper = document.createElement('div');
-            messageWrapper.id = 'message-root-wrapper';
-            messageWrapper.className = 'message-root-wrapper';
-            document.body.appendChild(messageWrapper);
+        if (!this.messageWrapper) {
+            const wrapperId = new Date().getTime().toString();
+            this.messageWrapper = document.createElement('div');
+            this.messageWrapper.id = wrapperId;
+            this.messageWrapper.className = 'message-root-wrapper';
+            document.body.appendChild(this.messageWrapper);
         }
-        ReactDOM.render(this.messageList.map((item) => item), messageWrapper);
+        ReactDOM.render(this.messageList.map((item) => item), this.messageWrapper);
     },
 };
