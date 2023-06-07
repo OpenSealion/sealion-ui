@@ -34,8 +34,12 @@ export const ReactPortal = ({ children = '', wrapperId = 'react-portal-wrapper' 
 
 export const MessagePortal = {
     messageList: [],
-    destroy(children) {
-        this.messageList = this.messageList.filter((item) => item !== children);
+    destroy() {
+        const messageWrapper = document.getElementById('message-root-wrapper');
+        if (messageWrapper && !messageWrapper.children.length) {
+            document.body.removeChild(messageWrapper);
+        }
+        this.messageList = [];
     },
     open(children) {
         this.messageList.push(children);

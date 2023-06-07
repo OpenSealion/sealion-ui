@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import IconFont from '../icon';
+import { MessagePortal } from '../react-portal';
 
 export interface IMessageProps {
     children?: React.ReactNode; // 用于自定义内容
@@ -41,6 +42,7 @@ const Message: React.FC<IMessageProps> = (props, context) => {
     setTimeout(() => {
         onClose();
         setVisible(false);
+        MessagePortal.destroy();
     }, duration * 1000);
 
     if (!visible) return null;
