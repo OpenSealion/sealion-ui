@@ -253,6 +253,7 @@
     font-size: @seal-switch-text-fontsize;
     color: @seal-switch-color-unchecked-before;
     transition: right ease-in-out .3s, opacity ease-in-out .15s;
+    user-select: none;
 }
 
 .seal-switch-checked-text,
@@ -283,38 +284,36 @@
 .seal-switch-text-holder-normal,
 .seal-switch-text-holder-small {
     opacity: 0;
+    position: relative;
+    z-index: -1;
     cursor: pointer;
     font-size: @seal-switch-text-fontsize;
-    margin-right: @seal-switch-text-margin;
 }
 
 .seal-switch-text-holder,
 .seal-switch-text-holder-normal {
-    margin-left: @seal-switch-text-left-normal;
-    margin-top: @seal-switch-text-holder-hidden-normal;
+    margin: @seal-switch-text-holder-hidden-normal @seal-switch-text-margin 0 @seal-switch-text-left-normal;
 }
 
 .seal-switch-text-holder-small {
-    margin-left: @seal-switch-text-left-small;
-    margin-top: @seal-switch-text-holder-hidden-small;
+    margin: @seal-switch-text-holder-hidden-small @seal-switch-text-margin 0 @seal-switch-text-left-small;
 }
 
 .seal-switch-checked-text-holder,
 .seal-switch-checked-text-holder-normal,
 .seal-switch-checked-text-holder-small {
+    position: relative;
     font-size: @seal-switch-text-fontsize;
     opacity: 0;
     cursor: pointer;
-    margin-left: @seal-switch-text-margin;
+    z-index: -1;
 }
 
 .seal-switch-checked-text-holder,
 .seal-switch-checked-text-holder-normal {
-    margin-right: @seal-switch-text-left-normal;
-    margin-top: @seal-switch-text-holder-hidden-normal;
+    margin: @seal-switch-text-holder-hidden-normal @seal-switch-text-left-normal 0 @seal-switch-text-margin;
 }
 
 .seal-switch-checked-text-holder-small {
-    margin-right: @seal-switch-text-left-small;
-    margin-top: @seal-switch-text-holder-hidden-small;
+    margin: @seal-switch-text-holder-hidden-small @seal-switch-text-left-small 0 @seal-switch-text-margin;
 }

@@ -13,7 +13,7 @@ export interface SwitchProps extends Omit<React.HTMLAttributes<HTMLElement>, 'on
     checked?: boolean,
     onChange?: (checked?: boolean, event?: Event) => void,
     checkedIcon?: React.ReactNode,
-    unCheckedUpIcon?: React.ReactNode,
+    unCheckedIcon?: React.ReactNode,
     checkedText?: React.ReactNode,
     unCheckedText?: React.ReactNode,
     onClick?: (checked?: boolean, event?: Event) => void
@@ -28,7 +28,7 @@ const Switch: React.FC<SwitchProps> = (props) => {
         checked,
         onChange,
         checkedIcon,
-        unCheckedUpIcon,
+        unCheckedIcon,
         checkedText,
         unCheckedText,
         onClick,
@@ -84,6 +84,10 @@ const Switch: React.FC<SwitchProps> = (props) => {
         }
     };
 
+    const unCheckedTextRender = (classes: string) => !isChecked && unCheckedText && <div className={classes}>{unCheckedText}</div>;
+
+    const checkedTextRender = (classes: string) => isChecked && checkedText && <div className={classes}>{checkedText}</div>;
+
     return (
         <div
             className={switchClasses}
@@ -99,8 +103,8 @@ const Switch: React.FC<SwitchProps> = (props) => {
                 />
                 <span className={sliderClasses}>
                     {
-                        unCheckedUpIcon && (
-                            <div className={innerIconClasses}>{unCheckedUpIcon}</div>
+                        unCheckedIcon && (
+                            <div className={innerIconClasses}>{unCheckedIcon}</div>
                         )
                     }
                     {
@@ -108,27 +112,11 @@ const Switch: React.FC<SwitchProps> = (props) => {
                             <div className={innerIconCheckedClasses}>{checkedIcon}</div>
                         )
                     }
-                    {
-                        !isChecked && unCheckedText && (
-                            <div className={innerTextClasses}>{unCheckedText}</div>
-                        )
-                    }
-                    {
-                        isChecked && checkedText && (
-                            <div className={innerTextCheckedClasses}>{checkedText}</div>
-                        )
-                    }
+                    {unCheckedTextRender(innerTextClasses)}
+                    {checkedTextRender(innerTextCheckedClasses)}
                 </span>
-                {
-                    !isChecked && unCheckedText && (
-                        <div className={holderClasses}>{unCheckedText}</div>
-                    )
-                }
-                {
-                    isChecked && checkedText && (
-                        <div className={holderCheckedClasses}>{checkedText}</div>
-                    )
-                }
+                {unCheckedTextRender(holderClasses)}
+                {checkedTextRender(holderCheckedClasses)}
             </label>
         </div>
     );

@@ -19,7 +19,7 @@ defaultSwitch.args = {
     defaultChecked: false,
     checked: false,
     checkedIcon: '',
-    unCheckedUpIcon: '',
+    unCheckedIcon: '',
     checkedText: '',
     unCheckedText: ''
 };
@@ -55,12 +55,12 @@ switchDisabledChecked.storyName = 'disabled的开关';
 export const switchIconChecked = () => (
     <>
         <Switch
-            unCheckedUpIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ fontSize: 10 }} />}
+            unCheckedIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ fontSize: 10 }} />}
             checkedIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ fontSize: 10 }} />}
             defaultChecked
         />
         <Switch
-            unCheckedUpIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ transform: 'scale(0.5)' }} />}
+            unCheckedIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ transform: 'scale(0.5)' }} />}
             checkedIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ transform: 'scale(0.5)' }} />}
             size='small'
             defaultChecked
@@ -80,8 +80,8 @@ export const switchTextChecked = () => (
             defaultChecked
         />
         <Switch
-            unCheckedText='关'
-            checkedText='开'
+            unCheckedText='off'
+            checkedText='on'
             size='small'
             style={{ marginTop: 5 }}
         />
