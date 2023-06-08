@@ -1,0 +1,90 @@
+@seal-spin-dot-background: conic-gradient(from 180.61deg at 50.53% 50.53%, #0D53DE 0deg, #2B69E2 118.12deg, rgba(13, 83, 222, 0) 360deg);
+@seal-spin-width: 2px;
+@seal-spin-dot-width-normal: 16px;
+@seal-spin-dot-height-normal: 16px;
+@seal-spin-dot-width-small: 10.67px;
+@seal-spin-dot-height-small: 10.67px;
+@seal-spin-dot-width-large: 21.33px;
+@seal-spin-dot-height-large: 21.33px;
+@seal-spin-dot-item-background: #fff;
+@seal-spin-dot-item-width-normal: @seal-spin-dot-width-normal - @seal-spin-width;
+@seal-spin-dot-item-height-normal: @seal-spin-dot-height-normal - @seal-spin-width;
+@seal-spin-dot-item-width-small: @seal-spin-dot-width-small - @seal-spin-width;
+@seal-spin-dot-item-height-small: @seal-spin-dot-height-small - @seal-spin-width;
+@seal-spin-dot-item-width-large: @seal-spin-dot-width-large - @seal-spin-width;
+@seal-spin-dot-item-height-large: @seal-spin-dot-height-large - @seal-spin-width;
+
+.seal-spin {
+    display: inline-block;
+    animation: rotate-grad-border 1.2s linear infinite;
+}
+
+@keyframes rotate-grad-border {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}
+
+.seal-spin-dot,
+.seal-spin-dot-normal,
+.seal-spin-dot-small,
+.seal-spin-dot-large {
+    position: relative;
+    border-radius: 50%;
+    background: @seal-spin-dot-background;
+    transform: rotate(-90deg);
+}
+
+.seal-spin-dot,
+.seal-spin-dot-normal {
+    width: @seal-spin-dot-width-normal;
+    height: @seal-spin-dot-height-normal;
+}
+
+.seal-spin-dot-small {
+    width: @seal-spin-dot-width-small;
+    height: @seal-spin-dot-height-small;
+}
+
+.seal-spin-dot-large {
+    width: @seal-spin-dot-width-large;
+    height: @seal-spin-dot-height-large;
+}
+
+.seal-spin-dot-item,
+.seal-spin-dot-item-normal,
+.seal-spin-dot-item-small,
+.seal-spin-dot-item-large {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background-color: @seal-spin-dot-item-background;
+}
+
+.seal-spin-dot-item,
+.seal-spin-dot-item-normal {
+    width: @seal-spin-dot-item-width-normal;
+    height: @seal-spin-dot-item-height-normal;
+}
+
+.seal-spin-dot-item-small {
+    width: @seal-spin-dot-item-width-small;
+    height: @seal-spin-dot-item-height-small;
+}
+
+.seal-spin-dot-item-large {
+    width: @seal-spin-dot-item-width-large;
+    height: @seal-spin-dot-item-height-large;
+}
+
+.seal-spin-spinning-disabled {
+    display: none;
+}
