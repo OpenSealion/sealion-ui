@@ -1,0 +1,156 @@
+@seal-spin-dot-background: conic-gradient(from 180.61deg at 50.53% 50.53%, #0D53DE 0deg, #2B69E2 118.12deg, rgba(13, 83, 222, 0) 360deg);
+@seal-spin-width: 2px;
+@seal-spin-dot-width-normal: 16px;
+@seal-spin-dot-height-normal: 16px;
+@seal-spin-dot-width-small: 10.67px;
+@seal-spin-dot-height-small: 10.67px;
+@seal-spin-dot-width-large: 21.33px;
+@seal-spin-dot-height-large: 21.33px;
+@seal-spin-dot-item-background: #fff;
+@seal-spin-dot-item-width-normal: @seal-spin-dot-width-normal - @seal-spin-width;
+@seal-spin-dot-item-height-normal: @seal-spin-dot-height-normal - @seal-spin-width;
+@seal-spin-dot-item-width-small: @seal-spin-dot-width-small - @seal-spin-width;
+@seal-spin-dot-item-height-small: @seal-spin-dot-height-small - @seal-spin-width;
+@seal-spin-dot-item-width-large: @seal-spin-dot-width-large - @seal-spin-width;
+@seal-spin-dot-item-height-large: @seal-spin-dot-height-large - @seal-spin-width;
+@seal-spin-tip-color: #0D53DE;
+@seal-spin-tip-fontsize-normal: 14px;
+@seal-spin-tip-line-height-normal: 21px;
+@seal-spin-tip-margin-left-normal: 8px;
+@seal-spin-tip-fontsize-small: 12px;
+@seal-spin-tip-line-height-small: 18px;
+@seal-spin-tip-margin-left-small: 6.67px;
+@seal-spin-tip-fontsize-large: 16px;
+@seal-spin-tip-line-height-large: 24px;
+@seal-spin-tip-margin-left-large: 9.33px;
+
+.seal-spin {
+    display: inline-flex;
+    align-items: center;
+
+    .seal-spin-spinning {
+        animation: rotate-grad-border 1.2s linear infinite;
+    }
+    
+    @keyframes rotate-grad-border {
+        0% {
+          transform: rotate(0deg);
+        }
+        50% {
+          transform: rotate(180deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+    }
+    
+    .seal-spin-dot,
+    .seal-spin-dot-normal,
+    .seal-spin-dot-small,
+    .seal-spin-dot-large {
+        position: relative;
+        border-radius: 50%;
+        background: @seal-spin-dot-background;
+        transform: rotate(-90deg);
+    }
+    
+    .seal-spin-dot,
+    .seal-spin-dot-normal {
+        width: @seal-spin-dot-width-normal;
+        height: @seal-spin-dot-height-normal;
+    }
+    
+    .seal-spin-dot-small {
+        width: @seal-spin-dot-width-small;
+        height: @seal-spin-dot-height-small;
+    }
+    
+    .seal-spin-dot-large {
+        width: @seal-spin-dot-width-large;
+        height: @seal-spin-dot-height-large;
+    }
+    
+    .seal-spin-dot-item,
+    .seal-spin-dot-item-normal,
+    .seal-spin-dot-item-small,
+    .seal-spin-dot-item-large {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background-color: @seal-spin-dot-item-background;
+    }
+    
+    .seal-spin-dot-item,
+    .seal-spin-dot-item-normal {
+        width: @seal-spin-dot-item-width-normal;
+        height: @seal-spin-dot-item-height-normal;
+    }
+    
+    .seal-spin-dot-item-small {
+        width: @seal-spin-dot-item-width-small;
+        height: @seal-spin-dot-item-height-small;
+    }
+    
+    .seal-spin-dot-item-large {
+        width: @seal-spin-dot-item-width-large;
+        height: @seal-spin-dot-item-height-large;
+    }
+
+    .seal-spin-tip,
+    .seal-spin-tip-normal,
+    .seal-spin-tip-small,
+    .seal-spin-tip-large {
+        color: @seal-spin-tip-color;
+    }
+    
+    .seal-spin-tip,
+    .seal-spin-tip-normal {
+        font-size: @seal-spin-tip-fontsize-normal;
+        line-height: @seal-spin-tip-line-height-normal;
+    }
+
+    .seal-spin-tip-small {
+        font-size: @seal-spin-tip-fontsize-small;
+        line-height: @seal-spin-tip-line-height-small;
+    }
+
+    .seal-spin-tip-large {
+        font-size: @seal-spin-tip-fontsize-large;
+        line-height: @seal-spin-tip-line-height-large;
+    }
+}
+
+.seal-spin-normal {
+    column-gap: @seal-spin-tip-margin-left-normal;
+}
+
+.seal-spin-small {
+    column-gap: @seal-spin-tip-margin-left-small;
+}
+
+.seal-spin-large {
+    column-gap: @seal-spin-tip-margin-left-large;
+}
+
+.seal-spin-spinning-disabled {
+    display: none;
+}
+
+.seal-spin-nested-loading {
+    position: relative;
+
+    .seal-spin-blur {
+        opacity: 0.5;
+        user-select: none;
+        pointer-events: none;
+    }
+    
+    .seal-spin-show-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
