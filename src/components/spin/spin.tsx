@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useMemo, useState, useEffect, CSSProperties } from 'react';
 import classNames from 'classnames';
+import { debounce } from 'throttle-debounce';
 
 export type SpinSizes = 'small' | 'normal' | 'large';
 
@@ -7,26 +8,31 @@ export interface SpinProps {
     children?: React.ReactNode,
     size?: SpinSizes,
     className?: string,
+    style?: CSSProperties,
     spinning?: boolean,
     indicator?: React.ReactNode,
-    tip?: string
+    tip?: string,
+    delay?: number
 }
 
 const Spin: React.FC<SpinProps> = (props) => {
     const {
         children,
+        style,
         className,
         size = 'normal',
         spinning = true,
         indicator,
         tip,
+        delay = 0,
         ...rest
     } = props;
+    const [loading, setLoading] = useState<boolean>(spinning);
     const spinClasses = classNames(
         className,
         'seal-spin',
         !!size && `seal-spin-${size}`,
-        !spinning && 'seal-spin-spinning-disabled'
+        !loading && 'seal-spin-spinning-disabled'
     );
     const defaultSpinDotClasses = classNames(
         'seal-spin-dot',
@@ -56,18 +62,41 @@ const Spin: React.FC<SpinProps> = (props) => {
             </div>
         );
     };
-
-    return (
+    const isNestedPattern = useMemo<boolean>(() => typeof children !== 'undefined', [children]);
+    const containerClasses = classNames(
+        loading && 'seal-spin-blur'
+    );
+    useEffect(() => {
+        const showSpinning = debounce(delay, () => {
+            setLoading(spinning);
+        });
+        showSpinning();
+        return () => {
+            showSpinning?.cancel?.();
+        };
+    }, [delay, spinning]);
+    const spinElement = (
         <div
             className={spinClasses}
+            style={style}
             {...rest}
         >
             {renderIndicator()}
             {
                 tip && <div className={spinTip}>{tip}</div>
             }
-            {children}
         </div>
     );
+
+    if (isNestedPattern) {
+        return (
+            <div {...rest} className="seal-spin-nested-loading">
+                <div className="seal-spin-show-text">{spinElement}</div>
+                <div className={containerClasses}>{children}</div>
+            </div>
+        );
+    }
+
+    return spinElement;
 };
 export default Spin;

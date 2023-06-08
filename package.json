@@ -112,7 +112,8 @@
   },
   "dependencies": {
     "classnames": "^2.3.2",
-    "react-transition-group": "^4.4.5"
+    "react-transition-group": "^4.4.5",
+    "throttle-debounce": "^5.0.0"
   },
   "release-it": {}
 }

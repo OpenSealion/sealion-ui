@@ -97,10 +97,6 @@
         width: @seal-spin-dot-item-width-large;
         height: @seal-spin-dot-item-height-large;
     }
-    
-    .seal-spin-spinning-disabled {
-        display: none;
-    }
 
     .seal-spin-tip,
     .seal-spin-tip-normal,
@@ -136,4 +132,25 @@
 
 .seal-spin-large {
     column-gap: @seal-spin-tip-margin-left-large;
+}
+
+.seal-spin-spinning-disabled {
+    display: none;
+}
+
+.seal-spin-nested-loading {
+    position: relative;
+
+    .seal-spin-blur {
+        opacity: 0.5;
+        user-select: none;
+        pointer-events: none;
+    }
+    
+    .seal-spin-show-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
