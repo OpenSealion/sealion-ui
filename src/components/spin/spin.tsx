@@ -1,4 +1,6 @@
-import React, { useMemo, useState, useEffect, CSSProperties } from 'react';
+import React, {
+    useMemo, useState, useEffect, CSSProperties
+} from 'react';
 import classNames from 'classnames';
 import { debounce } from 'throttle-debounce';
 

@@ -19,7 +19,8 @@ defaultSpin.args = {
     spinning: true,
     indicator: '',
     tip: '',
-    delay: 0
+    delay: 0,
+    className: ''
 };
 
 // 不同尺寸
