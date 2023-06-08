@@ -1,3 +1,4 @@
+import React from "react";
 import Message, {IMessageProps} from "./message";
 import message from "./index";
 import {ComponentMeta, ComponentStory} from "@storybook/react";
@@ -58,8 +59,10 @@ export const typesMessage = () => {
 typesMessage.storyName = '不同类型的消息通知';
 
 export const runtimeMessage = () => {
+    const ref = React.useRef(null);
     return (
         <div style={{ display: 'flex', gap: 36 }}>
+            {/*<div ref={ref}>x</div>*/}
             <Button
                 btnType="primary"
                 status={'success'}
@@ -73,7 +76,7 @@ export const runtimeMessage = () => {
                 btnType="primary"
                 status={'danger'}
                 onClick={() => {
-                    message.error({title: '失败消息通知'});
+                    message.error('失败消息通知');
                 }}
             >
                 失败消息通知
@@ -82,7 +85,7 @@ export const runtimeMessage = () => {
                 btnType="primary"
                 status={'warn'}
                 onClick={() => {
-                    message.warning({title: '警告消息通知'})
+                    message.warning('警告消息通知')
                 }}
             >
                 警告消息通知
@@ -90,7 +93,7 @@ export const runtimeMessage = () => {
             <Button
                 btnType="primary"
                 onClick={() => {
-                    message.info({title: '普通消息通知'})
+                    message.info('普通消息通知')
                 }}
             >
                 普通消息通知

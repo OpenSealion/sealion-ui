@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import IconFont from '../icon';
+import { MessagePortal } from '../react-portal';
 
 export interface IMessageProps {
     children?: React.ReactNode; // 用于自定义内容
@@ -12,6 +13,8 @@ export interface IMessageProps {
     style?: React.CSSProperties; // 自定义样式
     closable?: boolean; // 是否显示关闭按钮
     onClose?: () => void; // 关闭回调
+    maxCount?: number; // 最大显示数量
+    getContainer?: () => HTMLElement; // 挂载的节点
 }
 
 const iconMap = {
@@ -32,6 +35,7 @@ const Message: React.FC<IMessageProps> = (props, context) => {
         className,
         style,
         closable = false,
+        maxCount = 10,
         onClose = () => null
     } = props;
     const [visible, setVisible] = React.useState(true);
@@ -41,9 +45,10 @@ const Message: React.FC<IMessageProps> = (props, context) => {
     setTimeout(() => {
         onClose();
         setVisible(false);
+        MessagePortal.destroy();
     }, duration * 1000);
 
-    if (!visible) return null;
+    if (!visible || MessagePortal.messageList.length >= maxCount) return null;
 
     return (
         <div>

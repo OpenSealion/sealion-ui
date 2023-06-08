@@ -34,18 +34,21 @@ export const ReactPortal = ({ children = '', wrapperId = 'react-portal-wrapper' 
 
 export const MessagePortal = {
     messageList: [],
-    destroy(children) {
-        this.messageList = this.messageList.filter((item) => item !== children);
-    },
-    open(children) {
-        this.messageList.push(children);
-        let messageWrapper = document.getElementById('message-root-wrapper');
-        if (!messageWrapper) {
-            messageWrapper = document.createElement('div');
-            messageWrapper.id = 'message-root-wrapper';
-            messageWrapper.className = 'message-root-wrapper';
-            document.body.appendChild(messageWrapper);
+    messageWrapper: null,
+    destroy() {
+        if (this.messageWrapper && !this.messageWrapper.children.length) {
+            this.messageWrapper.parentNode.removeChild(this.messageWrapper);
+            this.messageWrapper = null;
+            this.messageList = [];
         }
-        ReactDOM.render(this.messageList.map((item) => item), messageWrapper);
+    },
+    open(children, getContainer = () => document.body) {
+        this.messageList.push(children);
+        if (!this.messageWrapper) {
+            this.messageWrapper = document.createElement('div');
+            this.messageWrapper.classList.add('seal-message-root-wrapper');
+            getContainer().appendChild(this.messageWrapper);
+        }
+        ReactDOM.render(this.messageList.map((item) => item), this.messageWrapper);
     },
 };
