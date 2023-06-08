@@ -16,7 +16,8 @@ defaultSpin.storyName = '主要参数使用';
 defaultSpin.args = {
     size: 'normal',
     spinning: true,
-    indicator: ''
+    indicator: '',
+    tip: ''
 };
 
 // 不同尺寸的Spin
@@ -29,6 +30,32 @@ export const spinSize = () => (
 );
 
 spinSize.storyName = '不同尺寸的Spin';
+
+// 自定义文案的Spin
+export const spinTip = () => (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
+        <Spin tip='加载中...' indicator={null} size='large' />
+        <Spin tip='加载中...' indicator={null} />
+        <Spin tip='加载中...' indicator={null} size='small' />
+    </div>
+);
+
+spinTip.storyName = '自定义文案的Spin';
+
+
+// 图标+文案的Spin
+export const spinBoth = () => (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
+        <Spin tip='加载中...' size='large' />
+        <Spin tip='加载中...' />
+        <Spin tip='加载中...' size='small' />
+        {/* <Spin tip='加载中...'>
+            <div style={{ padding: 50, background: 'rgba(0, 0, 0, 0.05)', borderRadius: 4 }} />
+        </Spin> */}
+    </div>
+);
+
+spinBoth.storyName = '图标+文案的Spin';
 
 // 自定义图标，会自动旋转的Spin
 export const spinIcon = () => (
