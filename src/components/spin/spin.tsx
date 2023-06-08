@@ -2,7 +2,7 @@ import React, {
     useMemo, useState, useEffect, CSSProperties
 } from 'react';
 import classNames from 'classnames';
-import { debounce } from 'throttle-debounce';
+import { debounce } from '../../utils/index';
 
 export type SpinSizes = 'small' | 'normal' | 'large';
 
