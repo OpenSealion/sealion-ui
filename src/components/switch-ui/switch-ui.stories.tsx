@@ -95,31 +95,13 @@ switchTextChecked.storyName = '带文案的开关';
 export const switchLoading = () => (
     <>
         <Switch
-            unCheckedIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ fontSize: 10 }} />}
-            checkedIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ fontSize: 10 }} />}
             defaultChecked
             loading
         />
         <Switch
-            unCheckedIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ fontSize: 10 }} />}
-            checkedIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ fontSize: 10 }} />}
-            loading
-            style={{ marginTop: 5 }}
-        />
-        <Switch
-            unCheckedIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ transform: 'scale(0.5)' }} />}
-            checkedIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ transform: 'scale(0.5)' }} />}
             size='small'
-            style={{ marginTop: 5 }}
             loading
-        />
-        <Switch
-            unCheckedIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ transform: 'scale(0.5)' }} />}
-            checkedIcon={<Icon icon='icon-NoticeOpeningOutlined' style={{ transform: 'scale(0.5)' }} />}
-            size='small'
             style={{ marginTop: 5 }}
-            loading
-            defaultChecked
         />
     </>
 );
