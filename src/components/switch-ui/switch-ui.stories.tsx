@@ -21,7 +21,8 @@ defaultSwitch.args = {
     checkedIcon: '',
     unCheckedIcon: '',
     checkedText: '',
-    unCheckedText: ''
+    unCheckedText: '',
+    loading: false
 };
 
 // 默认打开的开关
@@ -89,3 +90,20 @@ export const switchTextChecked = () => (
 );
 
 switchTextChecked.storyName = '带文案的开关';
+
+// loading的开关
+export const switchLoading = () => (
+    <>
+        <Switch
+            defaultChecked
+            loading
+        />
+        <Switch
+            size='small'
+            style={{ marginTop: 5 }}
+            loading
+        />
+    </>
+);
+
+switchLoading.storyName = 'loading的开关';
