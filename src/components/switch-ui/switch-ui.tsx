@@ -77,6 +77,14 @@ const Switch: React.FC<SwitchProps> = (props) => {
         'seal-switch-checked-text-holder',
         !!size && `seal-switch-checked-text-holder-${size}`
     );
+    const innerLoading = classNames(
+        'seal-switch-loading',
+        !!size && `seal-switch-loading-${size}`
+    );
+    const innerCheckedLoading = classNames(
+        'seal-switch-checked-loading',
+        !!size && `seal-switch-checked-loading-${size}`
+    );
 
     const handleChange = (e) => {
         setIsChecked(!isChecked);
@@ -111,7 +119,7 @@ const Switch: React.FC<SwitchProps> = (props) => {
                 />
                 <span className={sliderClasses}>
                     {
-                        !isChecked && isLoading && <div className={innerIconClasses}><Spin size="small" /></div>
+                        !isChecked && isLoading && <div className={innerLoading}><Spin size="small" /></div>
                     }
                     {
                         !isLoading && unCheckedIcon && (
@@ -119,7 +127,7 @@ const Switch: React.FC<SwitchProps> = (props) => {
                         )
                     }
                     {
-                        isChecked && isLoading && <div className={innerIconCheckedClasses}><Spin size="small" /></div>
+                        isChecked && isLoading && <div className={innerCheckedLoading}><Spin size="small" /></div>
                     }
                     {
                         !isLoading && checkedIcon && (
