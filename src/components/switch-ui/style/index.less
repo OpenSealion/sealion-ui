@@ -20,7 +20,7 @@
 @seal-switch-slider-top-small: calc(50% - @seal-switch-slider-height-small/2);
 @seal-switch-slider-checked-left-small: calc(100% - @seal-switch-slider-width-small - @seal-switch-slider-padding-hoz);
 @seal-switch-slider-checked-top-small: calc(50% - @seal-switch-slider-height-small/2);
-@seal-switch-checked-inner-line-height-normal: @seal-switch-height-normal - @seal-switch-slider-padding-ver;
+@seal-switch-checked-inner-line-height-normal: calc(@seal-switch-height-normal - @seal-switch-slider-padding-ver/2);
 @seal-switch-checked-inner-line-height-small: @seal-switch-height-small;
 @seal-switch-checked-inner-left-normal: calc(@seal-switch-width-normal - @seal-switch-slider-width-normal/2 - @seal-switch-slider-padding-hoz);
 @seal-switch-checked-inner-left-small: calc(@seal-switch-width-small - @seal-switch-slider-width-small/2 - @seal-switch-slider-padding-hoz);
@@ -143,19 +143,19 @@
     z-index: 999;
     color: @seal-switch-color-unchecked;
     transition: right ease-in-out .3s, opacity ease-in-out .15s;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .seal-switch-inner,
 .seal-switch-inner-normal {
     line-height: @seal-switch-checked-inner-line-height-normal;
     left: @seal-switch-inner-left-normal;
-    transform: translateX(-50%);
 }
 
 .seal-switch-inner-small {
     line-height: @seal-switch-checked-inner-line-height-small;
     left: @seal-switch-inner-left-small;
-    transform: translateX(-50%);
 }
 
 .seal-switch-checkbox:checked + .seal-switch-slider .seal-switch-inner,
@@ -163,14 +163,12 @@
     opacity: 0;
     line-height: @seal-switch-checked-inner-line-height-normal;
     left: @seal-switch-inner-left-normal;
-    transform: translateX(-50%);
 }
 
 .seal-switch-checkbox:checked + .seal-switch-slider-small .seal-switch-inner {
     opacity: 0;
     line-height: @seal-switch-checked-inner-line-height-small;
     left: @seal-switch-inner-left-small;
-    transform: translateX(-50%);
 }
 
 .seal-switch-checked-inner,
@@ -181,19 +179,19 @@
     z-index: 999;
     transition: right ease-in-out .3s, opacity ease-in-out .15s;
     color: @seal-switch-color-checked;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .seal-switch-checked-inner,
 .seal-switch-checked-inner-normal {
     line-height: @seal-switch-checked-inner-line-height-normal;
     left: @seal-switch-checked-inner-left-normal;
-    transform: translateX(-50%);
 }
 
 .seal-switch-checked-inner-small {
     line-height: @seal-switch-checked-inner-line-height-small;
     left: @seal-switch-checked-inner-left-small;
-    transform: translateX(-50%);
 }
 
 .seal-switch-checkbox:checked + .seal-switch-slider .seal-switch-checked-inner,
@@ -201,14 +199,12 @@
     opacity: 1;
     line-height: @seal-switch-checked-inner-line-height-normal;
     left: @seal-switch-checked-inner-left-normal;
-    transform: translateX(-50%);
 }
 
 .seal-switch-checkbox:checked + .seal-switch-slider-small .seal-switch-checked-inner {
     opacity: 1;
     line-height: @seal-switch-checked-inner-line-height-small;
     left: @seal-switch-checked-inner-left-small;
-    transform: translateX(-50%);
 }
 
 .seal-switch-text,
@@ -316,4 +312,83 @@
 
 .seal-switch-checked-text-holder-small {
     margin: @seal-switch-text-holder-hidden-small @seal-switch-text-left-small 0 @seal-switch-text-margin;
+}
+
+.seal-switch-loading,
+.seal-switch-loading-normal,
+.seal-switch-loading-small {
+    position: absolute;
+    z-index: 999;
+    color: @seal-switch-color-unchecked;
+    transition: right ease-in-out .3s, opacity ease-in-out .15s;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    &:first-child {
+        display: flex;
+    }
+}
+
+.seal-switch-loading,
+.seal-switch-loading-normal {
+    line-height: @seal-switch-checked-inner-line-height-normal;
+    left: @seal-switch-inner-left-normal;
+}
+
+.seal-switch-loading-small {
+    line-height: @seal-switch-checked-inner-line-height-small;
+    left: @seal-switch-inner-left-small;
+}
+
+.seal-switch-checkbox:checked + .seal-switch-slider .seal-switch-loading,
+.seal-switch-checkbox:checked + .seal-switch-slider-normal .seal-switch-loading {
+    opacity: 0;
+    line-height: @seal-switch-checked-inner-line-height-normal;
+    left: @seal-switch-inner-left-normal;
+}
+
+.seal-switch-checkbox:checked + .seal-switch-slider-small .seal-switch-loading {
+    opacity: 0;
+    line-height: @seal-switch-checked-inner-line-height-small;
+    left: @seal-switch-inner-left-small;
+}
+
+.seal-switch-checked-loading,
+.seal-switch-checked-loading-normal,
+.seal-switch-checked-loading-small {
+    opacity: 0;
+    position: absolute;
+    z-index: 999;
+    transition: right ease-in-out .3s, opacity ease-in-out .15s;
+    color: @seal-switch-color-checked;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    &:first-child {
+        display: flex;
+    }
+}
+
+.seal-switch-checked-loading,
+.seal-switch-checked-loading-normal {
+    line-height: @seal-switch-checked-inner-line-height-normal;
+    left: @seal-switch-checked-inner-left-normal;
+}
+
+.seal-switch-checked-loading-small {
+    line-height: @seal-switch-checked-inner-line-height-small;
+    left: @seal-switch-checked-inner-left-small;
+}
+
+.seal-switch-checkbox:checked + .seal-switch-slider .seal-switch-checked-loading,
+.seal-switch-checkbox:checked + .seal-switch-slider-normal .seal-switch-checked-loading {
+    opacity: 1;
+    line-height: @seal-switch-checked-inner-line-height-normal;
+    left: @seal-switch-checked-inner-left-normal;
+}
+
+.seal-switch-checkbox:checked + .seal-switch-slider-small .seal-switch-checked-loading {
+    opacity: 1;
+    line-height: @seal-switch-checked-inner-line-height-small;
+    left: @seal-switch-checked-inner-left-small;
 }

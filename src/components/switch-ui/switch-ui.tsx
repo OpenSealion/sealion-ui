@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 // https://github.com/storybookjs/storybook/issues/19288
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
+import Spin from '../spin';
 
 export type SwitchSizes = 'normal' | 'small';
 
@@ -16,7 +17,8 @@ export interface SwitchProps extends Omit<React.HTMLAttributes<HTMLElement>, 'on
     unCheckedIcon?: React.ReactNode,
     checkedText?: React.ReactNode,
     unCheckedText?: React.ReactNode,
-    onClick?: (checked?: boolean, event?: Event) => void
+    onClick?: (checked?: boolean, event?: Event) => void,
+    loading?: boolean
 }
 
 const Switch: React.FC<SwitchProps> = (props) => {
@@ -32,9 +34,11 @@ const Switch: React.FC<SwitchProps> = (props) => {
         checkedText,
         unCheckedText,
         onClick,
+        loading = false,
         ...rest
     } = props;
     const [isChecked, setIsChecked] = useState<boolean>(checked || defaultChecked || false);
+    const [isLoading, setIsLoading] = useState<boolean>(loading);
     const switchClasses = classNames(
         className,
         'seal-switch',
@@ -46,7 +50,7 @@ const Switch: React.FC<SwitchProps> = (props) => {
     );
     const sliderClasses = classNames(
         'seal-switch-slider',
-        disabled && 'seal-switch-disabled',
+        (disabled || isLoading) && 'seal-switch-disabled',
         !!size && `seal-switch-slider-${size}`
     );
     const innerIconClasses = classNames(
@@ -73,6 +77,14 @@ const Switch: React.FC<SwitchProps> = (props) => {
         'seal-switch-checked-text-holder',
         !!size && `seal-switch-checked-text-holder-${size}`
     );
+    const innerLoading = classNames(
+        'seal-switch-loading',
+        !!size && `seal-switch-loading-${size}`
+    );
+    const innerCheckedLoading = classNames(
+        'seal-switch-checked-loading',
+        !!size && `seal-switch-checked-loading-${size}`
+    );
 
     const handleChange = (e) => {
         setIsChecked(!isChecked);
@@ -88,6 +100,10 @@ const Switch: React.FC<SwitchProps> = (props) => {
 
     const checkedTextRender = (classes: string) => isChecked && checkedText && <div className={classes}>{checkedText}</div>;
 
+    useEffect(() => {
+        setIsLoading(loading);
+    }, [loading]);
+
     return (
         <div
             className={switchClasses}
@@ -97,18 +113,24 @@ const Switch: React.FC<SwitchProps> = (props) => {
                 <input
                     type="checkbox"
                     className="seal-switch-checkbox"
-                    disabled={disabled}
+                    disabled={disabled || loading}
                     checked={isChecked}
                     onChange={handleChange}
                 />
                 <span className={sliderClasses}>
                     {
-                        unCheckedIcon && (
+                        !isChecked && isLoading && <div className={innerLoading}><Spin size="small" /></div>
+                    }
+                    {
+                        !isLoading && unCheckedIcon && (
                             <div className={innerIconClasses}>{unCheckedIcon}</div>
                         )
                     }
                     {
-                        checkedIcon && (
+                        isChecked && isLoading && <div className={innerCheckedLoading}><Spin size="small" /></div>
+                    }
+                    {
+                        !isLoading && checkedIcon && (
                             <div className={innerIconCheckedClasses}>{checkedIcon}</div>
                         )
                     }
