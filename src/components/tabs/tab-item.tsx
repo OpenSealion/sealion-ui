@@ -11,24 +11,28 @@ export interface TabItemInfoProps {
 export interface TabItemProps {
     label: string;
     itemKey: ItemKeyType;
-    type?: 'text' | 'card' | 'line'
+    editable?: boolean;
+    type?: 'text' | 'card' | 'line';
     style?: React.CSSProperties;
     className?: string;
     active: boolean;
     disabled?: boolean;
-    onClick: (key: TabItemInfoProps) => void;
+    onClick: (item: TabItemInfoProps) => void;
+    onDelBtnClick: (item: TabItemInfoProps) => void | boolean;
     onMounted: (info: TabItemInfoProps) => void;
 }
 
 const TabItem: React.FC<TabItemProps> = ({
     children,
     itemKey,
+    editable,
     type = 'text',
     style,
     className,
     active,
     disabled,
     onClick,
+    onDelBtnClick,
     onMounted,
     ...rest
 }) => {
@@ -44,11 +48,15 @@ const TabItem: React.FC<TabItemProps> = ({
     const handleClick = (e: MouseEvent) => {
         const width = itemRef.current.clientWidth;
         const left = itemRef.current.offsetLeft;
-        onClick({
+        const item = {
             width,
             left,
             itemKey
-        }, e);
+        };
+        if (editable && onDelBtnClick(item) === false) {
+            return;
+        }
+        onClick(item, e);
     };
 
     useEffect(() => {

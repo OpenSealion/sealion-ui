@@ -1,18 +1,34 @@
 import { useState, useEffect, useRef } from 'react';
 import { addMouseWheelEvent } from '../utils';
 
-const useMounseWheel = (tabList) => {
-    const [position, setPosition] = useState({ x: 0 });
+export enum DirectionEnums {
+    hoz = 1,
+    ver = 2
+}
+
+export interface MouseWheelProps {
+    tabExtraGap: number;
+    direction: DirectionEnums;
+}
+
+const DefaultProps = {
+    tabExtraGap: 10,
+    direction: DirectionEnums.hoz
+};
+
+const useMounseWheel = (tabList, props: MouseWheelProps = { ...DefaultProps }) => {
+    const [position, setPosition] = useState({ x: 0, y: 0 });
     const [isExpandContainer, setIsExpandContainer] = useState(false);
     const rightScrollBoundry = useRef(0);
     const scrollRef = useRef(null);
+    const { tabExtraGap, direction } = props;
 
     useEffect(() => {
         const handleMounseWheel = (e) => {
             e.preventDefault();
 
-            console.log(rightScrollBoundry.current);
             const diffX = e.delta * 30;
+            const diffY = e.delta * 30;
             setPosition((prevPosition) => {
                 let x = prevPosition.x - diffX;
                 if (x > 0) {
@@ -21,10 +37,14 @@ const useMounseWheel = (tabList) => {
                     x = rightScrollBoundry.current;
                 }
 
-                return {
-                    x,
-                    y: prevPosition.y
-                };
+                const y = prevPosition.y - diffY;
+                if (y > 0) {
+                    // todo
+                }
+
+                const p = direction === DirectionEnums.hoz ? { x, y: 0 } : { x: 0, y };
+
+                return p;
             });
         };
 
@@ -38,9 +58,9 @@ const useMounseWheel = (tabList) => {
                 if (scrollWidth >= scrollParentWidth) {
                     // 当滚动内容超出可视区域时支持滚动
                     rightScrollBoundry.current = scrollParentWidth - scrollWidth; // 是个负数
-                    cancelMouseWheelEvent = addMouseWheelEvent(scrollRef.current, 'mousewheel', handleMounseWheel, false);
+                    cancelMouseWheelEvent = addMouseWheelEvent(scrollRef.current, 'mousewheel', handleMounseWheel, { passive: false });
                 }
-                setIsExpandContainer(scrollParentWidth < scrollWidth + 200);
+                setIsExpandContainer(scrollParentWidth < scrollWidth + tabExtraGap);
             }
         };
 
