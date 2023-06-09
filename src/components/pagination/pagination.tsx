@@ -1,20 +1,28 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
+import Icon from '../icon';
+import PaginationJump from './pagination-jump';
 
 export interface PaginationProps {
     className?: string,
-    style?: CSSProperties
+    style?: CSSProperties,
+    itemRender?: (page: number, type: 'page' | 'prev' | 'next', originalElement: React.ReactNode) => React.ReactNode
 }
 
 const Pagination:React.FC<PaginationProps> = (props) => {
     const {
         className,
         style,
+        itemRender,
         ...rest
     } = props;
+    const prefixCls = 'seal-pagination';
     const paginationClasses = classNames(
         className,
-        'seal-pagination'
+        prefixCls
+    );
+    const preClasses = classNames(
+        `${prefixCls}-prev`
     );
 
     return (
@@ -23,7 +31,16 @@ const Pagination:React.FC<PaginationProps> = (props) => {
             style={style}
             {...rest}
         >
-            1
+            <PaginationJump
+                className={preClasses}
+            >
+                <Icon icon="icon-fanhui" />
+            </PaginationJump>
+            <PaginationJump
+                className={preClasses}
+            >
+                <Icon icon="icon-qianwang" />
+            </PaginationJump>
         </ul>
     );
 };

@@ -1,0 +1,39 @@
+@seal-pagination-jump-width: 28px;
+@seal-pagination-jump-height: 28px;
+@seal-pagination-jump-background-hover: #F9F9F9;
+@seal-pagination-jump-background-active: #EBECF0;
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.seal-pagination {
+    .seal-pagination-jump {
+        display: inline-block;
+        cursor: pointer;
+        border-radius: 2px;
+        width: @seal-pagination-jump-width;
+        height: @seal-pagination-jump-height;
+        text-align: center;
+        line-height: @seal-pagination-jump-height;
+        
+        &:hover {
+            background: @seal-pagination-jump-background-hover;
+        }
+
+        &:active {
+            background: @seal-pagination-jump-background-active;
+        }
+    }
+
+    .seal-pagination-jump-disable {
+        color: #EBECF0;
+        cursor: not-allowed;
+    }
+
+    .seal-pagination-prev {
+
+    }
+}
