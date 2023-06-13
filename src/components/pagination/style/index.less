@@ -11,7 +11,9 @@
 @seal-pagination-item-color: rgba(18, 19, 22, 0.8);
 @seal-pagination-item-fontsize: 14px;
 @seal-pagination-total-info-margin-right: 4px;
-
+@seal-pagination-jump-min-width-small: 24px;
+@seal-pagination-jump-height-small: 24px;
+@seal-pagination-item-fontsize-small: 12px;
 
 ul, li {
     margin: 0;
@@ -21,9 +23,13 @@ ul, li {
 
 .seal-pagination {
     .seal-pagination-jump,
+    .seal-pagination-jump-normal,
     .seal-pagination-item,
+    .seal-pagination-item-normal,
     .seal-pagination-prev-five,
-    .seal-pagination-next-five {
+    .seal-pagination-prev-five-normal,
+    .seal-pagination-next-five,
+    .seal-pagination-next-five-normal {
         display: inline-block;
         cursor: pointer;
         border-radius: @seal-pagination-jump-border-radius;
@@ -42,6 +48,16 @@ ul, li {
         &:active {
             background: @seal-pagination-jump-background-active;
         }
+    }
+
+    .seal-pagination-item-small,
+    .seal-pagination-jump-small,
+    .seal-pagination-prev-five-small,
+    .seal-pagination-next-five-small {
+        min-width: @seal-pagination-jump-min-width-small;
+        height: @seal-pagination-jump-height-small;
+        line-height: @seal-pagination-jump-height-small;
+        font-size: @seal-pagination-item-fontsize-small;
     }
 
     .seal-pagination-item {
@@ -91,5 +107,11 @@ ul, li {
         color: @seal-pagination-item-color;
         font-size: @seal-pagination-item-fontsize;
         margin-right: @seal-pagination-total-info-margin-right;
+    }
+
+    .seal-pagination-total-info-small {
+        height: @seal-pagination-jump-height-small;
+        line-height: @seal-pagination-jump-height-small;
+        font-size: @seal-pagination-item-fontsize-small;
     }
 }

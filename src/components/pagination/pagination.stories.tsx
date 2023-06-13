@@ -113,13 +113,39 @@ export const paginationShowTotal = () => (
 
 paginationShowTotal.storyName = '展示总数';
 
+// 小号分页
+export const paginationSmall = () => (
+    <div>
+        <Pagination
+            total={100}
+            size="small"
+        />
+        <br />
+        <Pagination
+            total={100}
+            current={5}
+            disabled
+            size="small"
+        />
+        <br />
+        <Pagination
+            total={100}
+            current={5}
+            showTotal
+            size="small"
+        />
+    </div>
+);
+
+paginationSmall.storyName = '小号分页';
+
 // 自定义结构
 export const paginationItemRender = () => {
     const itemRender = (page, type, originalElement) => {
-        if (type === 'prev') {
+        if (type === "prev") {
           return <a>prev</a>;
         }
-        if (type === 'next') {
+        if (type === "next") {
           return <a>next</a>;
         }
         return originalElement;

@@ -8,6 +8,7 @@ import Icon from '../icon';
 import PaginationJump from './pagination-jump';
 import PaginationItem from './pagination-item';
 
+export type PaginationSizes = 'small' | 'normal';
 export interface PaginationProps {
     className?: string,
     style?: CSSProperties,
@@ -24,7 +25,8 @@ export interface PaginationProps {
     onChange?: (page, pageSize) => void,
     disabled?: boolean,
     showTotal?: boolean,
-    hideOnSinglePage?: boolean
+    hideOnSinglePage?: boolean,
+    size?: PaginationSizes
 }
 
 const Pagination:React.FC<PaginationProps> = (props) => {
@@ -47,6 +49,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
         disabled = false,
         showTotal = false,
         hideOnSinglePage = false,
+        size = 'normal',
         ...rest
     } = props;
     const [currentPage, setCurrentPage] = useState<number>(current || defaultCurrent);
@@ -69,7 +72,12 @@ const Pagination:React.FC<PaginationProps> = (props) => {
         `${prefixCls}-next`
     );
     const totalInfo = showTotal && (
-        <li className={`${prefixCls}-total-info`}>
+        <li
+            className={classNames(
+                `${prefixCls}-total-info`,
+                !!size && `${prefixCls}-total-info-${size}`
+            )}
+        >
             {`共 ${total || 0} 条`}
         </li>
     );
@@ -122,7 +130,8 @@ const Pagination:React.FC<PaginationProps> = (props) => {
     if (allPages <= 7) {
         const paramItem = {
             itemRender,
-            disabled
+            disabled,
+            size
         };
         if (!allPages) {
             <PaginationItem
@@ -154,6 +163,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
                 tabIndex={0}
                 className={classNames(
                     `${prefixCls}-prev-five`,
+                    !!size && `${prefixCls}-prev-five-${size}`,
                     disabled && 'seal-pagination-disable'
                 )}
             >
@@ -172,6 +182,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
                 onClick={jumpNextFive}
                 className={classNames(
                     `${prefixCls}-next-five`,
+                    !!size && `${prefixCls}-next-five-${size}`,
                     disabled && 'seal-pagination-disable'
                 )}
             >
@@ -190,6 +201,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
                 active={false}
                 itemRender={itemRender}
                 disabled={disabled}
+                size={size}
             />
         );
         lastItem = (
@@ -200,6 +212,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
                 active={false}
                 itemRender={itemRender}
                 disabled={disabled}
+                size={size}
             />
         );
         let left = Math.max(1, currentPage - 2);
@@ -223,6 +236,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
                     active={active}
                     itemRender={itemRender}
                     disabled={disabled}
+                    size={size}
                 />
             );
         }
@@ -285,6 +299,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
                 className={preClasses}
                 disabled={prevDisabled || disabled}
                 onClick={jumpPrev}
+                size={size}
             >
                 {prevRender(currentPage - 1 > 0 ? currentPage - 1 : 0)}
             </PaginationJump>
@@ -293,6 +308,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
                 className={nextClasses}
                 disabled={nextDisabled || disabled}
                 onClick={jumpNext}
+                size={size}
             >
                 {nextRender(currentPage + 1 < allPages ? currentPage + 1 : allPages)}
             </PaginationJump>

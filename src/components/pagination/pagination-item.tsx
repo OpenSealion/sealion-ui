@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React from 'react';
 import classNames from 'classnames';
+import { PaginationSizes } from './pagination';
 
 export interface PaginationItemProps {
     className?: string,
@@ -13,7 +14,8 @@ export interface PaginationItemProps {
         type?: 'page' | 'prev' | 'next' | 'jump-prev' | 'jump-next',
         originalElement?: React.ReactNode
     ) => React.ReactNode,
-    onClick?: () => void
+    onClick?: () => void,
+    size?: PaginationSizes
 }
 
 const PaginationItem:React.FC<PaginationItemProps> = (props) => {
@@ -23,11 +25,13 @@ const PaginationItem:React.FC<PaginationItemProps> = (props) => {
         page,
         active,
         itemRender,
-        onClick
+        onClick,
+        size
     } = props;
     const itemClasses = classNames(
         className,
         'seal-pagination-item',
+        !!size && `seal-pagination-item-${size}`,
         active && 'seal-pagination-item-active',
         disabled && 'seal-pagination-disable'
     );
