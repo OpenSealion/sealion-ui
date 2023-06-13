@@ -47,6 +47,13 @@ export default ({
         },
         itemRender: {
             description: '自定义结构'
+        },
+        size: {
+            description: '有两种尺寸',
+            control: {
+                type: 'select',
+                options: ['normal', 'small']
+            }
         }
     }
 }) as ComponentMeta<PaginationProps>;
@@ -69,7 +76,8 @@ defaultPagination.args = {
     disabled: false,
     showTotal: false,
     hideOnSinglePage: false,
-    itemRender: null
+    itemRender: null,
+    size: 'normal'
 };
 
 // 更多分页

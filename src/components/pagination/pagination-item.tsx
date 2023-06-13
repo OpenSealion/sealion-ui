@@ -41,7 +41,6 @@ const PaginationItem:React.FC<PaginationItemProps> = (props) => {
             tabIndex={0}
             className={itemClasses}
             onClick={onClick}
-            // onKeyPress={this.runIfEnterPrev}
         >
             {itemRender(page, 'page', <a rel="nofollow">{page}</a>)}
         </li>

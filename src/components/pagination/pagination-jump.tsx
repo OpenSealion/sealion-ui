@@ -31,9 +31,7 @@ const PaginationJump:React.FC<PaginationJumpProps> = (props) => {
         <li
             onClick={onClick}
             tabIndex={disabled ? null : 0}
-            // onKeyPress={this.runIfEnterPrev}
             className={itemClasses}
-            // aria-disabled={disabled}
         >
             {children}
         </li>
