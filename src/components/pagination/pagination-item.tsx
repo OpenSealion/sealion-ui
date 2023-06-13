@@ -1,0 +1,42 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
+import React from 'react';
+import classNames from 'classnames';
+
+export interface PaginationItemProps {
+    className?: string,
+    disabled?: boolean,
+    page?: number,
+    active?: boolean,
+    itemRender?: (
+        page: number,
+        type: 'page' | 'prev' | 'next' | 'jump-prev' | 'jump-next',
+        originalElement: React.ReactNode
+    ) => React.ReactNode
+}
+
+const PaginationItem:React.FC<PaginationItemProps> = (props) => {
+    const {
+        className,
+        disabled,
+        page,
+        active,
+        itemRender
+    } = props;
+    const itemClasses = classNames(
+        className,
+        'seal-pagination-item',
+        active && 'seal-pagination-item-active'
+    );
+
+    return (
+        <li
+            tabIndex={0}
+            className={itemClasses}
+            // onKeyPress={this.runIfEnterPrev}
+            // onClick={this.prev}
+        >
+            {itemRender(page, 'page', <a rel="nofollow">{page}</a>)}
+        </li>
+    );
+};
+export default PaginationItem;

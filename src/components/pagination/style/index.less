@@ -1,7 +1,16 @@
-@seal-pagination-jump-width: 28px;
+@seal-pagination-jump-min-width: 28px;
 @seal-pagination-jump-height: 28px;
+@seal-pagination-jump-border-radius: 2px;
 @seal-pagination-jump-background-hover: #F9F9F9;
 @seal-pagination-jump-background-active: #EBECF0;
+@seal-pagination-jump-background-disabled: transparent;
+@seal-pagination-item-background-active: #E6F2FF;
+@seal-pagination-item-color-active: #0D53DE;
+@seal-pagination-item-margin-left-right: 1px;
+@seal-pagination-item-margin-top-bottom: 0;
+@seal-pagination-item-color: rgba(18, 19, 22, 0.8);
+@seal-pagination-item-fontsize: 12px;
+
 
 ul, li {
     margin: 0;
@@ -10,14 +19,20 @@ ul, li {
 }
 
 .seal-pagination {
-    .seal-pagination-jump {
+    .seal-pagination-jump,
+    .seal-pagination-item,
+    .seal-pagination-prev-five,
+    .seal-pagination-next-five {
         display: inline-block;
         cursor: pointer;
-        border-radius: 2px;
-        width: @seal-pagination-jump-width;
+        border-radius: @seal-pagination-jump-border-radius;
+        min-width: @seal-pagination-jump-min-width;
         height: @seal-pagination-jump-height;
         text-align: center;
         line-height: @seal-pagination-jump-height;
+        user-select: none;
+        color: @seal-pagination-item-color;
+        font-size: @seal-pagination-item-fontsize;
         
         &:hover {
             background: @seal-pagination-jump-background-hover;
@@ -28,12 +43,41 @@ ul, li {
         }
     }
 
-    .seal-pagination-jump-disable {
+    .seal-pagination-item {
+        margin: @seal-pagination-item-margin-top-bottom @seal-pagination-item-margin-left-right;
+    }
+
+    .seal-pagination-disable {
         color: #EBECF0;
         cursor: not-allowed;
+
+        &:hover {
+            background: @seal-pagination-jump-background-disabled;
+        }
+
+        &:active {
+            background: @seal-pagination-jump-background-disabled;
+        }
     }
 
     .seal-pagination-prev {
+        margin-right: @seal-pagination-item-margin-left-right;
+    }
 
+    .seal-pagination-next {
+        margin-left: @seal-pagination-item-margin-left-right;
+    }
+
+    .seal-pagination-item-active {
+        background: @seal-pagination-item-background-active;
+        color: @seal-pagination-item-color-active;
+
+        &:hover {
+            background: @seal-pagination-item-background-active;
+        }
+
+        &:active {
+            background: @seal-pagination-item-background-active;
+        }
     }
 }
