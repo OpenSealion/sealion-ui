@@ -26,7 +26,8 @@ export interface PaginationProps {
     disabled?: boolean,
     showTotal?: boolean,
     hideOnSinglePage?: boolean,
-    size?: PaginationSizes
+    size?: PaginationSizes,
+    bufferSize?: number
 }
 
 const Pagination:React.FC<PaginationProps> = (props) => {
@@ -50,6 +51,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
         showTotal = false,
         hideOnSinglePage = false,
         size = 'normal',
+        bufferSize = 2,
         ...rest
     } = props;
     const [currentPage, setCurrentPage] = useState<number>(current || defaultCurrent);
@@ -127,7 +129,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
         handleChangeCurrent(getJumpNextPage());
     };
 
-    if (allPages <= 7) {
+    if (allPages <= 3 + bufferSize * 2) {
         const paramItem = {
             itemRender,
             disabled,
@@ -215,15 +217,15 @@ const Pagination:React.FC<PaginationProps> = (props) => {
                 size={size}
             />
         );
-        let left = Math.max(1, currentPage - 2);
-        let right = Math.min(currentPage + 2, allPages);
+        let left = Math.max(1, currentPage - bufferSize);
+        let right = Math.min(currentPage + bufferSize, allPages);
 
-        if (currentPage - 1 <= 2) {
-            right = 5;
+        if (currentPage - 1 <= bufferSize) {
+            right = bufferSize * 2 + 1;
         }
 
-        if (allPages - currentPage <= 2) {
-            left = allPages - 4;
+        if (allPages - currentPage <= bufferSize) {
+            left = allPages - bufferSize * 2;
         }
 
         for (let i = left; i <= right; i += 1) {
@@ -241,11 +243,11 @@ const Pagination:React.FC<PaginationProps> = (props) => {
             );
         }
 
-        if (currentPage - 1 >= 4 && currentPage !== 3) {
+        if (currentPage - 1 >= bufferSize * 2 && currentPage !== 3) {
             pageItem.unshift(jumpPrevItem);
         }
 
-        if (allPages - currentPage >= 4 && currentPage !== allPages - 2) {
+        if (allPages - currentPage >= bufferSize * 2 && currentPage !== allPages - 2) {
             pageItem.push(jumpNextItem);
         }
 

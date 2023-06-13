@@ -54,6 +54,9 @@ export default ({
                 type: 'select',
                 options: ['normal', 'small']
             }
+        },
+        bufferSize: {
+            description: '隐藏页和当前之间的距离'
         }
     }
 }) as ComponentMeta<PaginationProps>;
@@ -77,7 +80,8 @@ defaultPagination.args = {
     showTotal: false,
     hideOnSinglePage: false,
     itemRender: null,
-    size: 'normal'
+    size: 'normal',
+    bufferSize: 2
 };
 
 // 更多分页
@@ -91,10 +95,18 @@ paginationMore.storyName = '更多分页';
 
 // 受控页码
 export const paginationPage = () => (
-    <Pagination
-        total={100}
-        current={5}
-    />
+    <div>
+        <Pagination
+            total={100}
+            current={5}
+        />
+        <br />
+        <Pagination
+            total={100}
+            current={5}
+            bufferSize={1}
+        />
+    </div>
 );
 
 paginationPage.storyName = '受控页码';
