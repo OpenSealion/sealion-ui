@@ -9,7 +9,8 @@
 @seal-pagination-item-margin-left-right: 1px;
 @seal-pagination-item-margin-top-bottom: 0;
 @seal-pagination-item-color: rgba(18, 19, 22, 0.8);
-@seal-pagination-item-fontsize: 12px;
+@seal-pagination-item-fontsize: 14px;
+@seal-pagination-total-info-margin-right: 4px;
 
 
 ul, li {
@@ -48,7 +49,7 @@ ul, li {
     }
 
     .seal-pagination-disable {
-        color: #EBECF0;
+        opacity: .5;
         cursor: not-allowed;
 
         &:hover {
@@ -79,5 +80,16 @@ ul, li {
         &:active {
             background: @seal-pagination-item-background-active;
         }
+    }
+
+    .seal-pagination-total-info {
+        display: inline-block;
+        height: @seal-pagination-jump-height;
+        text-align: center;
+        line-height: @seal-pagination-jump-height;
+        user-select: none;
+        color: @seal-pagination-item-color;
+        font-size: @seal-pagination-item-fontsize;
+        margin-right: @seal-pagination-total-info-margin-right;
     }
 }

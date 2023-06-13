@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React, {
-    cloneElement, CSSProperties, useEffect, useState
+    cloneElement, CSSProperties, isValidElement, useEffect, useState
 } from 'react';
 import classNames from 'classnames';
 import Icon from '../icon';
@@ -12,9 +12,9 @@ export interface PaginationProps {
     className?: string,
     style?: CSSProperties,
     itemRender?: (
-        page: number,
-        type: 'page' | 'prev' | 'next' | 'jump-prev' | 'jump-next',
-        originalElement: React.ReactNode
+        page?: number,
+        type?: 'page' | 'prev' | 'next' | 'jump-prev' | 'jump-next',
+        originalElement?: React.ReactNode
     ) => React.ReactNode,
     current?: number,
     pageSize?: number,
@@ -22,7 +22,9 @@ export interface PaginationProps {
     defaultCurrent?: number,
     defaultPageSize?: number,
     onChange?: (page, pageSize) => void,
-    disabled?: boolean
+    disabled?: boolean,
+    showTotal?: boolean,
+    hideOnSinglePage?: boolean
 }
 
 const Pagination:React.FC<PaginationProps> = (props) => {
@@ -43,6 +45,8 @@ const Pagination:React.FC<PaginationProps> = (props) => {
         defaultPageSize = 10,
         onChange,
         disabled = false,
+        showTotal = false,
+        hideOnSinglePage = false,
         ...rest
     } = props;
     const [currentPage, setCurrentPage] = useState<number>(current || defaultCurrent);
@@ -63,6 +67,11 @@ const Pagination:React.FC<PaginationProps> = (props) => {
     );
     const nextClasses = classNames(
         `${prefixCls}-next`
+    );
+    const totalInfo = showTotal && (
+        <li className={`${prefixCls}-total-info`}>
+            {`共 ${total || 0} 条`}
+        </li>
     );
     const calculatePage = (data?: {
         p?: number
@@ -112,7 +121,8 @@ const Pagination:React.FC<PaginationProps> = (props) => {
 
     if (allPages <= 7) {
         const paramItem = {
-            itemRender
+            itemRender,
+            disabled
         };
         if (!allPages) {
             <PaginationItem
@@ -142,7 +152,10 @@ const Pagination:React.FC<PaginationProps> = (props) => {
                 key="jumpPrev"
                 onClick={jumpPrevFive}
                 tabIndex={0}
-                className={`${prefixCls}-prev-five`}
+                className={classNames(
+                    `${prefixCls}-prev-five`,
+                    disabled && 'seal-pagination-disable'
+                )}
             >
                 {itemRender(
                     getJumpPrevPage(),
@@ -157,7 +170,10 @@ const Pagination:React.FC<PaginationProps> = (props) => {
                 key="jumpNext"
                 tabIndex={0}
                 onClick={jumpNextFive}
-                className={`${prefixCls}-next-five`}
+                className={classNames(
+                    `${prefixCls}-next-five`,
+                    disabled && 'seal-pagination-disable'
+                )}
             >
                 {itemRender(
                     getJumpNextPage(),
@@ -173,6 +189,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
                 page={1}
                 active={false}
                 itemRender={itemRender}
+                disabled={disabled}
             />
         );
         lastItem = (
@@ -182,6 +199,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
                 page={allPages}
                 active={false}
                 itemRender={itemRender}
+                disabled={disabled}
             />
         );
         let left = Math.max(1, currentPage - 2);
@@ -204,6 +222,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
                     page={i}
                     active={active}
                     itemRender={itemRender}
+                    disabled={disabled}
                 />
             );
         }
@@ -233,26 +252,49 @@ const Pagination:React.FC<PaginationProps> = (props) => {
         pageSize && setCurrentPageSize(pageSize);
     }, [pageSize]);
 
+    if (hideOnSinglePage && total <= currentPageSize) {
+        return null;
+    }
+
+    const prevRender = (page: number) => {
+        const prevItem = itemRender(
+            page,
+            'prev',
+            <Icon icon="icon-fanhui" fontSize="12px" />
+        );
+        return isValidElement(prevItem) ? cloneElement(prevItem, { disabled: !hasPrev() }) : prevItem;
+    };
+
+    const nextRender = (page: number) => {
+        const nextItem = itemRender(
+            page,
+            'next',
+            <Icon icon="icon-qianwang" fontSize="12px" />
+        );
+        return isValidElement(nextItem) ? cloneElement(nextItem, { disabled: !hasNext() }) : nextItem;
+    };
+
     return (
         <ul
             className={paginationClasses}
             style={style}
             {...rest}
         >
+            {totalInfo}
             <PaginationJump
                 className={preClasses}
-                disabled={prevDisabled}
+                disabled={prevDisabled || disabled}
                 onClick={jumpPrev}
             >
-                <Icon icon="icon-fanhui" fontSize="12px" />
+                {prevRender(currentPage - 1 > 0 ? currentPage - 1 : 0)}
             </PaginationJump>
             {pageItem}
             <PaginationJump
                 className={nextClasses}
-                disabled={nextDisabled}
+                disabled={nextDisabled || disabled}
                 onClick={jumpNext}
             >
-                <Icon icon="icon-qianwang" fontSize="12px" />
+                {nextRender(currentPage + 1 < allPages ? currentPage + 1 : allPages)}
             </PaginationJump>
         </ul>
     );

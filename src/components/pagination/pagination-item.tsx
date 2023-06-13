@@ -9,9 +9,9 @@ export interface PaginationItemProps {
     page?: number,
     active?: boolean,
     itemRender?: (
-        page: number,
-        type: 'page' | 'prev' | 'next' | 'jump-prev' | 'jump-next',
-        originalElement: React.ReactNode
+        page?: number,
+        type?: 'page' | 'prev' | 'next' | 'jump-prev' | 'jump-next',
+        originalElement?: React.ReactNode
     ) => React.ReactNode,
     onClick?: () => void
 }
@@ -28,7 +28,8 @@ const PaginationItem:React.FC<PaginationItemProps> = (props) => {
     const itemClasses = classNames(
         className,
         'seal-pagination-item',
-        active && 'seal-pagination-item-active'
+        active && 'seal-pagination-item-active',
+        disabled && 'seal-pagination-disable'
     );
 
     return (
