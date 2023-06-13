@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React, {
     cloneElement, CSSProperties, useEffect, useState
@@ -19,7 +20,9 @@ export interface PaginationProps {
     pageSize?: number,
     total?: number,
     defaultCurrent?: number,
-    defaultPageSize?: number
+    defaultPageSize?: number,
+    onChange?: (page, pageSize) => void,
+    disabled?: boolean
 }
 
 const Pagination:React.FC<PaginationProps> = (props) => {
@@ -38,6 +41,8 @@ const Pagination:React.FC<PaginationProps> = (props) => {
         total = 0,
         defaultCurrent = 1,
         defaultPageSize = 10,
+        onChange,
+        disabled = false,
         ...rest
     } = props;
     const [currentPage, setCurrentPage] = useState<number>(current || defaultCurrent);
@@ -72,12 +77,41 @@ const Pagination:React.FC<PaginationProps> = (props) => {
     const nextDisabled = !hasNext() || !allPages;
     const getJumpPrevPage = () => Math.max(1, currentPage - showItems);
     const getJumpNextPage = () => Math.min(calculatePage(), currentPage + showItems);
+    const handleChangeCurrent = (page: number) => {
+        if (page !== currentPage && !disabled) {
+            let newPage = page;
+            if (page > allPages) {
+                newPage = allPages;
+            } else if (page < 1) {
+                newPage = 1;
+            }
+            setCurrentPage(newPage);
+            if (onChange) {
+                onChange(newPage, currentPageSize);
+            }
+            return newPage;
+        }
+        return currentPage;
+    };
+    const jumpPrev = () => {
+        if (hasPrev) {
+            handleChangeCurrent(currentPage - 1);
+        }
+    };
+    const jumpNext = () => {
+        if (hasNext) {
+            handleChangeCurrent(currentPage + 1);
+        }
+    };
+    const jumpPrevFive = () => {
+        handleChangeCurrent(getJumpPrevPage());
+    };
+    const jumpNextFive = () => {
+        handleChangeCurrent(getJumpNextPage());
+    };
 
     if (allPages <= 7) {
         const paramItem = {
-            // locale,
-            // onClick,
-            // onKeyPress,
             itemRender
         };
         if (!allPages) {
@@ -86,6 +120,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
                 key="noPrev"
                 page={1}
                 className={`${prefixCls}-disabled`}
+                onClick={() => { handleChangeCurrent(1) }}
             />;
         }
         for (let i = 1; i <= allPages; i += 1) {
@@ -96,6 +131,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
                     key={i}
                     page={i}
                     active={active}
+                    onClick={() => { handleChangeCurrent(i) }}
                 />
             );
         }
@@ -104,9 +140,8 @@ const Pagination:React.FC<PaginationProps> = (props) => {
             <li
                 title="向前5页"
                 key="jumpPrev"
-                // onClick={this.jumpPrev}
+                onClick={jumpPrevFive}
                 tabIndex={0}
-                // onKeyPress={this.runIfEnterJumpPrev}
                 className={`${prefixCls}-prev-five`}
             >
                 {itemRender(
@@ -121,8 +156,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
                 title="向后5页"
                 key="jumpNext"
                 tabIndex={0}
-                // onClick={jumpNext}
-                // onKeyPress={this.runIfEnterJumpNext}
+                onClick={jumpNextFive}
                 className={`${prefixCls}-next-five`}
             >
                 {itemRender(
@@ -134,9 +168,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
         );
         firstItem = (
             <PaginationItem
-                // locale={locale}
-                // onClick={handleChange}
-                // onKeyPress={runIfEnter}
+                onClick={() => { handleChangeCurrent(1) }}
                 key={1}
                 page={1}
                 active={false}
@@ -145,9 +177,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
         );
         lastItem = (
             <PaginationItem
-                // locale={locale}
-                // onClick={handleChange}
-                // onKeyPress={runIfEnter}
+                onClick={() => { handleChangeCurrent(allPages) }}
                 key={allPages}
                 page={allPages}
                 active={false}
@@ -169,9 +199,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
             const active = currentPage === i;
             pageItem.push(
                 <PaginationItem
-                    // locale={locale}
-                    // onClick={handleChange}
-                    // onKeyPress={runIfEnter}
+                    onClick={() => { handleChangeCurrent(i) }}
                     key={i}
                     page={i}
                     active={active}
@@ -181,21 +209,10 @@ const Pagination:React.FC<PaginationProps> = (props) => {
         }
 
         if (currentPage - 1 >= 4 && currentPage !== 3) {
-            pageItem[0] = cloneElement(pageItem[0], {
-                // className: `${prefixCls}-item-after-jump-prev`,
-            });
             pageItem.unshift(jumpPrevItem);
         }
 
-        if (
-            allPages - currentPage >= 4 && currentPage !== allPages - 2
-        ) {
-            pageItem[pageItem.length - 1] = cloneElement(
-                pageItem[pageItem.length - 1],
-                {
-                    // className: `${prefixCls}-item-before-jump-next`
-                },
-            );
+        if (allPages - currentPage >= 4 && currentPage !== allPages - 2) {
             pageItem.push(jumpNextItem);
         }
 
@@ -225,6 +242,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
             <PaginationJump
                 className={preClasses}
                 disabled={prevDisabled}
+                onClick={jumpPrev}
             >
                 <Icon icon="icon-fanhui" fontSize="12px" />
             </PaginationJump>
@@ -232,6 +250,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
             <PaginationJump
                 className={nextClasses}
                 disabled={nextDisabled}
+                onClick={jumpNext}
             >
                 <Icon icon="icon-qianwang" fontSize="12px" />
             </PaginationJump>

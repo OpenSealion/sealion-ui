@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React from 'react';
 import classNames from 'classnames';
@@ -6,13 +7,15 @@ export interface PaginationJumpProps {
     children?: React.ReactNode,
     className?: string,
     disabled?: boolean,
+    onClick: () => void
 }
 
 const PaginationJump:React.FC<PaginationJumpProps> = (props) => {
     const {
         children,
         className,
-        disabled
+        disabled,
+        onClick
     } = props;
     const itemClasses = classNames(
         className,
@@ -22,7 +25,7 @@ const PaginationJump:React.FC<PaginationJumpProps> = (props) => {
 
     return (
         <li
-            // onClick={this.prev}
+            onClick={onClick}
             tabIndex={disabled ? null : 0}
             // onKeyPress={this.runIfEnterPrev}
             className={itemClasses}
