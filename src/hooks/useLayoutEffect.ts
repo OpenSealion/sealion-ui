@@ -11,7 +11,7 @@ export function canUseDom() {
 type VoidFunction = () => void;
 
 /**
- * Wrap `React.useLayoutEffect` which will not throw warning message in test env
+ * 这个判断主要是为测试环境服务的，测试阶段由于没有真实dom环境，所以使用useLayoutEffect是会报警告
  */
 const useInternalLayoutEffect = process.env.NODE_ENV !== 'test' && canUseDom()
     ? React.useLayoutEffect
