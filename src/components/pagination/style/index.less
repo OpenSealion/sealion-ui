@@ -14,6 +14,18 @@
 @seal-pagination-jump-min-width-small: 24px;
 @seal-pagination-jump-height-small: 24px;
 @seal-pagination-item-fontsize-small: 12px;
+@seal-pagination-quick-jump-font-size: 14px;
+@seal-pagination-quick-jump-margin-left: 12px;
+@seal-pagination-quick-jump-font-size-small: 12px;
+@seal-pagination-quick-jump-margin-left-small: 8px;
+@seal-pagination-quick-jump-input-width: 32px;
+@seal-pagination-quick-jump-input-margin-top-bottom: 0;
+@seal-pagination-quick-jump-input-margin-left-right: 4px;
+@seal-pagination-quick-jump-input-heigth-normal: 24px;
+@seal-pagination-quick-jump-input-heigth-small: 20px;
+@seal-pagination-quick-jump-input-wrapper-padding-top-bottom: 2px;
+@seal-pagination-quick-jump-input-wrapper-padding-left-right: 6px;
+
 
 ul, li {
     margin: 0;
@@ -114,4 +126,41 @@ ul, li {
         line-height: @seal-pagination-jump-height-small;
         font-size: @seal-pagination-item-fontsize-small;
     }
+}
+
+.seal-pagination-quick-jump,
+.seal-pagination-quick-jump-normal,
+.seal-pagination-quick-jump-small {
+    display: inline-block;
+
+    .seal-pagination-quick-jump-input,
+    .seal-pagination-quick-jump-input-normal,
+    .seal-pagination-quick-jump-input-small {
+        width: @seal-pagination-quick-jump-input-width;
+        margin: @seal-pagination-quick-jump-input-margin-top-bottom @seal-pagination-quick-jump-input-margin-left-right;
+    }
+
+    .seal-pagination-quick-jump-input,
+    .seal-pagination-quick-jump-input-normal {
+        height: @seal-pagination-quick-jump-input-heigth-normal;
+    }
+
+    .seal-pagination-quick-jump-input-small {
+        height: @seal-pagination-quick-jump-input-heigth-small;
+    }
+
+    .seal-pagination-quick-jump-input-wrapper{
+        padding: @seal-pagination-quick-jump-input-wrapper-padding-top-bottom @seal-pagination-quick-jump-input-wrapper-padding-left-right;
+    }
+}
+
+.seal-pagination-quick-jump,
+.seal-pagination-quick-jump-normal {
+    font-size: @seal-pagination-quick-jump-font-size;
+    margin-left: @seal-pagination-quick-jump-margin-left;
+}
+
+.seal-pagination-quick-jump-small {
+    font-size: @seal-pagination-quick-jump-font-size-small;
+    margin-left: @seal-pagination-quick-jump-margin-left-small;
 }

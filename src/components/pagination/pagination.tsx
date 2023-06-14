@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import Icon from '../icon';
 import PaginationJump from './pagination-jump';
 import PaginationItem from './pagination-item';
+import PaginationQuickJump from './pagination-quick-jump';
 
 export type PaginationSizes = 'small' | 'normal';
 export interface PaginationProps {
@@ -27,7 +28,8 @@ export interface PaginationProps {
     showTotal?: boolean,
     hideOnSinglePage?: boolean,
     size?: PaginationSizes,
-    bufferSize?: number
+    bufferSize?: number,
+    showQuickJump?: boolean
 }
 
 const Pagination:React.FC<PaginationProps> = (props) => {
@@ -52,6 +54,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
         hideOnSinglePage = false,
         size = 'normal',
         bufferSize = 2,
+        showQuickJump = false,
         ...rest
     } = props;
     const [currentPage, setCurrentPage] = useState<number>(current || defaultCurrent);
@@ -314,6 +317,15 @@ const Pagination:React.FC<PaginationProps> = (props) => {
             >
                 {nextRender(currentPage + 1 < allPages ? currentPage + 1 : allPages)}
             </PaginationJump>
+            {
+                showQuickJump && (
+                    <PaginationQuickJump
+                        size={size}
+                        disabled={disabled}
+                        onJumpPage={handleChangeCurrent}
+                    />
+                )
+            }
         </ul>
     );
 };

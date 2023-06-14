@@ -57,6 +57,9 @@ export default ({
         },
         bufferSize: {
             description: '隐藏页和当前之间的距离'
+        },
+        showQuickJump: {
+            description: '是否支持快速跳转'
         }
     }
 }) as ComponentMeta<PaginationProps>;
@@ -81,7 +84,8 @@ defaultPagination.args = {
     hideOnSinglePage: false,
     itemRender: null,
     size: 'normal',
-    bufferSize: 2
+    bufferSize: 2,
+    showQuickJump: false
 };
 
 // 更多分页
@@ -113,25 +117,54 @@ paginationPage.storyName = '受控页码';
 
 // disabled页码
 export const paginationDisacled = () => (
-    <Pagination
-        total={100}
-        current={5}
-        disabled
-    />
+    <div>
+        <Pagination
+            total={100}
+            current={5}
+            disabled
+        />
+        <br />
+        <Pagination
+            total={100}
+            current={5}
+            showQuickJump
+            disabled
+        />
+    </div>
 );
 
 paginationDisacled.storyName = 'disabled页码';
 
 // 展示总数
 export const paginationShowTotal = () => (
-    <Pagination
-        total={100}
-        current={5}
-        showTotal
-    />
+    <div>
+        <Pagination
+            total={100}
+            current={5}
+            showTotal
+        />
+        <br />
+        <Pagination
+            total={100}
+            current={5}
+            showQuickJump
+            showTotal
+        />
+    </div>
 );
 
 paginationShowTotal.storyName = '展示总数';
+
+// 支持快速跳转
+export const paginationQuickJump = () => (
+    <Pagination
+        total={100}
+        current={5}
+        showQuickJump
+    />
+);
+
+paginationQuickJump.storyName = '支持快速跳转';
 
 // 小号分页
 export const paginationSmall = () => (
@@ -152,6 +185,13 @@ export const paginationSmall = () => (
             total={100}
             current={5}
             showTotal
+            size="small"
+        />
+        <br />
+        <Pagination
+            total={100}
+            current={5}
+            showQuickJump
             size="small"
         />
     </div>
