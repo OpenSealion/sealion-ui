@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
-import useMergedState from '../../hooks/useMergedState';
+import { useMergedState } from '../../hooks';
 
 export interface InputProps extends React.HTMLAtributes<HTMLInputElement> {
     defaultValue?: string;
