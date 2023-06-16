@@ -1,13 +1,14 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React, {
-    cloneElement, CSSProperties, isValidElement, useEffect, useState
+    cloneElement, CSSProperties, isValidElement, useContext, useEffect, useState
 } from 'react';
 import classNames from 'classnames';
 import Icon from '../icon';
 import PaginationJump from './pagination-jump';
 import PaginationItem from './pagination-item';
 import PaginationQuickJump from './pagination-quick-jump';
+import { ConfigContext } from '../../provider/context';
 
 export type PaginationSizes = 'small' | 'normal';
 export interface PaginationProps {
@@ -57,6 +58,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
         showQuickJump = false,
         ...rest
     } = props;
+    const { locale } = useContext(ConfigContext);
     const [currentPage, setCurrentPage] = useState<number>(current || defaultCurrent);
     const [currentPageSize, setCurrentPageSize] = useState<number>(pageSize || defaultPageSize);
     const pageItem = [];
@@ -162,7 +164,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
     } else {
         jumpPrevItem = (
             <li
-                title="向前5页"
+                title={locale?.pagination?.jump_prev_five}
                 key="jumpPrev"
                 onClick={jumpPrevFive}
                 tabIndex={0}
@@ -181,7 +183,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
         );
         jumpNextItem = (
             <li
-                title="向后5页"
+                title={locale?.pagination?.jump_next_five}
                 key="jumpNext"
                 tabIndex={0}
                 onClick={jumpNextFive}

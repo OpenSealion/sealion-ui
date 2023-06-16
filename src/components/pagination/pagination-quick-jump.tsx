@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import classNames from 'classnames';
 import { PaginationSizes } from './pagination';
 import Input from '../input';
+import { keyCodes } from '../../constants';
+import { ConfigContext } from '../../provider/context';
 
 export interface PaginationQuickJumpProps {
     size?: PaginationSizes,
     disabled?: boolean,
     onJumpPage: (value) => void
 }
-
-const keyCodes = {
-    ENTER: 13
-};
 
 const vaildValue = (value) => {
     return value && /[0-9]+/.test(value);
@@ -24,7 +22,7 @@ const PaginationQuickJump:React.FC<PaginationQuickJumpProps> = (props) => {
         onJumpPage,
     } = props;
     const [value, setValue] = useState<string>('');
-
+    const { locale } = useContext(ConfigContext);
     const quickJumpClasses = classNames(
         'seal-pagination-quick-jump',
         !!size && `seal-pagination-quick-jump-${size}`,
@@ -64,7 +62,7 @@ const PaginationQuickJump:React.FC<PaginationQuickJumpProps> = (props) => {
 
     return (
         <li className={quickJumpClasses}>
-            跳至
+            {locale?.pagination?.jump_to}
             <Input
                 className={quickJumpInputClasses}
                 inputWrapperClassName="seal-pagination-quick-jump-input-wrapper"
@@ -74,7 +72,7 @@ const PaginationQuickJump:React.FC<PaginationQuickJumpProps> = (props) => {
                 onKeyUp={handleKeyUp}
                 onBlur={handleBlur}
             />
-            页
+            {locale?.pagination?.page}
         </li>
     );
 };
