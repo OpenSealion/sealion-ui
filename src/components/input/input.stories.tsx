@@ -114,10 +114,13 @@ export const InputPendDemo = () => {
     }
 
     const handleSearch = (e) => {
-        console.log(e.keyCode);
         if (e.keyCode === 13) {
             message.info('search');
-        } 
+        }
+
+        if (e.type === 'click') {
+            message.info('search');
+        }
     }
 
     return (
@@ -143,7 +146,7 @@ export const InputPendDemo = () => {
                         <Button
                             btnType="primary"
                             onClick={handleSearch}
-                        >search</Button>
+                        >enter search</Button>
                     }
                 />
             </p>
