@@ -122,3 +122,18 @@ export const debounce = (delay, callback, options?) => {
     const { atBegin = false } = options || {};
     return throttle(delay, callback, { debounceMode: atBegin !== false });
 };
+
+export const deleteKeys = (
+    obj: object,
+    keys: string[]
+) => {
+    const clone = {
+        ...obj
+    };
+    keys.forEach((key) => {
+        if (key in Object.keys(clone)) {
+            delete clone[key];
+        }
+    });
+    return clone;
+};
