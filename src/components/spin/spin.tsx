@@ -40,10 +40,6 @@ const Spin: React.FC<SpinProps> = (props) => {
         'seal-spin-dot',
         !!size && `seal-spin-dot-${size}`
     );
-    const defaultSpinDotItemClasses = classNames(
-        'seal-spin-dot-item',
-        !!size && `seal-spin-dot-item-${size}`
-    );
     const spinTip = classNames(
         'seal-spin-tip',
         !!size && `seal-spin-tip-${size}`
@@ -55,11 +51,7 @@ const Spin: React.FC<SpinProps> = (props) => {
         return (
             <div className="seal-spin-spinning">
                 {
-                    indicator || (
-                        <div className={defaultSpinDotClasses}>
-                            <div className={defaultSpinDotItemClasses} />
-                        </div>
-                    )
+                    indicator || <div className={defaultSpinDotClasses} />
                 }
             </div>
         );

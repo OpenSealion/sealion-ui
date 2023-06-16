@@ -6,13 +6,6 @@
 @seal-spin-dot-height-small: 10.67px;
 @seal-spin-dot-width-large: 21.33px;
 @seal-spin-dot-height-large: 21.33px;
-@seal-spin-dot-item-background: #fff;
-@seal-spin-dot-item-width-normal: @seal-spin-dot-width-normal - @seal-spin-width;
-@seal-spin-dot-item-height-normal: @seal-spin-dot-height-normal - @seal-spin-width;
-@seal-spin-dot-item-width-small: @seal-spin-dot-width-small - @seal-spin-width;
-@seal-spin-dot-item-height-small: @seal-spin-dot-height-small - @seal-spin-width;
-@seal-spin-dot-item-width-large: @seal-spin-dot-width-large - @seal-spin-width;
-@seal-spin-dot-item-height-large: @seal-spin-dot-height-large - @seal-spin-width;
 @seal-spin-tip-color: #0D53DE;
 @seal-spin-tip-fontsize-normal: 14px;
 @seal-spin-tip-line-height-normal: 21px;
@@ -48,54 +41,31 @@
     .seal-spin-dot-normal,
     .seal-spin-dot-small,
     .seal-spin-dot-large {
-        position: relative;
         border-radius: 50%;
         background: @seal-spin-dot-background;
         transform: rotate(-90deg);
     }
-    
+
     .seal-spin-dot,
     .seal-spin-dot-normal {
         width: @seal-spin-dot-width-normal;
         height: @seal-spin-dot-height-normal;
+        -webkit-mask: radial-gradient(transparent, transparent 6px, #000 7px);
+        mask: radial-gradient(transparent 6px, #000 6px);
     }
     
     .seal-spin-dot-small {
         width: @seal-spin-dot-width-small;
         height: @seal-spin-dot-height-small;
+        -webkit-mask: radial-gradient(transparent, transparent 4px, #000 5px);
+        mask: radial-gradient(transparent 4.5px, #000 4.5px);
     }
     
     .seal-spin-dot-large {
         width: @seal-spin-dot-width-large;
         height: @seal-spin-dot-height-large;
-    }
-    
-    .seal-spin-dot-item,
-    .seal-spin-dot-item-normal,
-    .seal-spin-dot-item-small,
-    .seal-spin-dot-item-large {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 50%;
-        background-color: @seal-spin-dot-item-background;
-    }
-    
-    .seal-spin-dot-item,
-    .seal-spin-dot-item-normal {
-        width: @seal-spin-dot-item-width-normal;
-        height: @seal-spin-dot-item-height-normal;
-    }
-    
-    .seal-spin-dot-item-small {
-        width: @seal-spin-dot-item-width-small;
-        height: @seal-spin-dot-item-height-small;
-    }
-    
-    .seal-spin-dot-item-large {
-        width: @seal-spin-dot-item-width-large;
-        height: @seal-spin-dot-item-height-large;
+        -webkit-mask: radial-gradient(transparent, transparent 8px, #000 9px);
+        mask: radial-gradient(transparent 8px, #000 9px);
     }
 
     .seal-spin-tip,
