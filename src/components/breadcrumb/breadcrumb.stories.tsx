@@ -5,10 +5,21 @@ import Icon from '../icon';
 
 export default ({
     title: 'Breadcrumb',
-    component: Breadcrumb
+    component: Breadcrumb,
+    argTypes: {
+        items: {
+            description: '路由信息'
+        },
+        separator: {
+            description: '自定义分隔符'
+        },
+        maxCount: {
+            description: '最大显示个数'
+        }
+    }
 }) as ComponentMeta<BreadcrumbProps>;
 
-const Template: ComponentStory<BreadcrumbProps> = (args) => (<Breadcrumb {...args} />)
+const Template: ComponentStory<BreadcrumbProps> = (args) => (<Breadcrumb items={args?.items} />)
 
 // 默认示例
 export const defaultBreadcrumb = Template.bind({});
