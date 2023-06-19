@@ -12,14 +12,16 @@ export interface BreadcrumbItemType {
 export interface BreadcrumbProps {
     className?: string,
     items: BreadcrumbItemType[],
-    separator?: React.ReactNode
+    separator?: React.ReactNode,
+    maxCount?: number
 }
 
 const Breadcrumb:React.FC<BreadcrumbProps> = (props) => {
     const {
         className,
         items,
-        separator = '/'
+        separator = '/',
+        maxCount = 4
     } = props;
     let itemRender = [];
     const BreadcrumbClasses = classNames(
@@ -28,7 +30,19 @@ const Breadcrumb:React.FC<BreadcrumbProps> = (props) => {
     );
 
     if (items && items.length > 0) {
-        itemRender = items?.map((item, index) => {
+        const itemCount = items.filter(ele => ele?.separator === undefined).length;
+        let itemList = items;
+        if (itemCount > maxCount) {
+            itemList = [
+                items[0],
+                {
+                    title: '···'
+                },
+                ...(items.slice(items.length - 2, items.length))
+            ];
+        }
+
+        itemRender = itemList?.map((item, index) => {
             const {
                 key,
                 title,
@@ -40,8 +54,8 @@ const Breadcrumb:React.FC<BreadcrumbProps> = (props) => {
             return (
                 <BreadcrumbItem
                     key={key || index}
-                    separator={index === items.length - 1 ? '' : separator}
-                    isLast={index === items.length - 1}
+                    separator={index === itemList.length - 1 ? '' : separator}
+                    isLast={index === itemList.length - 1}
                 >
                     {title}
                 </BreadcrumbItem>

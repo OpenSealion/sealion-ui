@@ -25,7 +25,8 @@ defaultBreadcrumb.args = {
             title: "page3"
         }
     ],
-    separator: "/"
+    separator: "/",
+    maxCount: 5
 };
 
 // 自定义分隔符
@@ -103,3 +104,41 @@ export const breadcrumbItemSelf = () => {
 };
 
 breadcrumbItemSelf.storyName = '自定义链接';
+
+// 显示省略
+export const breadcrumbEllipsis = () => {
+    const items = [
+        {
+            title: "page1"
+        },
+        {
+            title: <a href="">page2</a>
+        },
+        {
+            title: <a href="">page3</a>
+        },
+        {
+            title: <a href="">page4</a>
+        },
+        {
+            title: <a href="">page5</a>
+        },
+        {
+            title: "page6"
+        }
+    ];
+    return (
+        <div>
+            <Breadcrumb
+                items={items}
+            />
+            <br />
+            <Breadcrumb
+                items={items}
+                maxCount={6}
+            />
+        </div>
+    )
+};
+
+breadcrumbEllipsis.storyName = '显示省略';
