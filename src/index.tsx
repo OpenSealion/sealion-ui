@@ -17,3 +17,4 @@ export { default as Modal } from './components/modal';
 export { default as Progress } from './components/progress';
 export { default as Tabs } from './components/tabs';
 export { default as Steps } from './components/steps';
+export { default as Breadcrumb } from './components/breadcrumb';
