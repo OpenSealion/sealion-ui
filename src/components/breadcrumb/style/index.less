@@ -1,0 +1,65 @@
+@seal-breadcrumb-item-font-size: 14px;
+@seal-breadcrumb-item-line-height: 24px;
+@seal-breadcrumb-item-color: rgba(18, 19, 22, 0.5);
+@seal-breadcrumb-item-padding-top-bottom: 0;
+@seal-breadcrumb-item-padding-left-right: 2px;
+@seal-breadcrumb-item-color-hover: rgba(18, 19, 22, 0.8);
+@seal-breadcrumb-item-background-hover: #F4F5F9;
+@seal-breadcrumb-item-border-radius-hover: 2px;
+@seal-breadcrumb-item-last-color: #121316;
+@seal-breadcrumb-item-last-background-hover: transparent;
+@seal-breadcrumb-item-last-border-radius-hover: 0;
+@seal-breadcrumb-separator-font-size: 14px;
+@seal-breadcrumb-separator-line-height: 21px;
+@seal-breadcrumb-separator-color: rgba(18, 19, 22, 0.2);
+@seal-breadcrumb-separator-top-bottom: 0;
+@seal-breadcrumb-separator-left-right: 2px;
+
+.seal-breadcrumb {
+    display: inline-block;
+
+    ol {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+}
+
+.seal-breadcrumb-item {
+    display: inline-block;
+    font-size: @seal-breadcrumb-item-font-size;
+    line-height: @seal-breadcrumb-item-line-height;
+    color: @seal-breadcrumb-item-color;
+    padding: @seal-breadcrumb-item-padding-top-bottom @seal-breadcrumb-item-padding-left-right;
+}
+
+.seal-breadcrumb-item a {
+    text-decoration: none;
+    color: @seal-breadcrumb-item-color;
+
+    &:hover {
+        color: @seal-breadcrumb-item-color-hover;
+        background: @seal-breadcrumb-item-background-hover;
+        border-radius: @seal-breadcrumb-item-border-radius-hover;
+    }
+}
+
+.seal-breadcrumb-item-last {
+    color: @seal-breadcrumb-item-last-color;
+
+    &:hover {
+        color: @seal-breadcrumb-item-last-color;
+        background: @seal-breadcrumb-item-last-background-hover;
+        border-radius: @seal-breadcrumb-item-last-border-radius-hover;
+    }
+}
+
+.seal-breadcrumb-separator {
+    display: inline-block;
+    font-size: @seal-breadcrumb-separator-font-size;
+    line-height: @seal-breadcrumb-separator-line-height;
+    color: @seal-breadcrumb-separator-color;
+    margin: @seal-breadcrumb-separator-top-bottom @seal-breadcrumb-separator-left-right;
+}
