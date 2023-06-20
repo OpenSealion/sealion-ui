@@ -1,4 +1,5 @@
-@seal-spin-dot-background: conic-gradient(from 180.61deg at 50.53% 50.53%, #0D53DE 0deg, #2B69E2 118.12deg, rgba(13, 83, 222, 0) 360deg);
+@seal-spin-dot-background: conic-gradient(from 180.61deg at 50.53% 50.53%, rgba(13, 83, 222, 0) 0deg, #2B69E2 118.12deg, #0D53DE 360deg);
+@seal-spin-dot-background-reverse: conic-gradient(from 180.61deg at 50.53% 50.53%, #0D53DE 0deg, #2B69E2 118.12deg, rgba(13, 83, 222, 0) 360deg);
 @seal-spin-width: 2px;
 @seal-spin-dot-width-normal: 16px;
 @seal-spin-dot-height-normal: 16px;
@@ -21,11 +22,15 @@
     display: inline-flex;
     align-items: center;
 
-    .seal-spin-spinning {
-        animation: rotate-grad-border 1.2s linear infinite;
+    .seal-spin-spinning-forward {
+        animation: rotate-forward 1.2s linear infinite;
+    }
+
+    .seal-spin-spinning-reverse {
+        animation: rotate-reverse 1.2s linear infinite;
     }
     
-    @keyframes rotate-grad-border {
+    @keyframes rotate-forward {
         0% {
           transform: rotate(0deg);
         }
@@ -36,6 +41,18 @@
           transform: rotate(360deg);
         }
     }
+
+    @keyframes rotate-reverse{
+        0% {
+          transform: rotate(0deg);
+        }
+        50% {
+          transform: rotate(-180deg);
+        }
+        100% {
+          transform: rotate(-360deg);
+        }
+    }
     
     .seal-spin-dot,
     .seal-spin-dot-normal,
@@ -44,6 +61,10 @@
         border-radius: 50%;
         background: @seal-spin-dot-background;
         transform: rotate(-90deg);
+    }
+
+    .seal-spin-dot-reverse {
+        background: @seal-spin-dot-background-reverse;
     }
 
     .seal-spin-dot,

@@ -6,6 +6,8 @@ import { debounce } from '../../utils/index';
 
 export type SpinSizes = 'small' | 'normal' | 'large';
 
+export type SpinRotate = 'forward' | 'reverse';
+
 export interface SpinProps {
     children?: React.ReactNode,
     size?: SpinSizes,
@@ -14,7 +16,8 @@ export interface SpinProps {
     spinning?: boolean,
     indicator?: React.ReactNode,
     tip?: string,
-    delay?: number
+    delay?: number,
+    rotate?: SpinRotate
 }
 
 const Spin: React.FC<SpinProps> = (props) => {
@@ -27,6 +30,7 @@ const Spin: React.FC<SpinProps> = (props) => {
         indicator,
         tip,
         delay = 0,
+        rotate = 'forward',
         ...rest
     } = props;
     const [loading, setLoading] = useState<boolean>(spinning);
@@ -38,18 +42,23 @@ const Spin: React.FC<SpinProps> = (props) => {
     );
     const defaultSpinDotClasses = classNames(
         'seal-spin-dot',
-        !!size && `seal-spin-dot-${size}`
+        !!size && `seal-spin-dot-${size}`,
+        rotate === 'reverse' && 'seal-spin-dot-reverse'
     );
     const spinTip = classNames(
         'seal-spin-tip',
         !!size && `seal-spin-tip-${size}`
+    );
+    const spinningClasses = classNames(
+        rotate === 'forward' && 'seal-spin-spinning-forward',
+        rotate === 'reverse' && 'seal-spin-spinning-reverse'
     );
     const renderIndicator = () => {
         if (indicator === null) {
             return null;
         }
         return (
-            <div className="seal-spin-spinning">
+            <div className={spinningClasses}>
                 {
                     indicator || <div className={defaultSpinDotClasses} />
                 }
