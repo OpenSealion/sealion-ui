@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Input, { InputProps } from './input';
 import Button from '../button';
@@ -114,13 +114,11 @@ export const InputPendDemo = () => {
     }
 
     const handleSearch = (e) => {
-        if (e.keyCode === 13) {
-            message.info('search');
-        }
+        message.info('search');
+    }
 
-        if (e.type === 'click') {
-            message.info('search');
-        }
+    const handlePressEnter = () => {
+        message.info('search');
     }
 
     return (
@@ -141,7 +139,7 @@ export const InputPendDemo = () => {
                 <Input
                     onChange={handleChange}
                     value={value}
-                    onKeyDown={handleSearch}
+                    onPressEnter={handlePressEnter}
                     append={
                         <Button
                             btnType="primary"
@@ -176,5 +174,26 @@ export const InputNoControl = () => {
  }
 
  InputNoControl.storyName = '非受控input';
+
+ export const InputWithRef = () => {
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        console.log(inputRef.current);
+    }, [])
+
+    return (
+        <>
+            <p>
+                <Input
+                    ref={inputRef}
+                    placeholder="hello world"
+                />
+            </p>
+        </>
+    );
+ }
+
+ InputWithRef.storyName = '获取input元素对象';
 
 

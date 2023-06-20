@@ -111,7 +111,7 @@ export const throttle = (delay, callback, options?) => {
                 debounceMode === undefined ? delay - elapsed : delay
             );
         }
-    }
+    };
 
     wrapper.cancel = cancel;
 
