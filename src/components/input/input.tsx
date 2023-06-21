@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { useMergedState } from '../../hooks';
 
-export interface InputProps extends React.HTMLAtributes<HTMLInputElement> {
+export interface BaseInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix' | 'type'> {
     defaultValue?: string;
     value?: string;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -37,7 +37,7 @@ export interface InputRef {
     input: HTMLInputElement | null;
 }
 
-const Input = (
+const BaseInput = (
     {
         defaultValue,
         value,
@@ -80,7 +80,8 @@ const Input = (
         setMergedValue(e.target.value);
     };
 
-    const handleKeyDown = (e: React.KeyboardEventHandler<HTMLInputElement>) => {
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        console.log(e);
         if (e.key === 'Enter' && onPressEnter) {
             onPressEnter(e);
         }
@@ -141,8 +142,6 @@ const Input = (
     );
 };
 
-type MergedComponent = React.ForwardRefExoticComponent<InputProps & React.RefAttributes<InputRef>>;
-
-const ForwardInput: MergedComponent = React.forwardRef<InputRef, InputProps>(Input);
+const ForwardInput = React.forwardRef<InputRef, BaseInputProps>(BaseInput);
 
 export default ForwardInput;

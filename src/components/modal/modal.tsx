@@ -8,7 +8,7 @@ import ModalCard from './modal-card';
 
 export interface IModalProps {
     children?: React.ReactNode; // 用于自定义内容
-    icon?: React.ReactNod; // 用于自定义图标
+    icon?: React.ReactNode; // 用于自定义图标
     closeIcon?: React.ReactNode; // 用于自定义关闭图标
     footer?: React.ReactNode; // 用于自定义底部
     title?: string; // 用于自定义标题

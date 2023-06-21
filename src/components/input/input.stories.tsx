@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Input, { InputProps } from './input';
+import Input, { InputProps } from './index';
 import Button from '../button';
 import IconFont from '../icon';
 import message from '../message';
