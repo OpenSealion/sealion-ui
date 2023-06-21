@@ -20,7 +20,8 @@ defaultSpin.args = {
     indicator: '',
     tip: '',
     delay: 0,
-    className: ''
+    className: '',
+    rotate: 'forward'
 };
 
 // 不同尺寸
@@ -110,6 +111,13 @@ export const spinNestedDelay = () => {
 };
 
 spinNestedDelay.storyName = '延迟加载中';
+
+// 逆时针转动
+export const spinReverse = () => (
+    <Spin rotate="reverse" />
+);
+
+spinReverse.storyName = '逆时针转动';
 
 // 自定义图标，会自动旋转
 export const spinIcon = () => (
