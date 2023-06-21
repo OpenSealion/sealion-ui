@@ -35,7 +35,7 @@ export interface InputRef {
     ) => void;
     select: () => void;
     input: HTMLInputElement | null;
-  }
+}
 
 const Input = (
     {
@@ -141,6 +141,8 @@ const Input = (
     );
 };
 
-const ForwardInput = React.forwardRef<InputRef, InputProps>(Input);
+type MergedComponent = React.ForwardRefExoticComponent<InputProps & React.RefAttributes<InputRef>>;
+
+const ForwardInput: MergedComponent = React.forwardRef<InputRef, InputProps>(Input);
 
 export default ForwardInput;
