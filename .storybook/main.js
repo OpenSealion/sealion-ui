@@ -11,15 +11,12 @@ module.exports = {
   ],
   "framework": "@storybook/react",
   webpackFinal: async (config) => {
-    config.module.rules.push({
-      test: /.*\.less$/,
+    const lessLoaderChain = {
+      test: /\.less$/,
       use: [
         'style-loader',
         {
-          loader: 'css-loader',
-          options: {
-            modules: false
-          }
+          loader: 'css-loader'
         },
         {
           loader: 'less-loader',
@@ -30,8 +27,15 @@ module.exports = {
           }
         }
       ]
-    })
-    return config
+    }
+
+    if (config.module.rules[config.module.rules.length - 1].oneOf) {
+      config.module.rules[config.module.rules.length - 1].oneOf.unshift(lessLoaderChain);
+    } else {
+      config.module.rules.unshift(lessLoaderChain);
+    }
+    
+    return config;
   },
   "core": {
     "builder": "@storybook/builder-webpack5"

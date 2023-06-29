@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Pagination, { PaginationProps } from './pagination';
+import Pagination from './pagination';
 
 export default ({
     title: 'Pagination',
@@ -62,9 +62,9 @@ export default ({
             description: '是否支持快速跳转'
         }
     }
-}) as ComponentMeta<PaginationProps>;
+}) as ComponentMeta<typeof Pagination>;
 
-const Template: ComponentStory<PaginationProps> = (args) => (
+const Template: ComponentStory<typeof Pagination> = (args) => (
     <Pagination
         total={50}
     />

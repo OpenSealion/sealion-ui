@@ -1,7 +1,7 @@
 import { useState, useLayoutEffect } from 'react';
 import ReactDOM, { createPortal } from 'react-dom';
 
-export const ReactPortal = ({ children = '', wrapperId = 'react-portal-wrapper' }) => {
+export const ReactPortal = ({ children, wrapperId = 'react-portal-wrapper' }) => {
     const [wrapperElement, setWrapperElement] = useState(null);
 
     useLayoutEffect(() => {

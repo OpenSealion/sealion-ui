@@ -1,15 +1,15 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Notification , { INotification } from './notification';
+import Notification from './notification';
 import Button from "../button/button";
 import IconFont from "../icon/icon";
 
 export default ({
     title: 'Notification',
     component: Notification
-}) as ComponentMeta<INotification>;
+}) as ComponentMeta<typeof Notification>;
 
-const Template: ComponentStory<INotification> = (args) => (<Notification {...args} />);
+const Template: ComponentStory<typeof Notification> = (args) => (<Notification {...args} />);
 
 
 export const defaultNotification = Template.bind({});

@@ -5,9 +5,9 @@ import IconFont, { IIconFOnt } from './icon';
 export default ({
     title: 'Icon',
     component: IconFont
-}) as ComponentMeta<IIconFOnt>;
+}) as ComponentMeta<typeof IconFont>;
 
-const Template: ComponentStory<IIconFOnt> = (args) => (<IconFont {...args} />);
+const Template: ComponentStory<typeof IconFont> = (args) => (<IconFont {...args} />);
 
 
 export const defaultCountInput = Template.bind({});

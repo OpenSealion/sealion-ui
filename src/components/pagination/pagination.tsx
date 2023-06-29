@@ -283,7 +283,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
             'prev',
             <Icon icon="icon-fanhui" fontSize="12px" />
         );
-        return isValidElement(prevItem) ? cloneElement(prevItem, { disabled: !hasPrev() }) : prevItem;
+        return isValidElement(prevItem) ? cloneElement(prevItem as React.ReactElement<any>, { disabled: !hasPrev() }) : prevItem;
     };
 
     const nextRender = (page: number) => {
@@ -292,7 +292,7 @@ const Pagination:React.FC<PaginationProps> = (props) => {
             'next',
             <Icon icon="icon-qianwang" fontSize="12px" />
         );
-        return isValidElement(nextItem) ? cloneElement(nextItem, { disabled: !hasNext() }) : nextItem;
+        return isValidElement(nextItem) ? cloneElement(nextItem as React.ReactElement<any>, { disabled: !hasNext() }) : nextItem;
     };
 
     return (

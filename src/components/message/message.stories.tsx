@@ -6,9 +6,9 @@ import Button from "../button/button";
 export default ({
     title: 'Message',
     component: Message
-}) as ComponentMeta<IMessageProps>;
+}) as ComponentMeta<typeof Message>;
 
-const Template: ComponentStory<IMessageProps> = (args) => (<Button
+const Template: ComponentStory<typeof Message> = (args) => (<Button
     btnType="primary"
     onClick={() => {
         message.info({...args})

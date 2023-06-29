@@ -1,4 +1,4 @@
-import Modal, {IModalProps} from "./modal";
+import Modal from "./modal";
 import {ComponentMeta, ComponentStory} from "@storybook/react";
 import Button from "../button/button";
 import React from "react";
@@ -7,9 +7,9 @@ import message from "../message/index";
 export default ({
     title: 'Modal',
     component: Modal
-}) as ComponentMeta<IModalProps>;
+}) as ComponentMeta<typeof Modal>;
 
-const Template: ComponentStory<IModalProps> = (args) => {
+const Template: ComponentStory<typeof Modal> = (args) => {
     const [open, setOpen] = React.useState(false);
     return (
         <div style={{ display: 'flex', gap: 36 }}>

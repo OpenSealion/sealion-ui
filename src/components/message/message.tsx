@@ -3,11 +3,13 @@ import classNames from 'classnames';
 import IconFont from '../icon';
 import { MessagePortal } from '../react-portal';
 
+export type MessageType = 'success' | 'error' | 'warning' | 'info' | 'loading';
+
 export interface IMessageProps {
     children?: React.ReactNode; // 用于自定义内容
     content?: string; // 用于自定义内容
     title: string; // 用于自定义标题
-    type?: 'success' | 'error' | 'warning' | 'info'; // 消息类型
+    type?: MessageType; // 消息类型
     duration?: number; // 持续时间
     className?: string; // 自定义类名
     style?: React.CSSProperties; // 自定义样式
@@ -56,8 +58,8 @@ const Message: React.FC<IMessageProps> = (props, context) => {
                 <IconFont icon={iconMap[type]} className={iconClasses} />
                 <span className="seal-message-title">{children || title}</span>
                 {closable && (
-                    <div className="seal-message-close">
-                        <IconFont icon="icon-cuowu1" onClick={onClose} />
+                    <div className="seal-message-close" onClick={onClose}>
+                        <IconFont icon="icon-cuowu1" />
                     </div>
                 )}
             </div>

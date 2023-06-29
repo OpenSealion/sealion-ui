@@ -1,14 +1,14 @@
 import {ComponentMeta, ComponentStory} from "@storybook/react";
 import React, {useState} from "react";
 import Steps from "../steps/steps";
-import {StepItemProps} from "@/components/steps/step-item";
+import { StepItemProps } from './step-item';
 import IconFont from "../icon/icon";
 export default ({
     title: 'Steps',
     component: Steps
-}) as ComponentMeta<StepItemProps>;
+}) as ComponentMeta<typeof Steps>;
 
-const Template: ComponentStory<StepItemProps> = (args) => {
+const Template: ComponentStory<typeof Steps> = (args) => {
     const [current, setCurrent] = useState(1);
     return (
         <div style={{ display: 'flex', gap: 36 }}>
@@ -21,17 +21,20 @@ const Template: ComponentStory<StepItemProps> = (args) => {
     );
 };
 
-const items = [
+const items: Array<StepItemProps> = [
     {
+        index: 1,
         title: '第一步',
         description: '这是第一步的描述',
         status: 'error',
     },
     {
+        index: 2,
         title: '第二步',
         description: '这是第二步的描述',
     },
     {
+        index: 3,
         title: '第三步',
         description: '这是第三步的描述',
         icon: <IconFont icon="icon-UserOutlined" />,

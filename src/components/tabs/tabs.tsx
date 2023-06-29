@@ -1,4 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, {
+    useState, useRef, useEffect, useMemo
+} from 'react';
 import classNames from 'classnames';
 import { useMounseWheel } from '../../hooks';
 import TabItem, { ItemKeyType, TabItemInfoProps } from './tab-item';
@@ -6,7 +8,7 @@ import { TabContext } from './tab-context';
 import Button from '../button';
 import Icon from '../icon';
 
-const getMoveStyle = ({ x = 0, y = 0 }) => {
+const getMoveStyle = ({ x, y }: { x: number, y: number }) => {
     return {
         transform: `translate(${x}px, ${y}px)`
     };
@@ -34,7 +36,7 @@ export interface TabItemObjProps {
     label: React.ReactNode;
 }
 
-export interface TabsProps extends Omit<React.HTMLAtributes<HTMLDivElement>, 'onChange' | 'children'> {
+export interface TabsProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'children'> {
     className?: string;
     defaultActiveKey?: ItemKeyType;
     items: TabItemObjProps[];
@@ -65,7 +67,7 @@ const Tabs = ({
     const editActionRef = useRef<EditActionType>('');
     const [itemInfoList, setItemInfoList] = useState<TabItemInfoProps[]>([]);
     const [activeItemInfo, setActiveItemInfo] = useState<TabItemInfoProps>({ width: 0, left: 0, itemKey: '' });
-    const [position, scrollRef, isExpandContainer] = useMounseWheel(items);
+    const { position, scrollRef, isExpandContainer } = useMounseWheel(items);
     const classes = classNames(className, 'seal-tabs');
     const tabsContainerClasses = classNames('seal-tabs-container', isExpandContainer && 'seal-tabs-near-extra');
 
@@ -112,10 +114,19 @@ const Tabs = ({
         }
     }, [items, onChange, activeKey]);
 
+    const value = useMemo(() => {
+        return {
+            tabs: [],
+            prefixCls: ''
+        };
+    }, []);
+
     const isEmpty = items.length === 0;
 
     return (
-        <TabContext.Provider>
+        <TabContext.Provider
+            value={value}
+        >
             <div
                 className={classes}
                 id={id}
@@ -138,7 +149,6 @@ const Tabs = ({
                                             itemKey={obj.key}
                                             editable={editable}
                                             onClick={handleTabItemClick}
-                                            onDelBtnClick={onTabItemDelClick}
                                             onMounted={collectMulTabItemInfo}
                                         >
                                             {obj.label}

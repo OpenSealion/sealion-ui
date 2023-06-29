@@ -8,9 +8,9 @@ import message from '../message';
 export default ({
     title: 'Input',
     component: Input
-}) as ComponentMeta<InputProps>;
+}) as ComponentMeta<typeof Input>;
 
-const Template: ComponentStory<InputProps> = (args) => (<Input {...args} />);
+const Template: ComponentStory<typeof Input> = (args) => (<Input {...args} />);
 
 
 export const defaultInput = Template.bind({});

@@ -27,7 +27,7 @@ const spaceSize = {
 function getNumberSize(size: SpaceSize) {
     return typeof size === 'string' ? spaceSize[size] : size || 0;
 }
-const Space: React.forwardRef<HTMLDivElement, ISpaceProps> = (props, ref) => {
+const Space = (props) => {
     const {
         size = 'small',
         align,

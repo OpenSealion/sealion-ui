@@ -9,7 +9,7 @@ export interface TabItemInfoProps {
     itemKey: ItemKeyType;
 }
 export interface TabItemProps {
-    label: string;
+    label?: string;
     itemKey: ItemKeyType;
     editable?: boolean;
     type?: 'text' | 'card' | 'line';
@@ -17,8 +17,8 @@ export interface TabItemProps {
     className?: string;
     active: boolean;
     disabled?: boolean;
-    onClick: (item: TabItemInfoProps) => void;
-    onDelBtnClick: (item: TabItemInfoProps) => void | boolean;
+    onClick?: (item: TabItemInfoProps, e: MouseEvent) => void;
+    onDelBtnClick?: (item: TabItemInfoProps) => void | boolean;
     onMounted: (info: TabItemInfoProps) => void;
 }
 
@@ -45,7 +45,7 @@ const TabItem: React.FC<TabItemProps> = ({
         `seal-tab-${type}`
     );
 
-    const handleClick = (e: MouseEvent) => {
+    const handleClick = (e) => {
         const width = itemRef.current.clientWidth;
         const left = itemRef.current.offsetLeft;
         const item = {

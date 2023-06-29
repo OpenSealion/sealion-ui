@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Breadcrumb, { BreadcrumbProps } from './breadcrumb';
+import Breadcrumb from './breadcrumb';
 import Icon from '../icon';
 
 export default ({
@@ -17,9 +17,9 @@ export default ({
             description: '最大显示个数'
         }
     }
-}) as ComponentMeta<BreadcrumbProps>;
+}) as ComponentMeta<typeof Breadcrumb>;
 
-const Template: ComponentStory<BreadcrumbProps> = (args) => (<Breadcrumb items={args?.items} />)
+const Template: ComponentStory<typeof Breadcrumb> = (args) => (<Breadcrumb items={args?.items} />)
 
 // 默认示例
 export const defaultBreadcrumb = Template.bind({});

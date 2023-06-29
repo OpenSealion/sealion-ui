@@ -1,4 +1,4 @@
-import Space, {ISpaceProps} from "./space";
+import Space from "./space";
 import {ComponentMeta, ComponentStory} from "@storybook/react";
 import Button from "../button/button";
 import IconFont from "../icon/index";
@@ -6,9 +6,9 @@ import Divider from "../divider/index";
 export default ({
     title: 'Space',
     component: Space
-}) as ComponentMeta<ISpaceProps>;
+}) as ComponentMeta<typeof Space>;
 
-const Template: ComponentStory<ISpaceProps> = (args) => (
+const Template: ComponentStory<typeof Space> = (args) => (
     <Space {...args}>
         🌍右边是空节点
         {<></>}

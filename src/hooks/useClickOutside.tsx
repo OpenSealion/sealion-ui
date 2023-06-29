@@ -1,8 +1,8 @@
 import React, { RefObject, useEffect } from 'react';
 
-const useClickOutside = (ref: RefObject<HTMLElement>, handler: React.clickHandler) => {
+const useClickOutside = (ref: RefObject<HTMLElement>, handler: React.MouseEventHandler) => {
     useEffect(() => {
-        const clickHandler = (e: MouseEvent) => {
+        const clickHandler = (e) => {
             if (!ref.current || ref.current.contains(e.target as HTMLElement)) return;
             handler?.(e);
         };

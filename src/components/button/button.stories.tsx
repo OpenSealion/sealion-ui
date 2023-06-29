@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Button, { ButtonProps } from './button';
+import Button from './button';
 import { SLButton } from '../core';
 import IconFont from '../icon/icon';
 
 export default ({
     title: 'Button',
     component: Button
-}) as ComponentMeta<ButtonProps>;
+}) as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<ButtonProps> = (args) => (<Button {...args} />);
+const Template: ComponentStory<typeof Button> = (args) => (<Button {...args} />);
 
 // 按钮默认样式示例
 export const defaultButton = Template.bind({});

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Tabs, { TabsProps } from './tabs';
+import Tabs from './tabs';
 import message from '../message';
 import Button from '../button';
 
 export default ({
     title: 'Tabs',
     component: Tabs
-}) as ComponentMeta<TabsProps>;
+}) as ComponentMeta<typeof Tabs>;
 
-const Template: ComponentStory<TabsProps> = (args) => (<Tabs {...args} />);
+const Template: ComponentStory<typeof Tabs> = (args) => (<Tabs {...args} />);
 
 
 export const defaultTabs = Template.bind({});
@@ -43,18 +43,23 @@ defaultTabs.args = {
 
 let uuid = 0;
 
+interface IkeyLabel {
+    key: string;
+    label: string;
+}
+
 export const TabWithEdit = () => {
-    const [items, setItems] = useState([
+    const [items, setItems] = useState<IkeyLabel[]>([
         {
-            key: 1,
+            key: '1',
             label: 'tab1'
         },
         {
-            key: 2,
+            key: '2',
             label: 'tab2'
         },
         {
-            key: 3,
+            key: '3',
             label: 'tab3'
         }
     ]);
@@ -62,7 +67,7 @@ export const TabWithEdit = () => {
     const handleAddTab = () => {
         uuid++;
         const newTab = { key: `${uuid}___$$by-add-button$$`, label: `new${uuid}` };
-        const newTabList = [...items, newTab];
+        const newTabList: Array<IkeyLabel> = [...items, newTab];
         setItems(newTabList);
 
     }
@@ -105,8 +110,8 @@ TabWithEdit.storyName = '新增和关闭标签';
 let uuid2 = 0;
 
 export const TabWithScroll = () => {
-    const [items, setItems] = useState(new Array(20).fill(0).map((_, i) => ({
-        key: i,
+    const [items, setItems] = useState<Array<IkeyLabel>>(new Array(20).fill(0).map((_, i) => ({
+        key: i.toString(),
         label: `tab${i + 1}`
     })));
 

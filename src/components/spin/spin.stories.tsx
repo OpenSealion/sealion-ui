@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Spin, { SpinProps } from './spin';
+import Spin from './spin';
 import Icon from '../icon';
 import Switch from '../switch-ui';
 
 export default ({
     title: 'Spin',
     component: Spin
-}) as ComponentMeta<SpinProps>;
+}) as ComponentMeta<typeof Spin>;
 
-const Template: ComponentStory<SpinProps> = (args) => (<Spin {...args} />);
+const Template: ComponentStory<typeof Spin> = (args) => (<Spin {...args} />);
 
 // 默认示例
 export const defaultSpin = Template.bind({});
