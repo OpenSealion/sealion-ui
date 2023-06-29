@@ -5,7 +5,7 @@ import IconFont from '../icon/icon';
 export interface IProgress {
     strokeWidth?: number,
     strokeColor?: string,
-    width: 200,
+    width?: 200,
     percent?: number,
     type?: 'bar' | 'circle';
     status?: 'info' | 'success' | 'warning' | 'error';
@@ -104,7 +104,7 @@ const Progress: React.FC<IProgress> = (props) => {
         }
     );
     return type === 'bar' ? (
-        <div style={{ display: 'flex', alignItems: 'center', style }}>
+        <div style={{ display: 'flex', alignItems: 'center', ...style }}>
             <div className="seal-progress-container" style={{ height: `${strokeWidth}px` }}>
                 <div className={themeClasses} style={{ width: `${percent}%`, background: strokeColor }} />
             </div>

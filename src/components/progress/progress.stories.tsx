@@ -5,9 +5,9 @@ import Progress , { IProgress } from './progress';
 export default ({
     title: 'Progress',
     component: Progress
-}) as ComponentMeta<IProgress>;
+}) as ComponentMeta<typeof Progress>;
 
-const Template: ComponentStory<IProgress> = (args) => (<Progress {...args} />);
+const Template: ComponentStory<typeof Progress> = (args) => (<Progress {...args} />);
 
 
 export const defaultProgress = Template.bind({});
@@ -44,7 +44,7 @@ BarProgress.storyName = 'Bar Progress'
 
 export const CircleProgress = () => {
     return (
-        <div class="row">
+        <div className="row">
             <Progress
                 type="circle"
                 status="info"

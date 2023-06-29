@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Switch, { SwitchProps } from './switch-ui';
+import Switch from './switch-ui';
 import Icon from '../icon';
 
 export default ({
@@ -51,9 +51,9 @@ export default ({
             description: '加载中的开关'
         }
     }
-}) as ComponentMeta<SwitchProps>;
+}) as ComponentMeta<typeof Switch>;
 
-const Template: ComponentStory<SwitchProps> = (args) => (<Switch />);
+const Template: ComponentStory<typeof Switch> = (args) => (<Switch {...args}/>);
 
 // 默认示例
 export const defaultSwitch = Template.bind({});

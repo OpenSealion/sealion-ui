@@ -3,10 +3,10 @@ import classNames from 'classnames';
 import { StepsContext } from './steps';
 import IconFont from '../icon/icon';
 
-export interface StepItemProps extends React.HTMLAttributes<HTMLDivElement>{
+export interface StepItemProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>{
     index: number;
-    title: string | React.ReactNode;
-    description?: string | React.ReactNode;
+    title: React.ReactNode;
+    description?: React.ReactNode;
     icon?: React.ReactNode;
     status?: 'wait' | 'process' | 'finish' | 'error';
     disabled?: boolean;

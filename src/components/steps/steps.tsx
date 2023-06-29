@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import StepItem, { StepItemProps } from './step-item';
 
-export interface StepsProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface StepsProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
     className?: string;
     current?: number;
     direction?: 'horizontal' | 'vertical';
@@ -61,7 +61,7 @@ const Steps: React.FC<StepsProps> = (props) => {
         <div className={mergedClassName} style={style}>
             <StepsContext.Provider value={stepsContext}>
                 {Array.isArray(items) && items.map((item, index) => {
-                    return <StepItem {...item} index={initial + index} key={item.title + index} />;
+                    return <StepItem {...item} index={initial + index} key={`${item.title}${index}`} />;
                 })}
             </StepsContext.Provider>
         </div>

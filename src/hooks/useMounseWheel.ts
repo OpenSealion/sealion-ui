@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { addMouseWheelEvent } from '../utils';
+import { TabItemObjProps } from '@/components/tabs/tabs';
 
 export enum DirectionEnums {
     hoz = 1,
@@ -15,16 +16,20 @@ const DefaultProps = {
     tabExtraGap: 10,
     direction: DirectionEnums.hoz
 };
+const DefaultPosition = {
+    x: 0,
+    y: 0
+};
 
-const useMounseWheel = (tabList, props: MouseWheelProps = { ...DefaultProps }) => {
-    const [position, setPosition] = useState({ x: 0, y: 0 });
+const useMounseWheel = (tabList: TabItemObjProps[], props: MouseWheelProps = { ...DefaultProps }) => {
+    const [position, setPosition] = useState<{x: number, y: number}>(DefaultPosition);
     const [isExpandContainer, setIsExpandContainer] = useState(false);
     const rightScrollBoundry = useRef(0);
     const scrollRef = useRef(null);
     const { tabExtraGap, direction } = props;
 
     useEffect(() => {
-        const handleMounseWheel = (e) => {
+        const handleMounseWheel = (e: { preventDefault: () => void; delta: number; }) => {
             e.preventDefault();
 
             const diffX = e.delta * 30;
@@ -44,11 +49,11 @@ const useMounseWheel = (tabList, props: MouseWheelProps = { ...DefaultProps }) =
 
                 const p = direction === DirectionEnums.hoz ? { x, y: 0 } : { x: 0, y };
 
-                return p;
+                return { x: 0, y: 0 };
             });
         };
 
-        let cancelMouseWheelEvent = null;
+        let cancelMouseWheelEvent: () => void = null;
 
         const mountScrollEvent = () => {
             if (scrollRef.current) {
@@ -73,7 +78,7 @@ const useMounseWheel = (tabList, props: MouseWheelProps = { ...DefaultProps }) =
         };
     }, [position, tabList]);
 
-    return [position, scrollRef, isExpandContainer];
+    return { position, scrollRef, isExpandContainer };
 };
 
 export default useMounseWheel;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { MessagePortal } from '../react-portal';
-import Message, { IMessageProps } from './message';
+import Message, { IMessageProps, MessageType } from './message';
 
 export type MessageInstanceFn = (props: IMessageProps | string) => void;
 export interface MessageInstance {
@@ -10,7 +10,7 @@ export interface MessageInstance {
     warning: MessageInstanceFn;
 }
 
-const messagePropsHandler = (props: (IMessageProps | string), type: string) => {
+const messagePropsHandler = (props: (IMessageProps | string), type: MessageType) => {
     if (typeof props === 'string') {
         return {
             type,

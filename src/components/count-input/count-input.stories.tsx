@@ -6,9 +6,9 @@ import {Form} from "antd";
 export default ({
     title: 'Count input',
     component: CountInput
-}) as ComponentMeta<ICountInput>;
+}) as ComponentMeta<typeof CountInput>;
 
-const Template: ComponentStory<ICountInput> = (args) => (<CountInput {...args} />);
+const Template: ComponentStory<typeof CountInput> = (args) => (<CountInput {...args} />);
 
 
 export const defaultCountInput = Template.bind({});
