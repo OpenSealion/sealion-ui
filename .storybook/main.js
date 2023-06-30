@@ -15,9 +15,7 @@ module.exports = {
       test: /\.less$/,
       use: [
         'style-loader',
-        {
-          loader: 'css-loader'
-        },
+        'css-loader',
         {
           loader: 'less-loader',
           options: {
@@ -28,9 +26,9 @@ module.exports = {
         }
       ]
     }
-
-    if (config.module.rules[config.module.rules.length - 1].oneOf) {
-      config.module.rules[config.module.rules.length - 1].oneOf.unshift(lessLoaderChain);
+    const oneOfRule = config.module.rules.find(rule => !!rule.oneOf);
+    if (oneOfRule) {
+      oneOfRule.oneOf.unshift(lessLoaderChain);
     } else {
       config.module.rules.unshift(lessLoaderChain);
     }
