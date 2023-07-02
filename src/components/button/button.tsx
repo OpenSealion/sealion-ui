@@ -10,7 +10,7 @@ export interface ButtonProps extends SLButtonProps {
     pure?: boolean
 }
 
-const Button: React.FC<ButtonProps> = (props) => {
+const BaseButton = (props: ButtonProps, ref) => {
     const {
         className,
         btnType,
@@ -37,6 +37,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     return (
         // eslint-disable-next-line react/button-has-type
         <SLButton
+            ref={ref}
             className={btnClasses}
             btnType={btnType}
             size={size}
@@ -48,4 +49,7 @@ const Button: React.FC<ButtonProps> = (props) => {
         </SLButton>
     );
 };
+
+const Button = React.forwardRef<React.RefAttributes<HTMLButtonElement>, ButtonProps>(BaseButton);
+
 export default Button;

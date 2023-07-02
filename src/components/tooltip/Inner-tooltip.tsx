@@ -1,5 +1,5 @@
 import React, {
-    useEffect, useRef, forwardRef, Ref, RefAttributes
+    forwardRef, RefAttributes
 } from 'react';
 import classNames from 'classnames';
 
@@ -9,6 +9,8 @@ export interface PoptipProps {
     position?: ToolTipPosition;
     prefixCls?: string;
 }
+
+export const ArrowDiff = 6;
 
 const PopTip = ({
     title,
