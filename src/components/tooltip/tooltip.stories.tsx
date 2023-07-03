@@ -23,7 +23,7 @@ export const defaultDemo = Template.bind({});
 defaultDemo.storyName = '主要参数使用';
 defaultDemo.args = {
     title: 'hello',
-    position: 'right'
+    position: 'top'
 };
 
 export const TooltipBaseDemo = () => {
@@ -159,4 +159,44 @@ export const TooltipThemeDemo = () => {
 }
 
 TooltipThemeDemo.storyName = '自定义主题';
+
+export const TooltipAutoCalcPositionDemo = () => {
+
+    return (
+        <>
+            <div className='inline-block margin-ver-20'>
+                <Tooltip
+                    title="我是自定义主题的tooltip"
+                    autoPosition
+                    position="bottom"
+                >
+                    <Button
+                        btnType="line"
+                        status="warn"
+                    >
+                        通过滚动页面测试
+                    </Button>
+                </Tooltip>
+            </div>
+
+            <div className='inline-block margin-ver-20'>
+                <Tooltip
+                    title="我是自定义主题的tooltip"
+                    autoPosition
+                    position="right"
+                >
+                    <Button
+                        btnType="line"
+                        status="warn"
+                    >
+                        通过改变窗口宽度测试
+                    </Button>
+                </Tooltip>
+            </div>
+            
+        </>
+    );
+}
+
+TooltipAutoCalcPositionDemo.storyName = '根据所在窗口位置自动决定弹出位置';
 
