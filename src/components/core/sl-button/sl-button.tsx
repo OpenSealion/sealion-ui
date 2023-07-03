@@ -14,15 +14,18 @@ export interface SLButtonProps extends Omit<React.ButtonHTMLAttributes<any>, 'ty
     status?: SLButtonStatus;
 }
 
-const SLButton: React.FC<SLButtonProps> = ({
-    btnType,
-    size,
-    className,
-    children,
-    type = 'button',
-    status,
-    ...rest
-}) => {
+const BaseSLButton = (
+    {
+        btnType,
+        size,
+        className,
+        children,
+        type = 'button',
+        status,
+        ...rest
+    }: SLButtonProps,
+    ref
+) => {
     const classes = classNames(
         className,
         'sea-lion-core-button',
@@ -30,9 +33,9 @@ const SLButton: React.FC<SLButtonProps> = ({
         size && `sea-lion-core-button-${size}`,
         status && `sea-lion-core-button-${status}`
     );
-
     return (
         <button
+            ref={ref}
             className={classes}
             type={type}
             {...rest}
@@ -41,5 +44,7 @@ const SLButton: React.FC<SLButtonProps> = ({
         </button>
     );
 };
+
+const SLButton = React.forwardRef<React.RefAttributes<HTMLButtonElement>, SLButtonProps>(BaseSLButton);
 
 export default SLButton;

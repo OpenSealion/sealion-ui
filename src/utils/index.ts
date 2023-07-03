@@ -1,3 +1,5 @@
+export { composeRef, fillRef } from './composeRef';
+
 export const addMouseWheelEvent = (function (window) {
     const _eventCompat = function (event) {
         const type = event.type;
