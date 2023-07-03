@@ -81,7 +81,6 @@ const BaseInput = (
     };
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
-        console.log(e);
         if (e.key === 'Enter' && onPressEnter) {
             onPressEnter(e);
         }
