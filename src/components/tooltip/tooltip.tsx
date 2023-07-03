@@ -79,8 +79,9 @@ const Tooltip: React.FC<TooltipProps> = ({
         setMergedOpen(false);
     };
 
+    const onlyChildRef = (onlyChild as any).ref;
     const cloneElementProps: any = {
-        ref: composeRef(childRef, onlyChild.ref),
+        ref: composeRef(childRef, onlyChildRef),
         className: `${prefixCls}-tooltip-open`,
         onMouseEnter: handleMouseEnter,
         onMouseMove: handleMouseMove,
@@ -112,7 +113,7 @@ const Tooltip: React.FC<TooltipProps> = ({
         ...rest
     };
 
-    const wrapperStyle = {
+    const wrapperStyle: React.CSSProperties = {
         position: 'fixed',
         top: tooltipPosition.top,
         left: tooltipPosition.left
