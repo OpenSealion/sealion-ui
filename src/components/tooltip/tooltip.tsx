@@ -9,7 +9,7 @@ export interface TooltipProps extends PoptipProps {
     open?: boolean;
     getPopupContainer?: (wrapper?: HTMLElement) => HTMLElement;
     prefixCls?: string;
-    mouseLeaveDelay?: number;
+    mouseLeaveDelay?: number; // 延迟消失时间，单位毫秒
 }
 
 export interface TooltipPositionProps {
@@ -52,7 +52,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     position = 'top',
     getPopupContainer = () => document.body,
     prefixCls = 'seal',
-    mouseLeaveDelay = 0.2,
+    mouseLeaveDelay = 20,
     children,
     ...rest
 }) => {
@@ -70,10 +70,8 @@ const Tooltip: React.FC<TooltipProps> = ({
         setMergedOpen(true);
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-        if (e.target === popTipRef.current) {
-            setMergedOpen(false);
-        }
+    const handleMouseMove = () => {
+        setMergedOpen(true);
     };
 
     const handleMouseLeave = () => {
@@ -105,8 +103,8 @@ const Tooltip: React.FC<TooltipProps> = ({
             });
         } else {
             setTooltipPosition({
-                top: 0,
-                left: 0
+                top: -9999,
+                left: -9999
             });
         }
     }, [mergedOpen, position]);
@@ -127,7 +125,8 @@ const Tooltip: React.FC<TooltipProps> = ({
         <>
             { cloneElement }
             {
-                createPortal(
+                mergedOpen
+                && createPortal(
                     (
                         <div
                             className={classNames('seal-tooltip-wrapper', mergedOpen && 'seal-toolip-wrapper-open')}
