@@ -18,3 +18,4 @@ export { default as Progress } from './components/progress';
 export { default as Tabs } from './components/tabs';
 export { default as Steps } from './components/steps';
 export { default as Breadcrumb } from './components/breadcrumb';
+export { default as Tooltip } from './components/tooltip';
