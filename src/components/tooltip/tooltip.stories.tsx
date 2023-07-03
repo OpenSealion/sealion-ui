@@ -130,3 +130,33 @@ export const TooltipCustomChildDemo = () => {
 
 TooltipCustomChildDemo.storyName = '非button案例';
 
+export const TooltipThemeDemo = () => {
+
+    return (
+        <>
+            <div className='inline-block margin-ver-20'>
+                <Tooltip
+                    title="我是自定义主题的tooltip"
+                    theme={{
+                        background: '#66BF3C',
+                        padding: '5px 20px',
+                        fontSize: 18,
+                        color: '#fff'
+                    }}
+                    position="top"
+                >
+                    <Button
+                        btnType="line"
+                        status="success"
+                    >
+                        自定义主题
+                    </Button>
+                </Tooltip>
+            </div>
+            
+        </>
+    );
+}
+
+TooltipThemeDemo.storyName = '自定义主题';
+
