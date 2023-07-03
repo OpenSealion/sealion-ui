@@ -9,6 +9,7 @@ export interface TooltipProps extends PoptipProps {
     open?: boolean;
     getPopupContainer?: (wrapper?: HTMLElement) => HTMLElement;
     prefixCls?: string;
+    mouseLeaveDelay?: number;
 }
 
 export interface TooltipPositionProps {
@@ -25,12 +26,11 @@ const getOffesetPosition = (bounding, popBounding, position: ToolTipPosition): T
 
     switch (position) {
     case 'top':
-        top = bounding.top - bounding.height;
+        top = bounding.top - popBounding.height - ArrowDiff;
         left = bounding.left + diffLeft;
-        console.log(top, left);
         return { top, left };
     case 'right':
-        top = bounding.top - diffTop + ArrowDiff / 2;
+        top = bounding.top + diffTop;
         left = bounding.left + bounding.width + ArrowDiff;
         return { top, left };
     case 'bottom':
@@ -38,7 +38,7 @@ const getOffesetPosition = (bounding, popBounding, position: ToolTipPosition): T
         left = bounding.left + diffLeft;
         return { top, left };
     case 'left':
-        top = bounding.top - diffTop + ArrowDiff / 2;
+        top = bounding.top + diffTop;
         left = bounding.left - popBounding.width - ArrowDiff;
         return { top, left };
     default:
@@ -52,6 +52,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     position = 'top',
     getPopupContainer = () => document.body,
     prefixCls = 'seal',
+    mouseLeaveDelay = 0.2,
     children,
     ...rest
 }) => {
@@ -63,20 +64,23 @@ const Tooltip: React.FC<TooltipProps> = ({
     const onlyChild = React.Children.only(children) as React.ReactElement;
     const childRef = useRef(null);
     const popTipRef = useRef(null);
+    const mouseLeaveDebounceRef = useRef(null);
 
     const handleMouseEnter = () => {
         setMergedOpen(true);
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-        console.log(e.target);
         if (e.target === popTipRef.current) {
             setMergedOpen(false);
         }
     };
 
     const handleMouseLeave = () => {
-        setMergedOpen(false);
+        mouseLeaveDebounceRef.current && clearTimeout(mouseLeaveDebounceRef.current);
+        mouseLeaveDebounceRef.current = setTimeout(() => {
+            setMergedOpen(false);
+        }, mouseLeaveDelay);
     };
 
     const onlyChildRef = (onlyChild as any).ref;
