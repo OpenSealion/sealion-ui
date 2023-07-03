@@ -66,7 +66,7 @@ module.exports = {
         camelcase: ['warn'],
         'import/prefer-default-export': 'off',
         'no-useless-escape': 'warn',
-        'no-unused-expressions': 'warn',
+        'no-unused-expressions': 'off',
         'no-restricted-syntax': 'off',
         'max-len': ['warn', {
             code: 200

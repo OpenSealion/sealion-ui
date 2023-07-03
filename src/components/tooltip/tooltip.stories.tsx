@@ -88,7 +88,6 @@ export const TooltipCustomChildDemo = () => {
             <div className='inline-block margin-ver-20'>
                 <Tooltip title="hello" position="right">
                     <div style={{
-                        width: 20,
                         height: 100,
                         border: '1px solid #000'
                     }}>hello</div>
@@ -106,10 +105,23 @@ export const TooltipCustomChildDemo = () => {
             <div className='inline-block margin-ver-20'>
                 <Tooltip title="hello" position="left">
                     <div style={{
-                        width: 20,
                         height: 100,
                         border: '1px solid #000'
                     }}>hello</div>
+                </Tooltip>
+            </div>
+            <div className='inline-block margin-ver-20'>
+                <Tooltip title="I am very very very long" position="top">
+                    <div style={{
+                        border: '1px solid #000'
+                    }}>...</div>
+                </Tooltip>
+            </div>
+            <div className='inline-block margin-ver-20'>
+                <Tooltip title="I am very very very long" position="right">
+                    <div style={{
+                        border: '1px solid #000'
+                    }}>...</div>
                 </Tooltip>
             </div>
         </>
