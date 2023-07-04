@@ -5,9 +5,9 @@ import SLButton, {
 } from '../core/sl-button/sl-button';
 
 export interface ButtonProps extends SLButtonProps {
-    className?: string,
-    disabled?: boolean,
-    pure?: boolean
+    className?: string;
+    disabled?: boolean;
+    pure?: boolean;
 }
 
 const BaseButton = (props: ButtonProps, ref) => {

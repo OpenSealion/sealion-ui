@@ -12,6 +12,7 @@ export interface ISpaceProps extends React.HTMLAttributes<HTMLDivElement> {
     align?: 'start' | 'end' | 'center' | 'baseline';
     split?: React.ReactNode; // 用于自定义分隔符
     wrap?: boolean; // 是否换行
+    children?: React.ReactNode;
 }
 
 export const SpaceContext = React.createContext({

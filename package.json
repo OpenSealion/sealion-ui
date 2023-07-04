@@ -107,6 +107,7 @@
   },
   "dependencies": {
     "classnames": "^2.3.2",
+    "react-device-detect": "^2.2.3",
     "react-transition-group": "^4.4.5"
   },
   "peerDependencies": {

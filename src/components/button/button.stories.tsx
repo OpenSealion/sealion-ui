@@ -19,7 +19,10 @@ defaultButton.args = {
     btnType: 'primary',
     size: 'normal',
     disabled: false,
-    pure: false
+    pure: false,
+    onClick: () => {
+      alert('seal-lion-button');
+    }
 };
 
 export const ButtonWithColor = () => (
