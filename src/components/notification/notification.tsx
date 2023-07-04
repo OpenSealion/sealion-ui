@@ -10,8 +10,9 @@ export interface INotification {
     closeable?: boolean;
     onClose?: () => void;
     type?: 'info' | 'success' | 'warning' | 'error';
-    className?: string,
-    style?: React.CSSProperties
+    className?: string;
+    style?: React.CSSProperties;
+    children?: React.ReactNode;
 }
 
 const defaultProps = {

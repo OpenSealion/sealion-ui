@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { isMobile } from 'react-device-detect';
 
 export type SLButtonTypes = 'primary' | 'secondary' | 'secondary2' | 'line' | 'text' | 'icon' | 'icon2' | 'link' | 'link2';
 export type SLButtonSizes = 'normal' | 'large' | 'small';
@@ -12,7 +13,19 @@ export interface SLButtonProps extends Omit<React.ButtonHTMLAttributes<any>, 'ty
     className?: string;
     type?: SLHostButtonType;
     status?: SLButtonStatus;
+    children?: React.ReactNode;
 }
+
+const getNeedEventCallback = (onClick, onTouchEnd) => {
+    if (isMobile) {
+        return {
+            onTouchEnd: onTouchEnd || onClick
+        };
+    }
+    return {
+        onClick: onClick || onTouchEnd
+    };
+};
 
 const BaseSLButton = (
     {
@@ -22,6 +35,8 @@ const BaseSLButton = (
         children,
         type = 'button',
         status,
+        onClick,
+        onTouchEnd,
         ...rest
     }: SLButtonProps,
     ref
@@ -33,11 +48,13 @@ const BaseSLButton = (
         size && `sea-lion-core-button-${size}`,
         status && `sea-lion-core-button-${status}`
     );
+
     return (
         <button
             ref={ref}
             className={classes}
             type={type}
+            {...getNeedEventCallback(onClick, onTouchEnd)}
             {...rest}
         >
             {children}
