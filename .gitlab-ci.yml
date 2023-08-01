@@ -10,6 +10,7 @@ build_image_dev:
   stage: build
   script:
     - sed -i "s/$nexus_url_old/$nexus_url/g" Dockerfile
+    - sed -i "s/$nexus_s_old/$nexus_url/g" Dockerfile
     - docker build -t $harbor_url_prod/$PROJECT/$CI_PROJECT_NAME:${CI_COMMIT_SHA:0:8} .
     - docker push $harbor_url_prod/$PROJECT/$CI_PROJECT_NAME:${CI_COMMIT_SHA:0:8}
     - docker rmi $harbor_url_prod/$PROJECT/$CI_PROJECT_NAME:${CI_COMMIT_SHA:0:8}
@@ -24,6 +25,7 @@ build_image_main:
   stage: build
   script:
     - sed -i "s/$nexus_url_old/$nexus_url/g" Dockerfile
+    - sed -i "s/$nexus_s_old/$nexus_url/g" Dockerfile
     # - echo "//$nexus_url/repository/npm-all/:_authToken=e3cc86c4-24ee-3ce6-9186-709067bbd121" >> .npmrc
     - docker build -f MainDockerfile -t $harbor_url_prod/$PROJECT/$CI_PROJECT_NAME:${CI_COMMIT_SHA:0:8} .
     - docker push $harbor_url_prod/$PROJECT/$CI_PROJECT_NAME:${CI_COMMIT_SHA:0:8}
@@ -37,6 +39,7 @@ build_image_spoc:
   stage: build
   script:
     - sed -i "s/$nexus_url_old/$nexus_url/g" Dockerfile
+    - sed -i "s/$nexus_s_old/$nexus_url/g" Dockerfile
     - docker build -t $harbor_url_spoc/$PROJECT/$CI_PROJECT_NAME:${CI_COMMIT_SHA:0:8} .
     - docker push $harbor_url_spoc/$PROJECT/$CI_PROJECT_NAME:${CI_COMMIT_SHA:0:8}
     - docker rmi $harbor_url_spoc/$PROJECT/$CI_PROJECT_NAME:${CI_COMMIT_SHA:0:8}
