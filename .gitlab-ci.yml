@@ -18,6 +18,7 @@ build_image_dev:
   only:
     - develop
     - /^tag_dev_aliyun.*$/
+    - /^tag_dev_arch_aliyun.*$/
 
 build_image_main:
   stage: build
@@ -74,6 +75,34 @@ deploy_service_dev:
   only:
     - develop
     - /^tag_dev_aliyun.*$/
+
+deploy_service_arch_dev:
+  stage: k8s_deploy
+  script:
+    - echo "=============== 开始 k8s 部署任务 ==============="
+    - sed -i "s/latest/${CI_COMMIT_SHA:0:8}/g" $kube_file
+    - sed -i "s/$harbor_url/$harbor_url_prod/g" $kube_file
+    - sed -i "s/_harbor_url/$harbor_url_prod/g" $kube_file
+    - sed -i "s/openmmlab/openmmlab-dev/g" $kube_file
+    - sed -i "s/_namespace/openmmlab-dev/g" $kube_file
+    - sed -i "s/_replicas/$_replicas_dev/g" $kube_file
+    - sed -i "s/https_aide_url/$dev_aide_url/g" $kube_file
+    - sed -i "s/https_aide_secret/$dev_aide_secret/g" $kube_file
+    - sed -i "s/_https_uaa_url/$dev_uaa_url/g" $kube_file
+    - sed -i "s/_https_uaa_secret/$dev_uaa_secret/g" $kube_file
+    - sed -i "s/https_monitor_url/$dev_monitor_url/g" $kube_file
+    - sed -i "s/https_monitor_secret/$dev_monitor_secret/g" $kube_file
+    - sed -i "s/https_home_url/$dev_home_url/g" $kube_file
+    - sed -i "s/https_home_1_url/$dev_home_url/g" $kube_file
+    - sed -i "s/https_home_secret/$dev_home_secret/g" $kube_file
+    - sed -i "s/https_platform_url/$dev_platform_url/g" $kube_file
+    - sed -i "s/https_platform_secret/$dev_platform_secret/g" $kube_file
+    - kubectl --kubeconfig $k8s_aliyun_dev_arch_config apply -f $kube_file
+  tags:
+    - aliyun
+  only:
+    - /^tag_dev_arch_aliyun.*$/
+    
 
 deploy_service_spoc_dev:
   stage: k8s_deploy
