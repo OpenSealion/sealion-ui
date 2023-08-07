@@ -71,8 +71,7 @@ deploy_service_dev:
     - sed -i "s/https_home_secret/$dev_home_secret/g" $kube_file
     - sed -i "s/https_platform_url/$dev_platform_url/g" $kube_file
     - sed -i "s/https_platform_secret/$dev_platform_secret/g" $kube_file
-    - kubectl config use-context aliyun-dev-staging
-    - kubectl apply -f $kube_file
+    - kubectl --kubeconfig $k8s_aliyun_dev_arch_config apply -f $kube_file
   tags:
     - aliyun
   only:
