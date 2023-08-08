@@ -19,6 +19,8 @@ export interface IModalProps {
     closeable?: boolean; // 是否显示右上角关闭按钮
     maskClosable?: boolean; // 是否允许点击遮罩关闭弹窗
     width?: number; // 弹窗宽度
+    loading?: boolean; // 是否显示加载中状态
+    loadingIcon?: React.ReactNode; // 用于自定义加载中图标
     onOk?: () => void; // 点击确认按钮的回调
     onCancel?: () => void; // 点击取消按钮的回调
     onClose: () => void; // 点击右上角关闭按钮的回调
@@ -27,22 +29,9 @@ export interface IModalProps {
 }
 const Modal: React.FC<IModalProps> = (props) => {
     const {
-        children,
-        title,
         open,
-        closeable = true,
-        showIcon = true,
-        icon,
-        closeIcon,
-        okText,
-        cancelText,
-        footer,
-        width = 400,
-        style,
         className,
         maskClosable = true,
-        onOk = () => null,
-        onCancel = () => null,
         onClose = () => null,
     } = props;
     const nodeRef = React.useRef(null);

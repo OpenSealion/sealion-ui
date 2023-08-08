@@ -1,34 +1,13 @@
 import React, { useEffect } from 'react';
 import classNames from 'classnames';
-import { CSSTransition } from 'react-transition-group';
 import IconFont from '../icon';
 import Button from '../button/button';
-import { ReactPortal } from '../react-portal';
+import { IModalProps } from '@/components/modal/modal';
 
-export interface IModalProps {
-    children?: React.ReactNode; // 用于自定义内容
-    icon?: React.ReactNode; // 用于自定义图标
-    closeIcon?: React.ReactNode; // 用于自定义关闭图标
-    footer?: React.ReactNode; // 用于自定义底部
-    title?: string; // 用于自定义标题
-    okText?: string; // 用于自定义确认按钮文字
-    cancelText?: string; // 用于自定义取消按钮文字
-    showIcon?: boolean; // 是否显示标题图标
-    open: boolean; // 是否显示弹窗
-    closeable?: boolean; // 是否显示右上角关闭按钮
-    maskClosable?: boolean; // 是否允许点击遮罩关闭弹窗
-    width?: number; // 弹窗宽度
-    onOk?: () => void; // 点击确认按钮的回调
-    onCancel?: () => void; // 点击取消按钮的回调
-    onClose: () => void; // 点击右上角关闭按钮的回调
-    className?: string; // 用于自定义类名
-    style?: React.CSSProperties; // 用于自定义样式
-}
 const ModalCard: React.FC<IModalProps> = (props) => {
     const {
         children,
         title,
-        open,
         closeable = true,
         showIcon = true,
         icon,
@@ -39,7 +18,8 @@ const ModalCard: React.FC<IModalProps> = (props) => {
         width = 400,
         style,
         className,
-        maskClosable = true,
+        loading = false,
+        loadingIcon,
         onOk = () => null,
         onCancel = () => null,
         onClose = () => null,
@@ -68,12 +48,26 @@ const ModalCard: React.FC<IModalProps> = (props) => {
             </Button>
             <Button
                 btnType="primary"
+                disabled={loading}
                 onClick={() => {
                     onOk();
                     onClose();
                 }}
             >
-                {okText || '确定'}
+                {
+                    loading
+                        ? (
+                            <>
+                                {loadingIcon || (
+                                    <IconFont
+                                        icon="icon-RefreshOutlined"
+                                        className="spin"
+                                    />
+                                )}
+                                {okText || '确认'}
+                            </>
+                        ) : okText
+                }
             </Button>
         </div>
     );
