@@ -39,6 +39,7 @@ defaultModal.args = {
     okText: '我知道了',
     cancelText: '取消',
     children: '这是一段常规描述性文字',
+    loading: false,
 };
 
 export const typesModal = () => {
