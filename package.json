@@ -21,7 +21,7 @@
     "url": "http://gitlab.openxlab.org.cn/infrastructure/fe/sea-lion-ui.git"
   },
   "publishConfig": {
-    "registry": "http://10.140.52.166:18081/repository/npm-hosted"
+    "registry": "http://47.102.201.31:18081/repository/npm-hosted"
   },
   "sideEffects": [
     "*.less",
