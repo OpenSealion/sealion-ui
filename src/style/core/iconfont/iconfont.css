@@ -1,9 +1,9 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3858115 */
-  src: url('https://oss.openmmlab.com/x-lab/sea-lion-ui/iconfont/iconfont.woff2?t=1675325871165') format('woff2'),
-       url('https://oss.openmmlab.com/x-lab/sea-lion-ui/iconfont/iconfont.woff?t=1675325871165') format('woff'),
-       url('https://oss.openmmlab.com/x-lab/sea-lion-ui/iconfont/iconfont.ttf?t=1675325871165') format('truetype'),
-       url('https://oss.openmmlab.com/x-lab/sea-lion-ui/iconfont/iconfont.svg?t=1675325871165#iconfont') format('svg');
+  src: url('https://oss.openmmlab.com/x-lab/sea-lion-ui/iconfont/iconfont.woff2?t=1675325871177') format('woff2'),
+       url('https://oss.openmmlab.com/x-lab/sea-lion-ui/iconfont/iconfont.woff?t=1675325871177') format('woff'),
+       url('https://oss.openmmlab.com/x-lab/sea-lion-ui/iconfont/iconfont.ttf?t=1675325871177') format('truetype'),
+       url('https://oss.openmmlab.com/x-lab/sea-lion-ui/iconfont/iconfont.svg?t=1675325871177#iconfont') format('svg');
 }
 
 .iconfont {

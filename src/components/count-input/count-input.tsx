@@ -103,7 +103,7 @@ const CountInput: React.FC<ICountInput> = ({
                         />
                         {showCount && (
                             <span className="seal-input-count-textarea">
-                                {`${value.length} / ${maxLength}`}
+                                {`${_value.length} / ${maxLength}`}
                             </span>
                         )}
                     </>
@@ -120,7 +120,7 @@ const CountInput: React.FC<ICountInput> = ({
                         />
                         {showCount && (
                             <span className="seal-input-count">
-                                {`${value.length} / ${maxLength}`}
+                                {`${_value.length} / ${maxLength}`}
                             </span>
                         )}
                     </>
