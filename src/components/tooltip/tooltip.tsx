@@ -1,5 +1,7 @@
+import React, {
+    useEffect, useRef, useState, Children
+} from 'react';
 import classNames from 'classnames';
-import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import InnerTooltip, { PoptipProps, ToolTipPosition, ArrowDiff } from './Inner-tooltip';
 import { composeRef } from '../../utils';
@@ -88,8 +90,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     position = 'top',
     autoPosition = false,
     getPopupContainer = () => document.body,
-    prefixCls = 'seal',
-    mouseLeaveDelay = 20,
+    mouseLeaveDelay = 500,
     children,
     ...rest
 }) => {
@@ -122,12 +123,23 @@ const Tooltip: React.FC<TooltipProps> = ({
     };
 
     const onlyChildRef = (onlyChild as any).ref;
-    const cloneElementProps: any = {
-        ref: composeRef(childRef, onlyChildRef),
-        className: `${prefixCls}-tooltip-open`,
+    const mouseEventProps = {
         onMouseEnter: handleMouseEnter,
         onMouseMove: handleMouseMove,
         onMouseLeave: handleMouseLeave
+    };
+    const cloneElementProps: any = {
+        ref: composeRef(childRef, onlyChildRef),
+        /**
+         * 如果需要合并className
+         * {Children.map(children, (child, index) =>
+                cloneElement(child, {
+                    className: classNames(child.props.className, 'my-class')
+                })
+            )}
+         */
+        // className: `${prefixCls}-tooltip-open`,
+        ...mouseEventProps
     };
 
     const cloneElement = React.cloneElement(onlyChild, cloneElementProps);
@@ -172,6 +184,7 @@ const Tooltip: React.FC<TooltipProps> = ({
                         <div
                             className={classNames('seal-tooltip-wrapper', mergedOpen && 'seal-toolip-wrapper-open')}
                             style={wrapperStyle}
+                            {...mouseEventProps}
                         >
                             <InnerTooltip {...innerParams} ref={popTipRef} />
                         </div>

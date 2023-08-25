@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Tooltip from './tooltip';
 import InnerTooltip from './Inner-tooltip';
@@ -199,4 +199,31 @@ export const TooltipAutoCalcPositionDemo = () => {
 }
 
 TooltipAutoCalcPositionDemo.storyName = '根据所在窗口位置自动决定弹出位置';
+
+export const TooltipOpenBySelf = () => {
+    const [ open, setOpen ] = useState(false);
+
+    return (
+        <>
+            <div className='inline-block margin-ver-20'>
+                <Button btnType="link2" onClick={() => setOpen(true)}>打开tooltip</Button>
+                <Button btnType="link2" onClick={() => setOpen(false)}>关闭tooltip</Button>
+            </div>
+
+            <div className='inline-block margin-ver-20'>
+                <Tooltip
+                    title="我是自定义主题的tooltip"
+                    autoPosition
+                    position="right"
+                    open={open}
+                >
+                    <div>鼠标放上去不会触发</div>
+                </Tooltip>
+            </div>
+            
+        </>
+    );
+}
+
+TooltipOpenBySelf.storyName = '控制触发时机';
 
