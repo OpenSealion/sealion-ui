@@ -12,11 +12,12 @@ export interface TooltipTheme {
     fontSize?: number;
 }
 export interface PoptipProps {
-    title: string;
+    title: React.ReactNode;
     position?: ToolTipPosition;
     prefixCls?: string;
     className?: string;
     arrowClassName?: string;
+    contentClassName?: string;
     theme?: TooltipTheme;
     style?: React.CSSProperties;
 }
@@ -29,11 +30,13 @@ const PopTip = ({
     prefixCls = 'seal',
     className,
     arrowClassName,
+    contentClassName,
     theme = {},
     style
 }: PoptipProps, ref) => {
     const classes = classNames(className, `${prefixCls}-tooltip`, `${prefixCls}-tooltip-${position}`);
     const arrowClasses = classNames(arrowClassName, `${prefixCls}-tooltip-arrow`);
+    const contentClasses = classNames(contentClassName, `${prefixCls}-tooltip-content`);
     const background = (theme as TooltipTheme).background;
     const arrowStyle = background ? { background } : {};
 
@@ -43,10 +46,8 @@ const PopTip = ({
                 className={arrowClasses}
                 style={arrowStyle}
             />
-            <div className={`${prefixCls}-tooltip-content`}>
-                <div className={`${prefixCls}-tooltip-inner-content`}>
-                    { title }
-                </div>
+            <div className={contentClasses}>
+                { title }
             </div>
         </div>
     );
