@@ -10,9 +10,9 @@ export default ({
 const Template: ComponentStory<typeof Radio> = (args) => (<Radio {...args}>A</Radio>);
 
 // 默认示例
-export const defaultSpin = Template.bind({});
-defaultSpin.storyName = '主要参数使用';
-defaultSpin.args = {
+export const defaultRadio = Template.bind({});
+defaultRadio.storyName = '主要参数使用';
+defaultRadio.args = {
     value: 'a'
 };
 
@@ -61,7 +61,7 @@ export const compoundedHorizontalRadio = () => {
                 { label: 'B', value: 'b' },
                 { label: 'C', value: 'c', disabled: true },
             ]}
-            direction='vertical'
+            direction="vertical"
             value={value}
             onChange={onChange}
         />

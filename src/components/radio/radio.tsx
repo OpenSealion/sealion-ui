@@ -12,7 +12,7 @@ export interface RadioProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onC
     disabled?: boolean,
 }
 
-const SingleRadio: React.FC<RadioProps & React.RefAttributes<HTMLElement>> = (props) => {
+const Radio: React.FC<RadioProps & React.RefAttributes<HTMLElement>> = (props) => {
     const {
         children,
         className,
@@ -69,4 +69,4 @@ const SingleRadio: React.FC<RadioProps & React.RefAttributes<HTMLElement>> = (pr
         </label>
     );
 };
-export default SingleRadio;
+export default Radio;
