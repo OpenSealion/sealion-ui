@@ -1,0 +1,23 @@
+@seal-radio-group-horizontal-gap: 24px;
+@seal-radio-group-vertical-label-margin-bottom: 10px;
+@seal-radio-group-vertical-last-label-margin-bottom: 0;
+
+.seal-radio-group {
+    display: inline-block;
+}
+
+.seal-radio-group-horizontal {
+    display: flex;
+    align-items: center;
+    gap: @seal-radio-group-horizontal-gap;
+}
+
+.seal-radio-group-vertical {
+    label {
+        display: block;
+        margin-bottom: @seal-radio-group-vertical-label-margin-bottom;
+    }
+    label:last-child {
+        margin-bottom: @seal-radio-group-vertical-last-label-margin-bottom;
+    }
+}
