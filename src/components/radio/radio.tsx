@@ -12,7 +12,7 @@ export interface RadioProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onC
     disabled?: boolean,
 }
 
-const Radio: React.FC<RadioProps & React.RefAttributes<HTMLElement>> = (props) => {
+const Radio: React.FC<RadioProps> = (props) => {
     const {
         children,
         className,

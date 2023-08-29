@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import SingleRadio from './radio';
 import { RadioGroupContextProvider } from './context';
 
-export interface RadioGroupProps {
+export interface RadioGroupProps extends Omit<React.HTMLAttributes<HTMLElement>, 'onChange'> {
     options: string[] | number[] | Array<{ label: ReactNode; value: string; disabled?: boolean; }>,
     direction?: 'vertical' | 'horizontal',
     defaultValue?: any,
@@ -13,7 +13,7 @@ export interface RadioGroupProps {
     name?: string
 }
 
-const RadioGroup: React.FC<RadioGroupProps & React.RefAttributes<HTMLElement>> = (props) => {
+const RadioGroup: React.FC<RadioGroupProps> = (props) => {
     const {
         options,
         direction = 'horizontal',
