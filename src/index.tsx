@@ -23,3 +23,4 @@ export { default as Tooltip } from './components/tooltip';
 export {
     BrowserView, MobileView, isBrowser, isMobile
 } from 'react-device-detect';
+export { default as Radio } from './components/radio';
