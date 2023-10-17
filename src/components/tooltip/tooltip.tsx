@@ -90,7 +90,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     position = 'top',
     autoPosition = false,
     getPopupContainer = () => document.body,
-    mouseLeaveDelay = 500,
+    mouseLeaveDelay = 30,
     children,
     ...rest
 }) => {
