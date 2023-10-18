@@ -1,6 +1,6 @@
 {
   "name": "sea-lion-ui",
-  "version": "1.0.40",
+  "version": "0.0.40",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -21,7 +21,7 @@
     "url": "http://gitlab.openxlab.org.cn/infrastructure/fe/sea-lion-ui.git"
   },
   "publishConfig": {
-    "registry": "http://47.102.201.31:18081/repository/npm-hosted"
+    "registry": "https://registry.npmjs.org/"
   },
   "sideEffects": [
     "*.less",
