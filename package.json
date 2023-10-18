@@ -1,6 +1,6 @@
 {
   "name": "sea-lion-ui",
-  "version": "0.0.41",
+  "version": "0.0.42",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -47,7 +47,14 @@
       "last 3 iOS versions"
     ]
   },
-  "keywords": ["sea lion", "sea lion ui", "sea-lion-ui", "react", "react component", "ui"],
+  "keywords": [
+    "sea lion",
+    "sea lion ui",
+    "sea-lion-ui",
+    "react",
+    "react component",
+    "ui"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
