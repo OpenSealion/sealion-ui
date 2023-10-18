@@ -84,13 +84,38 @@ const calcPositionByBoundary = (targetBounding, tooltipBounding, position: ToolT
     return position;
 };
 
+const mergeMouseEventHandler = (originalProps, injectMouseHandlers) => {
+    const { onMouseEnter, onMouseLeave, onMouseMove } = originalProps;
+
+    const mergedMouseEnter = (...args) => {
+        onMouseEnter?.(...args);
+        injectMouseHandlers.onMouseEnter(...args);
+    };
+
+    const mergedMouseLeave = (...args) => {
+        onMouseLeave?.(...args);
+        injectMouseHandlers.onMouseLeave(...args);
+    };
+
+    const mergedMouseMove = (...args) => {
+        onMouseMove?.(...args);
+        injectMouseHandlers.onMouseMove(...args);
+    };
+
+    return {
+        onMouseEnter: mergedMouseEnter,
+        onMouseLeave: mergedMouseLeave,
+        onMouseMove: mergedMouseMove
+    };
+};
+
 const Tooltip: React.FC<TooltipProps> = ({
     open,
     title,
     position = 'top',
     autoPosition = false,
     getPopupContainer = () => document.body,
-    mouseLeaveDelay = 500,
+    mouseLeaveDelay = 30,
     children,
     ...rest
 }) => {
@@ -123,16 +148,16 @@ const Tooltip: React.FC<TooltipProps> = ({
     };
 
     const onlyChildRef = (onlyChild as any).ref;
-    const mouseEventProps = {
+    const mouseEventProps = mergeMouseEventHandler(onlyChild.props, {
         onMouseEnter: handleMouseEnter,
         onMouseMove: handleMouseMove,
         onMouseLeave: handleMouseLeave
-    };
+    });
     const cloneElementProps: any = {
         ref: composeRef(childRef, onlyChildRef),
         /**
          * 如果需要合并className
-         * {Children.map(children, (child, index) =>
+            {Children.map(children, (child, index) =>
                 cloneElement(child, {
                     className: classNames(child.props.className, 'my-class')
                 })
