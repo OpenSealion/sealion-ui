@@ -1,13 +1,23 @@
-# sea-lion-ui
-内容中心业务组件
+# 名字介绍
+<p>  sea-lion意为海狮，组件库的class前缀为seal-*，seal为sea lion的简写，同时也是海豹的英文。</p>
 
-# 使用
+# 特点
+<ul>
+    <li>完全基于面性风格开发样式，可以显著减少类似风格的高保真工作</li>
+    <li>轻量，不依赖antdUI或者其他任何组件库；</li>
+    <li>考虑到目前的资源，sea-lion不会去适配可见未来内项目不需要场景和功能（比如ssr），所以代码会相对简单，便于新增功能；</li>
+</ul>
+
+# 安装
 1. 创建项目
 ```sh
-> create-mm-app create hello-app
+> cls create hello-app # 使用sea-lion-client创建一个项目
 > cd hello-app
 > npm i sea-lion-app
 ```
+[什么是cls？](https://www.npmjs.com/package/sea-lion-client)
+<br/>
+<br/>
 
 2. 首先全局import样式
 
@@ -54,8 +64,7 @@ npm run dev
 npm run build
 ```
 # 发布
-1. 首先发布前要登录，不清楚私有仓库账号密码，可以私信@duxiaoqing
-2. 以下两个命令选择一个执行即可：
+以下两个命令选择一个执行即可：
 ```sh
 # interactive and allows you to confirm each task before execution
 npm run release
