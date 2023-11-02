@@ -19,6 +19,7 @@ export { default as Tabs } from './components/tabs';
 export { default as Steps } from './components/steps';
 export { default as Breadcrumb } from './components/breadcrumb';
 export { default as Tooltip } from './components/tooltip';
+export * from './hooks';
 // https://github.com/duskload/react-device-detect
 export {
     BrowserView, MobileView, isBrowser, isMobile
