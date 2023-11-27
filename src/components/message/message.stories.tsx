@@ -27,7 +27,7 @@ defaultMessage.args = {
 };
 export const typesMessage = () => {
     return (
-        <div style={{ display: 'flex', gap: 36 }}>
+        <div style={{ display: 'flex', gap: 36, flexWrap: 'wrap' }}>
             <Message
                 type="success"
                 title="成功消息通知"
@@ -51,6 +51,11 @@ export const typesMessage = () => {
             <Message
                 type="loading"
                 title="加载消息通知"
+                duration={3000}
+            />
+            <Message
+                type="info"
+                title={<strong><i>这是一个自定义的ReactNode</i></strong>}
                 duration={3000}
             />
         </div>
@@ -97,6 +102,14 @@ export const runtimeMessage = () => {
                 }}
             >
                 普通消息通知
+            </Button>
+            <Button
+                btnType="primary"
+                onClick={() => {
+                    message.info({title: <strong>这是一个被加粗的ReactNode</strong>})
+                }}
+            >
+                自定义消息通知
             </Button>
         </div>
     );
