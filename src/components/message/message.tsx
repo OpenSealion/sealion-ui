@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import IconFont from '../icon';
 import { MessagePortal } from '../react-portal';
@@ -6,9 +6,10 @@ import { MessagePortal } from '../react-portal';
 export type MessageType = 'success' | 'error' | 'warning' | 'info' | 'loading';
 
 export interface IMessageProps {
-    children?: React.ReactNode; // 用于自定义内容
-    content?: string; // 用于自定义内容
-    title: string; // 用于自定义标题
+    children?: ReactNode; // 用于自定义内容
+    content?: ReactNode; // 用于自定义内容
+    title: ReactNode; // 用于自定义标题
+    icon?: ReactNode
     type?: MessageType; // 消息类型
     duration?: number; // 持续时间
     className?: string; // 自定义类名
@@ -31,6 +32,7 @@ const Message: React.FC<IMessageProps> = (props, context) => {
     const {
         title,
         children,
+        icon,
         content,
         type = 'success',
         duration = 5,
@@ -55,7 +57,7 @@ const Message: React.FC<IMessageProps> = (props, context) => {
     return (
         <div>
             <div className={wrapperClasses} style={style}>
-                <IconFont icon={iconMap[type]} className={iconClasses} />
+                {icon || <IconFont icon={iconMap[type]} className={iconClasses} />}
                 <span className="seal-message-title">{children || title}</span>
                 {closable && (
                     <div className="seal-message-close" onClick={onClose}>
