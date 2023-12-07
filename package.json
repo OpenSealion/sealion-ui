@@ -23,6 +23,7 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
+
   "sideEffects": [
     "*.less",
     "*.css"
