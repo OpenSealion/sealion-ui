@@ -1,5 +1,17 @@
-# 名字介绍
-<p>  sea-lion意为海狮，组件库的class前缀为seal-*，seal为sea lion的简写，同时也是海豹的英文。</p>
+<div align="center"><a name="readme-top"></a>
+<img src="./doc/imgs/logo.svg" width="60%" alt="logo" />
+
+<h3>SeaLion UI是一套轻量化且易于拓展的React组件库</h3>
+<br/>
+<div>
+<img alt="Static Badge" src="https://img.shields.io/badge/v16%2B-white?style=flat&label=nodejs&labelColor=%2389c732&color=white">
+<img alt="Static Badge" src="https://img.shields.io/badge/sea%20lion%20ui-green?style=flat&label=ui%20component">
+<img alt="Static Badge" src="https://img.shields.io/badge/weclome-green?style=flat&label=PRs">
+<img alt="Static Badge" src="https://img.shields.io/badge/8.19.4-red?style=flat&label=npm&labelColor=black">
+</div>
+<br/>
+<img src="./doc/imgs/ui-overall.png" style="background: #fff" />
+</div>
 
 # 特点
 <ul>
