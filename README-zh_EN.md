@@ -1,7 +1,6 @@
 <div align="center"><a name="readme-top"></a>
 <img src="./doc/imgs/logo.svg" width="60%" alt="logo" />
 <h3>SeaLion UI is a lightweight and easily extensible React UI library.</h3>
-
 <br/>
 
 <div>
@@ -11,6 +10,9 @@
 <img alt="Static Badge" src="https://img.shields.io/badge/8.19.4-red?style=flat&label=npm&labelColor=black">
 </div>
 <br/>
+
+English· [简体中文](https://github.com/OpenSealion/sealion-ui/blob/develop/README.md)
+
 <img src="./doc/imgs/ui-overall.png" style="background: #fff" />
 </div>
 
