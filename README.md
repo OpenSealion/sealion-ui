@@ -3,6 +3,7 @@
 
 <h3>SeaLion UI是一套轻量化且易于拓展的React组件库</h3>
 <br/>
+
 <div>
 <img alt="Static Badge" src="https://img.shields.io/badge/v16%2B-white?style=flat&label=nodejs&labelColor=%2389c732&color=white">
 <img alt="Static Badge" src="https://img.shields.io/badge/sea%20lion%20ui-green?style=flat&label=ui%20component">
@@ -10,6 +11,9 @@
 <img alt="Static Badge" src="https://img.shields.io/badge/8.19.4-red?style=flat&label=npm&labelColor=black">
 </div>
 <br/>
+
+[English](https://github.com/OpenSealion/sealion-ui/blob/develop/README-zh_EN.md) · 简体中文
+
 <img src="./doc/imgs/ui-overall.png" style="background: #fff" />
 </div>
 
