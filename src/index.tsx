@@ -19,6 +19,7 @@ export { default as Tabs } from './components/tabs';
 export { default as Steps } from './components/steps';
 export { default as Breadcrumb } from './components/breadcrumb';
 export { default as Tooltip } from './components/tooltip';
+export { default as AnimateWrapper } from './components/animate-wrapper';
 export * from './hooks';
 // https://github.com/duskload/react-device-detect
 export {
