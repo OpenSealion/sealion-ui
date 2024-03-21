@@ -21,7 +21,10 @@ const Template: ComponentStory<typeof Modal> = (args) => {
             >
                 点击打开弹窗
             </Button>
-            <Modal open={open} onClose={() => setOpen(false)} {...args}>
+            <Modal
+                open={open}
+                closeable
+                onClose={() => setOpen(false)} {...args}>
                 {args.children || '这是一段常规描述性文字'}
             </Modal>
         </div>

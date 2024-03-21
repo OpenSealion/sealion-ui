@@ -66,7 +66,7 @@ const ModalCard: React.FC<IModalProps> = (props) => {
                                 )}
                                 {okText || '确认'}
                             </>
-                        ) : okText
+                        ) : (okText || '确认')
                 }
             </Button>
         </div>
